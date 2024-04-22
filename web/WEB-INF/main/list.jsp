@@ -40,7 +40,7 @@
                 <tr>
                     <td>${item.p_img}</td>
                     <td>${item.p_cate}</td>
-                    <td>${item.p_name}</td>
+                    <td><a href="product_detail.do?pid=${item.p_id}">${item.p_name}</a></td>
                     <td>${item.p_price}</td>
                     <td>${item.p_state}</td>
                     <td>${item.p_fav}</td>

@@ -27,10 +27,10 @@
             <li>
                 <label for="pcate">카테고리</label><br>
                 <select name="pcate" id="pcate">
-                    <option value="textbook" selected>교재</option>
-                    <option value="adis">교구</option>
-                    <option value="handout">수업자료</option>
-                    <option value="etc">기타</option>
+                    <option value="교재" selected>교재</option>
+                    <option value="교구">교구</option>
+                    <option value="수업자료">수업자료</option>
+                    <option value="기타">기타</option>
                 </select>
 
             </li>
@@ -50,19 +50,18 @@
             <li>
                 <label for="pstate">제품 상태</label><br>
                 <select name="pstate" id="pstate">
-                    <option value="good" selected>미개봉</option>
-                    <option value="soso">거의 새것</option>
-                    <option value="bad">사용감 있음</option>
+                    <option value="미개봉" selected>미개봉</option>
+                    <option value="거의 새것">거의 새것</option>
+                    <option value="사용감 있음">사용감 있음</option>
                 </select>
             </li>
 
             <li>
-                <label>거래 방식</label><br>
-                <label for="ptrade">제품 상태</label><br>
+                <label for="ptrade">거래방식</label><br>
                 <select name="ptrade" id="ptrade" onchange="changeFn()">
-                    <option value="meet" selected>직거래</option>
-                    <option value="deliver">택배</option>
-                    <option value="both">택배,직거래</option>
+                    <option value="직거래" selected>직거래</option>
+                    <option value="택배">택배</option>
+                    <option value="택배,직거래">택배,직거래</option>
                 </select>
             </li>
 
