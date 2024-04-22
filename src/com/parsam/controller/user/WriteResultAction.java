@@ -19,9 +19,11 @@ public class WriteResultAction implements Action {
         String name = request.getParameter("name");         // 이름
         String nickname =request.getParameter("nickname");  // 닉네임
         String id = request.getParameter("id");             // 아이디
-        String pw = request.getParameter("pw");           // 비밀번호
+        String pw = request.getParameter("pw");             // 비밀번호
         String email = request.getParameter("email");       // 이메일
-        String addr = request.getParameter("addr");         // 주소
+        String addr1 = request.getParameter("addr1");       // 우편변호
+        String addr2 = request.getParameter("addr2");       // 주소
+        String addr3 = request.getParameter("addr3");       // 상세주소
         String phone = request.getParameter("phone");       // 연락처
 
         // dto에 담아서 회원가입 정보 넘긴다
@@ -31,7 +33,7 @@ public class WriteResultAction implements Action {
         dto.setId(id);
         dto.setPw(pw);
         dto.setEmail(email);
-        dto.setAddr(addr);
+        dto.setAddr(addr1+ " " + addr2 + " " +addr3);
         dto.setPhone(phone);
 
         // UserService에 dto에 회원가입 데이터 담아서 넘긴다
