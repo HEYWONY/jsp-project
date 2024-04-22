@@ -49,7 +49,7 @@ public class ProductWriteResultAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(false);
-        forward.setUrl("product_list.do");
+        forward.setUrl("list.do");
         return forward;
     }
 }
