@@ -24,7 +24,7 @@ public class TestService {
         List<TestDTO> arr = new ArrayList<>();
         try (
                 Connection conn = db.getConnection();
-                ){
+        ){
             arr = dao.getList(conn);
         } catch (SQLException | NamingException e){
             System.out.println(e);
