@@ -13,7 +13,7 @@ public class ProductWriteAction implements Action {
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("/WEB-INF/chh_product/writeform.jsp");
+        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_product/writeform.jsp");
         return forward;
     }
 }
