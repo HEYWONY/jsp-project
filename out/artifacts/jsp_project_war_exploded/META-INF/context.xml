@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/">
-    <Resource name="jdbc/aws" auth="Container"
-              type="javax.sql.DataSource"
-              maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-              username="admin_java5_1" password="admin_javafull5_1"
-              driverClassName="org.mariadb.jdbc.Driver"
-              url="jdbc:mariadb://kdtjava5-1.c1oby0nabaqs.ap-northeast-2.rds.amazonaws.com:3306/KDTJAVA5_1"/>
-</Context>
