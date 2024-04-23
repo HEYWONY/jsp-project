@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class BoardDetailAction implements Action {
+public class BoardUpdateAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int bno = Integer.parseInt(request.getParameter("bno"));
+        int b_no = Integer.parseInt(request.getParameter("bno"));
 
         BoardService service = BoardService.getService();
-        BoardDTO dto = service.showDetail(bno);
+        BoardDTO dto = service.showDetail(b_no);
         request.setAttribute("dto", dto);
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("/WEB-INF/board/boardDetail.jsp");
+        forward.setUrl("/WEB-INF/board/boardupdate.jsp");
+
         return forward;
     }
 }

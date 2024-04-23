@@ -26,6 +26,10 @@
         <li>${detail.readno}</li>
     </c:if>
 </ul>
+ <a href="boardlist.do">목록보기</a>
+ <a href="board_update.do?bno=${detail.b_no}">수정</a>
+ <a href="board_delete.do?bno=${detail.b_no}">삭제</a>
+
 
 </body>
 </html>
