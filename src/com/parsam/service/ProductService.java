@@ -5,6 +5,7 @@ import com.parsam.dao.ProductDAO;
 import com.parsam.dto.ProductDTO;
 
 import javax.naming.NamingException;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -91,5 +92,56 @@ public class ProductService {
 
         return dto;
 
+    }
+
+    public void updateData(ProductDTO pdto) {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+
+            int result = dao.updateData(conn, pdto);
+            conn.commit();
+
+        } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            disconn(conn);
+        }
+    }
+
+    public void deleteData(long pid, String imgpath){
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        Connection conn = null;
+
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            dao.deleteData(conn, pid);
+
+            File f = new File(imgpath);
+            if (f.isFile()){
+                if (f.exists()){
+                    f.delete();
+                }
+            }
+            conn.commit();
+        } catch (Exception e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+        } finally {
+            disconn(conn);
+        }
     }
 }

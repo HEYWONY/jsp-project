@@ -10,16 +10,21 @@ import com.parsam.service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
-public class ProductWriteResultAction implements Action {
+public class ProductUpdateResultAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int filesize=1024*1024*100;
         String uploadpath=request.getServletContext().getRealPath("productUpload");
         MultipartRequest multi = new MultipartRequest(request, uploadpath, filesize,"utf-8",new DefaultFileRenamePolicy());
 
-        String pimg = multi.getFilesystemName("pimg");
+        ProductService service = ProductService.getService();
+
+        long pid = Long.parseLong(multi.getParameter("p_id"));
+        String old_pimg = multi.getParameter("old_pimg");
+        String new_pimg = multi.getFilesystemName("new_pimg");
         String pname = multi.getParameter("pname");
         int pprice = Integer.parseInt(multi.getParameter("pprice"));
         String pcate = multi.getParameter("pcate");
@@ -32,7 +37,29 @@ public class ProductWriteResultAction implements Action {
         long u_id = Long.parseLong(multi.getParameter("u_id"));
 
         ProductDTO pdto = new ProductDTO();
-        pdto.setP_img(pimg);
+//        System.out.println(new_pimg+".........new pimg");
+//        System.out.println(old_pimg+".........old pimg");
+
+        if(new_pimg != null) { // 새 이미지가 있을 때 (기존 이미지가 있든 없든 일단)
+            pdto.setP_img(new_pimg); //새 이미지로 설정
+            if (old_pimg != null){ // 새 이미지가 있는데 기존 이미지가 있다면 기존 이미지 productUpload 폴더에서 삭제
+                String realpath = request.getServletContext().getRealPath("productUpload");
+                String imgpath = realpath+"/"+old_pimg;
+                File f = new File(imgpath);
+                if (f.isFile()){
+                    if (f.exists()){
+                        f.delete();
+                    }
+                }
+            }
+        } else { // 새 이미지가 없을 때
+            if (old_pimg != null){ //기존 이미지가 있을 때
+                pdto.setP_img(old_pimg);
+            }
+            //새 이미지가 없고 기존 이미지도 없으면 아무것도 안넘김(null)
+        }
+
+        pdto.setP_id(pid);
         pdto.setP_name(pname);
         pdto.setP_price(pprice);
         pdto.setP_cate(pcate);
@@ -44,12 +71,11 @@ public class ProductWriteResultAction implements Action {
         pdto.setP_trade(ptrade);
         pdto.setU_id(u_id);
 
-        ProductService service = ProductService.getService();
-        service.insertData(pdto);
+        service.updateData(pdto);
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("product_write_alert.do");
+        forward.setUrl("product_update_alert.do");
         return forward;
     }
 }

@@ -20,3 +20,13 @@ ul li{
     display: flex;
     justify-content: center;
 }
+
+#product_info_box{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+#product_info_box>li{
+    margin: 10px;
+}
+

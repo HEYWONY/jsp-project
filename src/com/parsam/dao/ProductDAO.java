@@ -36,7 +36,7 @@ public class ProductDAO {
         sql.append("                         , p_place                    ");
         sql.append("                         , p_trade                    ");
         sql.append("                         , u_id    )                  ");
-        sql.append(" values(?,?,?,?,?,CURDATE(),false,?,?,0,0,0,?,?,?)    ");
+        sql.append(" values(?,?,?,?,?,CURDATE(),false,?,?,0,0,?,?,?,?)    ");
         try (
                 PreparedStatement pstmt = conn.prepareStatement(sql.toString());
                 ){
@@ -47,9 +47,10 @@ public class ProductDAO {
             pstmt.setString(5, pdto.getP_openchat());
             pstmt.setString(6,pdto.getP_state());
             pstmt.setString(7,pdto.getP_cate());
-            pstmt.setString(8, pdto.getP_place());
-            pstmt.setString(9, pdto.getP_trade());
-            pstmt.setLong(10, pdto.getU_id());
+            pstmt.setInt(8, pdto.getP_cnt());
+            pstmt.setString(9, pdto.getP_place());
+            pstmt.setString(10, pdto.getP_trade());
+            pstmt.setLong(11, pdto.getU_id());
             pstmt.executeUpdate();
         }
     }
@@ -165,6 +166,60 @@ public class ProductDAO {
         }
     }
 
+
+    /*
+    * UPDATE 테이블명
+        SET
+	    컬럼1 = 값1
+        ,컬럼2 = 값2
+        , ...
+      WHERE 조건;
+* */
+    public int updateData(Connection conn, ProductDTO pdto) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" UPDATE product SET                                     ");
+        sql.append("                         p_name=?                       ");
+        sql.append("                         , p_desc=?                     ");
+        sql.append("                         , p_price=?                    ");
+        sql.append("                         , p_img=?                      ");
+        sql.append("                         , openchat=?                   ");
+        sql.append("                         , p_state=?                    ");
+        sql.append("                         , p_cate=?                     ");
+        sql.append("                         , p_stock=?                    ");
+        sql.append("                         , p_place=?                    ");
+        sql.append("                         , p_trade=?                    ");
+        sql.append(" WHERE p_id=?                                           ");
+        int result = 0;
+        try (
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+        ){
+            pstmt.setString(1, pdto.getP_name());
+            pstmt.setString(2, pdto.getP_desc());
+            pstmt.setInt(3, pdto.getP_price());
+            pstmt.setString(4, pdto.getP_img());
+            pstmt.setString(5, pdto.getP_openchat());
+            pstmt.setString(6,pdto.getP_state());
+            pstmt.setString(7,pdto.getP_cate());
+            pstmt.setInt(8, pdto.getP_cnt());
+            pstmt.setString(9, pdto.getP_place());
+            pstmt.setString(10, pdto.getP_trade());
+            pstmt.setLong(11, pdto.getP_id());
+            result = pstmt.executeUpdate();
+        }
+        return result;
+    }
+
+    public void deleteData(Connection conn, long pid) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" delete  from  product        ");
+        sql.append(" where p_id=?                 ");
+        try (
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+                ){
+            pstmt.setLong(1, pid);
+            pstmt.executeUpdate();
+        }
+    }
 }
 
 
