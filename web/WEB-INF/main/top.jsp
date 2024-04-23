@@ -16,7 +16,7 @@
             <img src="indexImg/search.png" alt="search">
         </div>
         <span class="header_03">
-            <h1><a href="#">로그인</a></h1>
+            <h1><a href="join.do">로그인</a></h1>
         </span>
         <span class="header_03_1">
             <h3>상품등록</h3>
