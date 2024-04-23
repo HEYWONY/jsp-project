@@ -144,4 +144,55 @@ public class ProductService {
             disconn(conn);
         }
     }
+
+    // 최신 리스트
+    public List<ProductDTO> productNewListService(){
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        try (Connection conn = db.getConnection()){
+            System.out.println("hi");
+            arr = dao.getNewList(conn);
+        } catch (SQLException | NamingException e){
+            System.out.println(e);
+        }
+        return arr;
+    }
+
+    // 검색 기능
+    public List<ProductDTO> productListResult(ProductDTO dto) {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+
+        try {
+            conn = db.getConnection();
+            arr = dao.productListResult(conn, dto);
+
+        } catch (SQLException | NamingException e) {
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> productPopularListService() {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+
+        try {
+            conn = db.getConnection();
+            arr = dao.getPopList(conn);
+        } catch (SQLException | NamingException e) {
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
 }
