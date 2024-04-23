@@ -9,6 +9,7 @@
 </head>
 <body>
     <h2>회원 가입 성공~!</h2>
+    <a href="#">로그인</a>
 </body>
 </html>
     
