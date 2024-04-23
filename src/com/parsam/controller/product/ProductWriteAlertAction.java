@@ -1,4 +1,4 @@
-package com.parsam.controller;
+package com.parsam.controller.product;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;

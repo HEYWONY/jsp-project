@@ -132,7 +132,7 @@
       <li>
         <div id="address_choice_li">
           <label>직거래 희망 장소 </label><br>
-          <input type="text" id="input_addr" name="pplace" placeholder="주소 선택" value="${dto.p_place}" readonly>
+          <input type="text" id="input_addr" name="pplace" placeholder="주소 선택" value="${dto.p_place}" required readonly>
           <input type="button" onclick="select_addr()" value="주소 검색"><br>
         </div>
       </li>

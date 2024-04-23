@@ -62,7 +62,7 @@
                         <!--로그인에 따라 (판매자/사용자) 다르게 보일 버튼-->
                         <div>
                             <a href="#">찜하기</a>
-                            <a href="#">바로구매</a>
+                            <a href="product_order.do?pid=${dto.p_id}">바로구매</a>
                         </div>
                         <div>
                             <a href="product_update.do?pid=${dto.p_id}">수정하기</a>
