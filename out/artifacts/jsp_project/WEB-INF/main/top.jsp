@@ -26,7 +26,7 @@
     <nav>
         <ul>
             <li><a href="#">교구</a></li>
-            <li><a href="textbook.do">교재</a></li>
+            <li><a href="#">교재</a></li>
             <li><a href="#">수업자료</a></li>
             <li><a href="#">기타</a></li>
             <li><a href="list.do">전체매물</a></li>
