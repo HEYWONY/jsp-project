@@ -44,10 +44,10 @@ public class WriteResultAction implements Action {
 
         if(result == 1) {
             System.out.println("회원가입 성공!");
-            forward.setUrl("/WEB-INF/user/joinSuccess.jsp");
+            forward.setUrl("WEB-INF/main/index.jsp?page=../user/joinSuccess.jsp");
         }else {
             System.out.println("회원가입 실패");
-            forward.setUrl("/WEB-INF/user/joinForm.jsp");
+            forward.setUrl("WEB-INF/main/index.jsp?page=../user/joinForm.jsp");
         }
 
         return forward;

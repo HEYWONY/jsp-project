@@ -10,6 +10,7 @@
         <webroots>
           <root url="file://$MODULE_DIR$/web" relative="/" />
         </webroots>
+        <sourceRoots />
       </configuration>
     </facet>
   </component>
@@ -25,5 +26,6 @@
     <orderEntry type="library" name="javax.servlet.jstl" level="project" />
     <orderEntry type="library" name="googlecode.json.simple" level="project" />
     <orderEntry type="library" name="postcode.v2" level="application" />
+    <orderEntry type="library" name="servlets.cos" level="project" />
   </component>
 </module>
