@@ -27,12 +27,17 @@
 
                         <hr>
 
-                        <div id="product_info_box">
+                        <div>
                             <li>
+                                <input type="hidden" id="p_stock" value="${dto.p_stock}">
                                 <label for="ocnt">수량</label><br>
-                                <input type="number" min="1" name="ocnt" id="ocnt" value=1 onchange="calc_total()" required>
+                                <label id="minus_btn">-</label>
+                                <input type="text" min="1" name="ocnt" id="ocnt" value=1 readonly>
+                                <label id="plus_btn">+</label>
                             </li>
-                            <p id="total_pay"></p>
+                            <li>
+                                <p id="total_pay"></p>
+                            </li>
                         </div>
                     </ul>
                 </section>

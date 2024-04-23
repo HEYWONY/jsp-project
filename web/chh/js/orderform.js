@@ -46,12 +46,40 @@ function find_postcode() {
     }).open();
 }
 
+
+
+window.onload=function () {
+    calc_total();
+
+    const price=document.getElementById('price').textContent;
+    const ocnt = document.getElementById('ocnt');
+    const stock= document.getElementById('p_stock');
+    const total_pay=document.getElementById('total_pay');
+
+    document.getElementById('minus_btn').onclick=function () {
+
+        if (Number(ocnt.value)>1){
+            ocnt.value=Number(ocnt.value)-Number(1);
+            total_pay.textContent="총 결제금액: "+Number(price)*Number(ocnt.value);
+        } else {
+            alert('최소 수량은 1입니다.');
+        }
+    }
+    console.log(stock.value);
+    document.getElementById('plus_btn').onclick=function () {
+        if (Number(ocnt.value) >= Number(stock.value)){
+            alert('재고 수량 이하로 주문하세요!');
+        } else {
+            ocnt.value=Number(ocnt.value)+Number(1);
+            total_pay.textContent="총 결제금액: "+Number(price)*Number(ocnt.value);
+        }
+    }
+}
+
 function calc_total(){
     const total_pay=document.getElementById('total_pay');
     const price=document.getElementById('price').textContent;
     let cnt = document.getElementById('ocnt').value;
 
     total_pay.textContent="총 결제금액: "+Number(price)*Number(cnt);
-
-    console.log("변경감지")
 }
