@@ -28,12 +28,16 @@ function changeFn() {
     let address = document.getElementById('input_addr');
 
     result.ptrade = ptrade.options[ptrade.selectedIndex].value;
-    console.log(result.ptrade);
+    console.log(result.ptrade); //테스트 코드
 
-    if (result.ptrade==='deliver'){
+    if (result.ptrade==="deliver"){ //value값 한글로 설정하면 인식 못함
         address_choice.style.display='none';
         address.value='';
     } else {
         address_choice.style.display='block';
     }
+}
+
+window.onload=function (){ //수정 폼에서 로드 시 선택 되어 있는 거래 방식에 따라 주소 입력창 가시성 설정
+    changeFn();
 }

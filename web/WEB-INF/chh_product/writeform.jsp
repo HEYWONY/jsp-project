@@ -59,9 +59,9 @@
             <li>
                 <label for="ptrade">거래방식</label><br>
                 <select name="ptrade" id="ptrade" onchange="changeFn()">
-                    <option value="직거래" selected>직거래</option>
-                    <option value="택배">택배</option>
-                    <option value="택배,직거래">택배,직거래</option>
+                    <option value="meet" selected>직거래</option>
+                    <option value="deliver">택배</option>
+                    <option value="both">택배,직거래</option>
                 </select>
             </li>
 
