@@ -1,4 +1,4 @@
-package com.parsam.controller;
+package com.parsam.controller.product;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -73,6 +73,7 @@ public class ProductUpdateResultAction implements Action {
 
         service.updateData(pdto);
 
+        request.setAttribute("pid",pid);
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("product_update_alert.do");

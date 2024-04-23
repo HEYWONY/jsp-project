@@ -1,4 +1,4 @@
-package com.parsam.controller;
+package com.parsam.controller.product;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
