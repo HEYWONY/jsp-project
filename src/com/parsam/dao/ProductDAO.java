@@ -220,6 +220,113 @@ public class ProductDAO {
             pstmt.executeUpdate();
         }
     }
+
+    // 전체 검색 필터
+    public List<ProductDTO> productListResult(Connection conn, ProductDTO dto) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_img                                  ");
+        sql.append("        , p_name                                 ");
+        sql.append("        , p_price                                ");
+        sql.append("        , p_state                                ");
+        sql.append("        , p_fav                                  ");
+        sql.append(" from product                                    ");
+        sql.append(" where p_cate = ? AND p_trade = ? AND p_state= ? ");
+
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setString(1, dto.getP_cate());
+            pstmt.setString(2, dto.getP_trade());
+            pstmt.setString(3, dto.getP_state());
+            while(rs.next()) {
+                while (rs.next()) {
+                    ProductDTO pdto = new ProductDTO();
+                    dto.setP_id(rs.getLong("p_id"));
+                    dto.setP_img(rs.getString("p_img"));
+                    dto.setP_cate(rs.getString("p_cate"));
+                    dto.setP_name(rs.getString("p_name"));
+                    dto.setP_price(rs.getInt("p_price"));
+                    dto.setP_state(rs.getString("p_state"));
+                    dto.setP_fav(rs.getInt("p_fav"));
+                    list.add(pdto);
+                }
+
+            }
+            return list;
+        }
+    }
+
+    // 최신글
+    public List<ProductDTO> getNewList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select   p_id                   ");
+        sql.append("        , p_img                  ");
+        sql.append("        , p_cate                 ");
+        sql.append("        , p_name                 ");
+        sql.append("        , p_price                ");
+        sql.append("        , p_state                ");
+        sql.append("        , p_fav                  ");
+        sql.append(" FROM product                    ");
+        sql.append(" ORDER BY p_date DESC            ");
+        sql.append(" LIMIT 6                         ");
+
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                list.add(dto);
+            }
+        } finally {
+            if(rs!=null) try{rs.close();} catch (Exception e){}
+        }
+        return list;
+
+    }
+
+    public List<ProductDTO> getPopList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_id          ");
+        sql.append("        , p_img         ");
+        sql.append("        , p_cate        ");
+        sql.append("        , p_name        ");
+        sql.append("        , p_price       ");
+        sql.append("        , p_state       ");
+        sql.append("        , p_fav         ");
+        sql.append(" FROM product           ");
+        sql.append(" ORDER BY p_readno desc ");
+
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                list.add(dto);
+            }
+        }
+        return list;
+    }
+
 }
 
 

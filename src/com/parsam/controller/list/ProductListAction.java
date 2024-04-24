@@ -1,4 +1,4 @@
-package com.parsam.controller.product;
+package com.parsam.controller.list;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
@@ -18,7 +18,6 @@ public class ProductListAction implements Action {
         ProductService service = ProductService.getService();
         List<ProductDTO> list = service.productListService();
         request.setAttribute("list", list);
-        System.out.println(list);
 
         Forward forward = new Forward();
         forward.setForward(true);
