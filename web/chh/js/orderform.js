@@ -53,7 +53,7 @@ window.onload=function () {
 
     const price=document.getElementById('price').textContent;
     const ocnt = document.getElementById('ocnt');
-    const stock= document.getElementById('p_stock');
+    const stock= document.getElementById('pstock');
     const total_pay=document.getElementById('total_pay');
 
     document.getElementById('minus_btn').onclick=function () {
