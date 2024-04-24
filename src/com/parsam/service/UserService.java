@@ -106,6 +106,41 @@ public class UserService {
         return result;
     }
 
+
+    public long getUid(String id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+
+        long uid=0;
+        try {
+            conn=db.getConnection();
+            conn.setAutoCommit(false);
+            uid = dao.getUid(conn,id);
+            conn.commit();
+        } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            disconn(conn);
+        }
+        return uid;
+    }
+
+    private void disconn(Connection conn){
+        if (conn!=null){
+            try {
+                conn.close();
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        }
+    }
+
     /* 사용자 핀매내역(판매중) 내역 가져오기 */
     public List<ProductDTO> getUserSaleList(long u_id) {
         DBConnection db = DBConnection.getInstance();
@@ -145,5 +180,6 @@ public class UserService {
         }
         return arr;
     }
+
 
 }

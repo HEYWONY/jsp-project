@@ -1,6 +1,7 @@
 package com.parsam.service;
 
 import com.parsam.comm.DBConnection;
+import com.parsam.dao.FavDAO;
 import com.parsam.dao.ProductDAO;
 import com.parsam.dto.ProductDTO;
 
@@ -195,4 +196,20 @@ public class ProductService {
         return arr;
     }
 
+    public int getFavCnt(long pid) {
+        DBConnection db = DBConnection.getInstance();
+        FavDAO dao = FavDAO.getDao();
+        int favcnt = 0;
+
+        Connection conn = null;
+        try {
+            conn=db.getConnection();
+            favcnt=dao.getFavCnt(conn, pid);
+        } catch (SQLException | NamingException e){
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return  favcnt;
+    }
 }

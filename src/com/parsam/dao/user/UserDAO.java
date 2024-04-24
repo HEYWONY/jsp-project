@@ -130,6 +130,32 @@ public class UserDAO {
         return result;
     }
 
+    public long getUid(Connection conn, String id) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT u_id             ");
+        sql.append(" FROM user               ");
+        sql.append(" WHERE id=?              ");
+        ResultSet rs = null;
+        long uid=0;
+        try(
+            PreparedStatement pstmt = conn.prepareStatement(sql.toString())
+                ){
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                uid = rs.getInt(1);
+            }
+        } finally {
+            if (rs!=null){
+                try {
+                    rs.close();
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+        }
+        return uid;
+     }
 
     /* 사용자 판매 내역(판매중) 목록 */
     public List<ProductDTO> getUserSaleList(Connection conn, long u_id) throws SQLException {

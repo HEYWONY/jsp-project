@@ -27,7 +27,6 @@ public class ProductDAO {
         sql.append("                         , p_img                      ");
         sql.append("                         , openchat                   ");
         sql.append("                         , p_date                     ");
-        sql.append("                         , p_sold                     ");
         sql.append("                         , p_state                    ");
         sql.append("                         , p_cate                     ");
         sql.append("                         , p_readno                   ");
@@ -36,7 +35,7 @@ public class ProductDAO {
         sql.append("                         , p_place                    ");
         sql.append("                         , p_trade                    ");
         sql.append("                         , u_id    )                  ");
-        sql.append(" values(?,?,?,?,?,CURDATE(),false,?,?,0,0,?,?,?,?)    ");
+        sql.append(" values(?,?,?,?,?,CURDATE(),?,?,0,0,?,?,?,?)    ");
         try (
                 PreparedStatement pstmt = conn.prepareStatement(sql.toString());
                 ){
@@ -111,7 +110,6 @@ public class ProductDAO {
         sql.append("           , p_img                                    ");
         sql.append("           , openchat                                 ");
         sql.append("           , p_date                                   ");
-        sql.append("           , p_sold                                   ");
         sql.append("           , p_state                                  ");
         sql.append("           , p_cate                                   ");
         sql.append("           , p_readno                                 ");
@@ -140,7 +138,6 @@ public class ProductDAO {
                 dto.setP_img(rs.getString("p_img"));
                 dto.setP_openchat(rs.getString("openchat"));
                 dto.setP_date(rs.getDate("p_date").toLocalDate());
-                dto.setP_sold(rs.getBoolean("p_sold"));
                 dto.setP_state(rs.getString("p_state"));
                 dto.setP_cate(rs.getString("p_cate"));
                 dto.setReadno(rs.getInt("p_readno"));
@@ -166,15 +163,6 @@ public class ProductDAO {
         }
     }
 
-
-    /*
-    * UPDATE 테이블명
-        SET
-	    컬럼1 = 값1
-        ,컬럼2 = 값2
-        , ...
-      WHERE 조건;
-* */
     public int updateData(Connection conn, ProductDTO pdto) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" UPDATE product SET                                     ");
