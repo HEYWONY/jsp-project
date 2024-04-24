@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>joinSuccess</title>
+    <title>마이페이지</title>
 </head>
 <body>
-    <h2>회원 가입 성공~!</h2>
-    <a href="#">로그인</a>
+<a href="userModify.do?id=test7">프로필 보기</a>
+
 </body>
 </html>
     
