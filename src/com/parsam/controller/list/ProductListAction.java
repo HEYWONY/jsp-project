@@ -21,7 +21,7 @@ public class ProductListAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=list.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=main/list.jsp");
         return forward;
     }
 }

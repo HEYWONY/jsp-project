@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -5,6 +6,10 @@
     <link rel="stylesheet" href="indexCSS/top.css">
 </head>
 <body>
+<%// String id = (String) session.getAttribute("id");%>
+<c:set var="session_id" value="${sessionScope.id}"></c:set>
+<c:out value="hello ${session_id}"></c:out>
+
 <header>
         <span class="header_01">
             <a href="index.do"><img class="header_img" src="indexImg/pasam_logo.png" alt="pasam_logo"></a>
@@ -15,13 +20,22 @@
         </label>
         <img src="indexImg/search.png" alt="search">
     </div>
-    <span class="header_03">
-            <a href="join.do">로그인</a>
-        </span>
-    <span class="header_03_1">
-            <a href="#">상품등록</a>
-           <a href="#">마이페이지</a>
-        </span>
+    <c:choose>
+        <c:when test="${session_id==null ||  empty session_id || session_id == '' }">
+            <c:out value="logout"></c:out>
+            <span class="header_03">
+                <a href="login.do">로그인</a>
+            </span>
+        </c:when>
+        <c:otherwise>
+            <c:out value="login"></c:out>
+            <span class="header_03_1">
+         <a href="product_write.do">상품등록</a><br>
+             <a href="#">마이페이지</a>
+            </span>
+        </c:otherwise>
+    </c:choose>
+
 </header>
 <nav>
     <ul>
@@ -31,7 +45,6 @@
         <li><a href="#">기타</a></li>
         <li><a href="list.do">전체매물</a></li>
         <li><a href="boardlist.do">공지사항</a></li>
-        <li><a href="product_write.do">상품등록</a></li>
     </ul>
 </nav>
 </body>

@@ -40,15 +40,18 @@
 <%--<%
     System.out.println("한글아 나와줄래.... (star...)");
 %>--%>
-    <jsp:include page="top.jsp" flush="true"/>
+    <jsp:include page="top.jsp"/>
+
     <section>
         <c:set var="contentpage" value="${param.page}"/>
+        <c:out value="${contentpage}"/>
         <c:choose>
             <c:when test="${empty contentpage || contentpage==''}">
-                <jsp:include page="mainList.jsp"/>
+                <jsp:include page="main/mainList.jsp"/>
             </c:when>
             <c:otherwise>
                 <jsp:include page="${contentpage}"/>
+<%--            <jsp:include page="chh_product/writeform.jsp"></jsp:include>--%>
             </c:otherwise>
         </c:choose>
     

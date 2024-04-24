@@ -16,7 +16,7 @@ public class ProductUpdateAlertAction implements Action {
         request.setAttribute("pid", pid);
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_product/update_alert.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_product/update_alert.jsp");
         return forward;
     }
 }

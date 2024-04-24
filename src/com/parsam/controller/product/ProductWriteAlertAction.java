@@ -13,7 +13,7 @@ public class ProductWriteAlertAction implements Action {
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_product/write_alert.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_product/write_alert.jsp");
         return forward;
     }
 }

@@ -48,7 +48,7 @@ public class ProductWriteResultAction implements Action {
         service.insertData(pdto);
 
         Forward forward = new Forward();
-        forward.setForward(true);
+        forward.setForward(false);
         forward.setUrl("product_write_alert.do");
         return forward;
     }
