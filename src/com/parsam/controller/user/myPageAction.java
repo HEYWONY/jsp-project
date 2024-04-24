@@ -8,6 +8,7 @@ import com.parsam.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class myPageAction implements Action {
@@ -15,17 +16,25 @@ public class myPageAction implements Action {
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 파라미터
-        String id = request.getParameter("id");     // userid
-//        long u_id = Long.parseLong(request.getParameter("u_id"));
+        HttpSession session = request.getSession();
+        String id = (String) session.getAttribute("id");
 
         UserService service = UserService.getService();
         UserDTO dto = service.getModifyList(id);
 
+        String teacher_ck = "";
+        if(!dto.isTeacher_ck()) {
+            teacher_ck = "인증이 진행중입니다.";
+        }else {
+            teacher_ck = "인증 완료 되었습니다.";
+        }
+
         request.setAttribute("dto", dto);
+        request.setAttribute("teacher_ck", teacher_ck);
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=user/myPage.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=user/myPage.jsp");
 
         return forward;
     }

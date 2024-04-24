@@ -30,15 +30,15 @@
     <%-- 회원 가입 폼--%>
     <ul>
         <li>
-            <label for="name">이름</label>
+            <label for="name">이름 <span>*</span></label>
             <input type="text" id="name" name="name" placeholder="이름을 입력하세요." required>
         </li>
         <li>
-            <label for="nickname">닉네임</label>
+            <label for="nickname">닉네임 <span>*</span></label>
             <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요." required>
         </li>
         <li>
-            <label for="id">아이디</label>
+            <label for="id">아이디 <span>*</span></label>
             <input type="text" id="id" name="id"placeholder="영어 또는 숫자만 입력해주세요." required>
             <input type="button" id="btn" value="중복 확인"><br>
         </li>
@@ -46,25 +46,25 @@
         <div class="failure-message hide">4 ~ 10글자 이내로 입력해주세요.</div>
         <div class="failure-message2 hide">영어 또는 숫자만 입력해주세요.</div>
         <li>
-            <label for="pw">비밀번호</label>
+            <label for="pw">비밀번호 <span>*</span></label>
             <input type="password" id="pw" name="pw"  placeholder="영문, 숫자, 특수문자 8자 이상 입력해주세요." required>
         </li>
 
 
         <li>
-            <label for="pwdCk">비밀번호 확인</label>
+            <label for="pwdCk">비밀번호 확인 <span>*</span></label>
             <input type="password" id="pwdCk" name="pwdCk" required>
         </li>
         <div class="mismatch-message hide">비밀번호가 일치하지 않습니다.</div>
         <li>
-            <label for="email">이메일</label>
+            <label for="email">이메일 <span>*</span></label>
             <input type="text" id="email" name="email" required>
             <input type="button" value="인증하기"><br>
             <input type="text" id="emailck" name="emailck" >
             <input type="button" value="인증번호 확인">
         </li>
         <li>
-            <label>주소</label><br>
+            <label>주소 <span>*</span></label><br>
             <input type="text" name="addr1" id="postcode" placeholder="우편번호">
             <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
             <input type="text"  name="addr2" id="address" placeholder="주소"><br>
@@ -72,11 +72,11 @@
             <input type="text" name="addr4" id="extraAddress" placeholder="참고항목">
         </li>
         <li>
-            <label for="phone">연락처</label>
+            <label for="phone">연락처 <span>*</span></label>
             <input type="text" id="phone" name="phone" required>
         </li>
         <li>
-            <input type="checkbox" name="agree" id="agree1">
+            <input type="checkbox" name="agree" id="agree1" required>
             [필수] 만 14세이며 모두 동의합니다.
         </li>
         <li>
@@ -85,6 +85,7 @@
         </li>
         <li>
             <input type="submit" value="가입하기">
+            <input type="reset" value="취소">
         </li>
     </ul>
 </form>
