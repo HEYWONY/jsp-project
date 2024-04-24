@@ -17,11 +17,11 @@ public class IndexAction implements Action {
 
         ProductService service = ProductService.getService();
 
-        // 최신 물품
+        // 최신 물품입니다
         List<ProductDTO> list = service.productNewListService();
         request.setAttribute("list", list);
 
-        // 인기 물품
+        // 인기 물품입니다.
         List<ProductDTO> list2 = service.productPopularListService();
         request.setAttribute("list2", list2);
 

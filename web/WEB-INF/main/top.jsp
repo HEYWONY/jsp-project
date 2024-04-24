@@ -30,7 +30,7 @@
         <li><a href="#">수업자료</a></li>
         <li><a href="#">기타</a></li>
         <li><a href="list.do">전체매물</a></li>
-        <li><a href="#">공지사항</a></li>
+        <li><a href="boardlist.do">공지사항</a></li>
         <li><a href="product_write.do">상품등록</a></li>
     </ul>
 </nav>
