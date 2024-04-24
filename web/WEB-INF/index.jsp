@@ -51,7 +51,6 @@
             </c:when>
             <c:otherwise>
                 <jsp:include page="${contentpage}"/>
-<%--            <jsp:include page="chh_product/writeform.jsp"></jsp:include>--%>
             </c:otherwise>
         </c:choose>
     
