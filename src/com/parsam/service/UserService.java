@@ -39,4 +39,46 @@ public class UserService {
         }
         return result;
     }
+
+    /* 회원 정보 리스트 - 회원 정보 수정에 사용 */
+    public UserDTO getModifyList(String id) {
+
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        UserDTO dto = new UserDTO();
+
+        try {
+            conn = db.getConnection();  // db 연결
+            dto = dao.getModifyList(conn, id);
+
+        }catch (SQLException | NamingException e) {
+            System.out.println(e);
+        }finally {
+            if(conn!=null) try {
+                conn.close();
+            }catch (Exception e) {}
+        }
+
+        return dto;
+    }
+
+    /* 회원정보 수정 */
+    public int updateUserData(UserDTO dto) {
+        DBConnection db =  DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        int result = 0;
+        try {
+            conn = db.getConnection();
+            result = dao.updateUserData(conn, dto);
+        }catch (SQLException | NamingException e) {
+            System.out.println(e);
+        }finally {
+            if(conn!=null) try {
+                conn.close();
+            }catch (Exception e) {}
+        }
+        return result;
+    }
 }

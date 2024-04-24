@@ -4,6 +4,7 @@ import com.parsam.dto.UserDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
@@ -39,6 +40,67 @@ public class UserDAO {
             pstmt.setString(7, dto.getPhone());
             result = pstmt.executeUpdate();
         }
+        return result;
+    }
+
+    /* 회원 정보 가져오기(수정 화면) */
+    public UserDTO getModifyList(Connection conn, String id) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select       id            ");
+        sql.append("            , name          ");
+        sql.append("            , nickname      ");
+        sql.append("            , addr          ");
+        sql.append("            , phone         ");
+        sql.append("            , email         ");
+        sql.append("            , photo         ");
+        sql.append("  from        user          ");
+        sql.append("  where       id = ?        ");
+
+        ResultSet rs = null;
+        UserDTO dto = new UserDTO();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if(rs.next()) {
+                dto.setId(rs.getString("id"));
+                dto.setName(rs.getString("name"));
+                dto.setNickname(rs.getString("nickname"));
+                dto.setAddr(rs.getString("addr"));
+                dto.setPhone(rs.getString("phone"));
+                dto.setEmail(rs.getString("email"));
+                dto.setPhoto(rs.getString("photo"));
+            }
+        }finally {
+            if(rs!=null) try {
+                rs.close();
+            }catch (Exception e) {}
+        }
+        return dto;
+    }
+
+    /* 회원정보 수정 */
+    public int updateUserData(Connection conn, UserDTO dto) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("  update         user    ");
+        sql.append("  set                    ");
+        sql.append("          name = ?       ");
+        sql.append("        , nickname = ?   ");
+        sql.append("        , addr = ?       ");
+        sql.append("        , phone = ?      ");
+        sql.append("        , email = ?      ");
+        sql.append("  where    id  =  ?      ");
+
+        int result = 0;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+            pstmt.setString(1, dto.getName());
+            pstmt.setString(2, dto.getNickname());
+            pstmt.setString(3, dto.getAddr());
+            pstmt.setString(4, dto.getPhone());
+            pstmt.setString(5, dto.getEmail());
+            pstmt.setString(6, dto.getId());
+            result = pstmt.executeUpdate();
+        }
+
         return result;
     }
 }
