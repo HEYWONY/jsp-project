@@ -20,6 +20,8 @@ public class DBConnection {
         return conn;
     }
 
-
+    public void disconn (Connection conn) {
+        if(conn!=null) try{conn.close();} catch (Exception e) {};
+    }
 
 }
