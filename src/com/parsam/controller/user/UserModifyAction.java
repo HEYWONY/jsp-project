@@ -48,7 +48,7 @@ public class UserModifyAction implements Action {
         // 프로필 수정 폼으로 이동한다
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../user/userModify.jsp");
+        forward.setUrl("WEB-INF/main/index.jsp?page=user/userModify.jsp");
 
         return forward;
     }

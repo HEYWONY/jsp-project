@@ -25,7 +25,7 @@ public class ProductDeleteResultAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_product/delete_alert.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_product/delete_alert.jsp");
         return forward;
     }
 }

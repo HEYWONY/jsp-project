@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="chh/css/product_detail.css">
 </head>
 <body>
+
 <c:set var="dto" value="${requestScope.pdto}"/>
 <div id="wrap">
     <div>
@@ -83,6 +84,7 @@
         </section>
     </div>
 </div>
+
 
 </body>
 </html>

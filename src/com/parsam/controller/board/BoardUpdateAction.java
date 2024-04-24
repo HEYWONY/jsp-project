@@ -21,7 +21,7 @@ public class BoardUpdateAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("/WEB-INF/board/boardupdate.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=board/boardupdate.jsp");
 
         return forward;
     }

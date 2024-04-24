@@ -52,7 +52,7 @@ public class BoardListAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../board/boardlist.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=board/boardlist.jsp");
 
         return forward;
     }

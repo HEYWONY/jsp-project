@@ -21,7 +21,7 @@ public class ProductUpdateAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_product/updateform.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_product/updateform.jsp");
         return forward;
     }
 }
