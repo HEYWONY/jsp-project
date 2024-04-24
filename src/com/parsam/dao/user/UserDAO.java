@@ -134,16 +134,17 @@ public class UserDAO {
     /* 사용자 판매 내역(판매중) 목록 */
     public List<ProductDTO> getUserSaleList(Connection conn, long u_id) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append(" select    p_cate      ");
+        sql.append(" select    p_cate       ");
         sql.append("         , p_id         ");
         sql.append("         , p_name       ");
         sql.append("         , p_price      ");
         sql.append("         , p_date       ");
         sql.append("         , p_readno     ");
         sql.append("         , p_fav        ");
-        sql.append(" from    product        ");
-        sql.append(" where   p_sold = false ");
-        sql.append(" and     u_id   =  ?    ");
+        sql.append("         , p_stock      ");
+        sql.append(" from     product       ");
+        sql.append(" where     u_id   =  ?  ");
+        sql.append(" and     p_stock <> 0   ");
 
         ResultSet rs = null;
         List<ProductDTO> arr = new ArrayList<>();
@@ -159,6 +160,7 @@ public class UserDAO {
                 dto.setP_date(rs.getDate("p_date").toLocalDate());
                 dto.setReadno(rs.getInt("p_readno"));
                 dto.setP_fav(rs.getInt("p_fav"));
+                dto.setP_stock(rs.getInt("p_stock"));
                 arr.add(dto);
             }
         }finally {
@@ -180,11 +182,11 @@ public class UserDAO {
         sql.append("         , o_date                             ");
         sql.append("         , p_readno                           ");
         sql.append("         , p_fav                              ");
-        sql.append(" from      product p LEFT OUTER JOIN porder o ");
+        sql.append("         , p_stock                            ");
+        sql.append(" from      product p inner join porder o      ");
         sql.append(" on        p.p_id = o.p_id                    ");
-        sql.append(" where     p_sold   =  true                   ");
-        sql.append(" and       p.u_id   =  ?                      ");
-
+        sql.append(" where     p_stock =  0                       ");
+        sql.append(" and       p.u_id = ?                         ");
 
         ResultSet rs = null;
         List<ProductDTO> arr = new ArrayList<>();
@@ -201,6 +203,7 @@ public class UserDAO {
                 dto.setO_date(rs.getDate("o_date").toLocalDate());
                 dto.setReadno(rs.getInt("p_readno"));
                 dto.setP_fav(rs.getInt("p_fav"));
+                dto.setP_stock(rs.getInt("p_stock"));
                 arr.add(dto);
             }
         }finally {
