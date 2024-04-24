@@ -14,7 +14,7 @@ public class WriteAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=user/joinForm.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=user/joinForm.jsp");
 
         return forward;
     }

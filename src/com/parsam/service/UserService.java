@@ -2,11 +2,14 @@ package com.parsam.service;
 
 import com.parsam.comm.DBConnection;
 import com.parsam.dao.user.UserDAO;
+import com.parsam.dto.ProductDTO;
 import com.parsam.dto.UserDTO;
 
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     // 싱글톤
@@ -103,6 +106,7 @@ public class UserService {
         return result;
     }
 
+
     public long getUid(String id) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
@@ -136,4 +140,46 @@ public class UserService {
             }
         }
     }
+
+    /* 사용자 핀매내역(판매중) 내역 가져오기 */
+    public List<ProductDTO> getUserSaleList(long u_id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        List<ProductDTO> arr= new ArrayList<>();
+
+        try {
+            conn = db.getConnection();
+
+            UserDAO dao = UserDAO.getDAO();
+            arr = dao.getUserSaleList(conn, u_id);
+
+        } catch (SQLException | NamingException e) {
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    /* 사용자 판매내역(거래완료) 내역 가져오기*/
+    public List<ProductDTO> getUserSoldList(Long u_id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        List<ProductDTO> arr= new ArrayList<>();
+
+        try {
+            conn = db.getConnection();
+
+            UserDAO dao = UserDAO.getDAO();
+            arr = dao.getUserSoldList(conn, u_id);
+
+        } catch (SQLException | NamingException e) {
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+
 }
