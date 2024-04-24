@@ -19,6 +19,7 @@ public class ProductDetailAction implements Action {
         ProductService service = ProductService.getService();
         ProductDTO pdto = service.showDetail(pid);
 
+        request.setAttribute("pdto",pdto);
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("WEB-INF/index.jsp?page=chh_product/detail.jsp");
