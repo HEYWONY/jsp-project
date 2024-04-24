@@ -8,18 +8,15 @@ import com.parsam.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class UserModifyAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*
         // 로그인한 세션 가져오기
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("id");
-*/
-        String id = request.getParameter("id");
-//        long u_id = Long.parseLong((request.getParameter("u_id")));
 
         UserService service = UserService.getService();
         UserDTO dto = service.getModifyList(id);
@@ -48,8 +45,7 @@ public class UserModifyAction implements Action {
         // 프로필 수정 폼으로 이동한다
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=user/userModify.jsp");
-
+        forward.setUrl("WEB-INF/index.jsp?page=user/userModify.jsp");
         return forward;
     }
 }

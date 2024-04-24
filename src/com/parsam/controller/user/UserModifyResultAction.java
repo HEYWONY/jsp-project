@@ -25,6 +25,15 @@ public class UserModifyResultAction implements Action {
         String email = request.getParameter("email");
         String photo = request.getParameter("photo");
 
+        if(addr1 == null) {
+            addr1 = "";
+        }
+        if(addr2 == null) {
+            addr1 = "";
+        }
+        if(addr3 == null) {
+            addr1 = "";
+        }
         UserDTO dto = new UserDTO();
 //        dto.setU_id(u_id);
         dto.setId(id);

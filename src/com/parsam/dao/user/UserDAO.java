@@ -1,11 +1,14 @@
 package com.parsam.dao.user;
 
+import com.parsam.dto.ProductDTO;
 import com.parsam.dto.UserDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     // 싱글톤
@@ -53,6 +56,7 @@ public class UserDAO {
         sql.append("            , phone         ");
         sql.append("            , email         ");
         sql.append("            , photo         ");
+        sql.append("            , u_id          ");
         sql.append("  from        user          ");
         sql.append("  where       id = ?        ");
 
@@ -69,6 +73,7 @@ public class UserDAO {
                 dto.setPhone(rs.getString("phone"));
                 dto.setEmail(rs.getString("email"));
                 dto.setPhoto(rs.getString("photo"));
+                dto.setU_id(rs.getLong("u_id"));
             }
         }finally {
             if(rs!=null) try {
@@ -123,5 +128,86 @@ public class UserDAO {
             result = rs.next();
         }
         return result;
+    }
+
+
+    /* 사용자 판매 내역(판매중) 목록 */
+    public List<ProductDTO> getUserSaleList(Connection conn, long u_id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select    p_cate      ");
+        sql.append("         , p_id         ");
+        sql.append("         , p_name       ");
+        sql.append("         , p_price      ");
+        sql.append("         , p_date       ");
+        sql.append("         , p_readno     ");
+        sql.append("         , p_fav        ");
+        sql.append(" from    product        ");
+        sql.append(" where   p_sold = false ");
+        sql.append(" and     u_id   =  ?    ");
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setLong(1, u_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_date(rs.getDate("p_date").toLocalDate());
+                dto.setReadno(rs.getInt("p_readno"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                arr.add(dto);
+            }
+        }finally {
+            if(rs!=null) try {
+                rs.close();
+            }catch (SQLException e){}
+        }
+        return arr;
+    }
+
+    /* 사용자 판매내역(거래완료) 목록 */
+    public List<ProductDTO> getUserSoldList(Connection conn, Long u_id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select    p_cate                             ");
+        sql.append("         , p.p_id                             ");
+        sql.append("         , p_name                             ");
+        sql.append("         , p_price                            ");
+        sql.append("         , p_date                             ");
+        sql.append("         , o_date                             ");
+        sql.append("         , p_readno                           ");
+        sql.append("         , p_fav                              ");
+        sql.append(" from      product p LEFT OUTER JOIN porder o ");
+        sql.append(" on        p.p_id = o.p_id                    ");
+        sql.append(" where     p_sold   =  true                   ");
+        sql.append(" and       p.u_id   =  ?                      ");
+
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setLong(1, u_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_date(rs.getDate("p_date").toLocalDate());
+                dto.setO_date(rs.getDate("o_date").toLocalDate());
+                dto.setReadno(rs.getInt("p_readno"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                arr.add(dto);
+            }
+        }finally {
+            if(rs!=null) try {
+                rs.close();
+            }catch (SQLException e){}
+        }
+        return arr;
     }
 }
