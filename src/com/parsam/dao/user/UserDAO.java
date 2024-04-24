@@ -103,4 +103,25 @@ public class UserDAO {
 
         return result;
     }
+
+    /* 로그인 */
+    public boolean doLogin(Connection conn, String id, String pw) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append("   select           id         ");
+        sql.append("                  , pw         ");
+        sql.append("  from   user                  ");
+        sql.append("  where  id= ?   and pw = ?    ");
+        ResultSet rs = null;
+
+        boolean result = false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+            pstmt.setString(1, id);
+            pstmt.setString(2, pw);
+            rs = pstmt.executeQuery();
+
+            result = rs.next();
+        }
+        return result;
+    }
 }

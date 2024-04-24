@@ -81,4 +81,25 @@ public class UserService {
         }
         return result;
     }
+
+    public boolean doLogin(String id, String pw) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+
+        boolean result = false;
+        try{
+            conn=db.getConnection();
+            conn.setAutoCommit(false);
+            result = dao.doLogin(conn, id, pw);
+
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }finally {
+            if(conn!=null) try{conn.close();} catch (Exception e){}
+        }
+        return result;
+    }
 }
