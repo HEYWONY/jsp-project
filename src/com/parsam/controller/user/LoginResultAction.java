@@ -24,6 +24,7 @@ public class LoginResultAction implements Action {
             if (login == true) {  //로그인 성공
                 HttpSession session = request.getSession();
                 session.setAttribute("id", id);
+                session.setMaxInactiveInterval(60*5);
                 forward.setForward(false);
                 forward.setUrl("index.do");
             } else { //비번 틀렸을 경우

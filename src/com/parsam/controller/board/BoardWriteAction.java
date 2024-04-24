@@ -14,7 +14,7 @@ public class BoardWriteAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("/WEB-INF/board/boardwrite.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=board/boardwrite.jsp");
 
         return forward;
     }

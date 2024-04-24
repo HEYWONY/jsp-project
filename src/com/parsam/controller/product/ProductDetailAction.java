@@ -8,6 +8,7 @@ import com.parsam.service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class ProductDetailAction implements Action {
@@ -18,10 +19,10 @@ public class ProductDetailAction implements Action {
         ProductService service = ProductService.getService();
         ProductDTO pdto = service.showDetail(pid);
 
-        request.setAttribute("pdto",pdto);
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_product/detail.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_product/detail.jsp");
+
         return forward;
     }
 }

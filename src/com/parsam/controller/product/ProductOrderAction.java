@@ -21,7 +21,7 @@ public class ProductOrderAction implements Action {
         request.setAttribute("pdto",pdto);
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_order/orderform.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_order/orderform.jsp");
         return forward;
     }
 }

@@ -13,7 +13,7 @@ import java.util.Set;
 
 @WebFilter(urlPatterns = "*.do", initParams={@WebInitParam(
         name="exclude"
-        , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /list.do")})
+        , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /list.do, /join.do")})
 public class LoginFilter implements Filter {
     private final Set<String> excluded=Collections.synchronizedSet(new HashSet<>());
 
@@ -43,14 +43,21 @@ public class LoginFilter implements Filter {
            } else {
                    if(session!=null){
                          String id = (String) session.getAttribute("id");
-                   if (id != null) {
-                       //System.out.println("filter!!! login !!");
-                       filterChain.doFilter(request, response);
-                   }
-               }
-               RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
-               dispatcher.forward(request, response);
-            }
+                       if (id != null) {
+                           //System.out.println("filter!!! login !!");
+                           System.out.println("filer  login!!!!!");
+                           System.out.println("session not null");
+                           filterChain.doFilter(request, response);
+
+                       } else {
+                           RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
+                           dispatcher.forward(request, response);
+                       }
+               } else {
+                       RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
+                       dispatcher.forward(request, response);
+                       }
+                }
            }
 
 
