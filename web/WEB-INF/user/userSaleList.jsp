@@ -25,6 +25,7 @@
         <li>품목</li>
         <li>상품명</li>
         <li>가격</li>
+        <li>등록일자</li>
         <li>조회수</li>
         <li>찜수</li>
     </ul>
@@ -38,6 +39,7 @@
                 <li>${item.p_cate}</li>
                 <li><a href="product_detail.do?pid=${item.p_id}">${item.p_name}</a></li>
                 <li>${item.p_price}</li>
+                <li>${item.p_date}</li>
                 <li>${item.readno}</li>
                 <li>${item.p_fav}</li>
             </ul>

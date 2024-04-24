@@ -22,7 +22,14 @@ public class UserSoldListAction implements Action {
         UserService service = UserService.getService();
         List<ProductDTO> list = service.getUserSoldList(u_id);
 
+        request.setAttribute("u_id", u_id);
+        request.setAttribute("list", list);
 
-        return null;
+        // 판매완료 목록으로 이동
+        Forward forward = new Forward();
+        forward.setForward(true);
+        forward.setUrl("WEB-INF/index.jsp?page=user/userSoldList.jsp");
+
+        return forward;
     }
 }
