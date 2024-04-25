@@ -29,23 +29,23 @@
                             <input type="hidden" name="pname" id="pname" value="${dto.p_name}">
                             <input type="hidden" name="pid" id="pid" value="${dto.p_id}">
                         </li>
-                        <li>
-                            <h3 id="price">${dto.p_price}</h3>
+                        <li class="font_big">
+                            <span>₩ </span><span id="price">${dto.p_price}</span>
                             <input type="hidden" name="pprice" id="pprice" value="${dto.p_price}">
                         </li>
 
-                        <hr>
+                        <div class="line"></div>
 
                         <div>
-                            <li>
+                            <li class="font_big">
                                 <input type="hidden" name="pstock" id="pstock" value="${dto.p_stock}">
                                 <label for="ocnt">수량</label><br>
                                 <label id="minus_btn">-</label>
                                 <input class="input_text" type="text" min="1" name="ocnt" id="ocnt" value=1 readonly>
                                 <label id="plus_btn">+</label>
                             </li>
-                            <li>
-                                <p id="total_pay"></p>
+                            <li class="font_big">
+                                <span id="total_pay"></span>
                             </li>
                         </div>
                     </ul>
@@ -57,15 +57,15 @@
             <section>
                 <ul>
                     <li>
-                        <label for="oname">주문자 이름</label><br>
+                        <label class="field" for="oname">주문자 이름</label><br>
                         <input class="input_text" type="text" name="oname" id="oname" placeholder="주문자 이름을 입력하세요." required>
                     </li>
                     <li>
-                        <label for="ophone">전화 번호</label><br>
+                        <label class="field" for="ophone">전화 번호</label><br>
                         <input class="input_text" type="tel" name="ophone" id="ophone" placeholder="전화번호를 입력하세요." required>
                     </li>
                     <li>
-                        <label>배송지 입력</label><br>
+                        <label class="field">배송지 입력</label><br>
                         <input class="input_text" type="text" id="postcode" name="addr1" placeholder="우편번호" readonly>
                         <input class="form_btn" type="button" onclick="find_postcode()" value="우편번호 찾기"><br>
                         <input class="input_text" type="text" id="address" name="addr2" placeholder="주소" readonly><br>
@@ -73,8 +73,8 @@
                         <input class="input_text" type="text" id="extraAddress" name="addr4" placeholder="참고항목">
                     </li>
                     <li>
-                        <label for="omemo">배송 메모</label><br>
-                        <textarea name="omemo" id="omemo"></textarea>
+                        <label class="field" for="omemo">배송 메모</label><br>
+                        <textarea name="omemo" id="omemo" cols="30" rows="3"></textarea>
                     </li>
                     <li>
                         <div class="button_sort">

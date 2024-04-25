@@ -20,6 +20,25 @@ ul li{
     list-style: none;
 }
 
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.line{
+    border: 1px solid white;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.font_big{
+    font-size: 15px;
+    font-weight: bold;
+}
+
 #wrap{
     margin: 5vh 0;
     display: flex;
@@ -77,4 +96,8 @@ textarea{
 .button_sort{
     display: flex;
     justify-content: center;
+}
+
+#ocnt, .field{
+    font-weight: bold;
 }
