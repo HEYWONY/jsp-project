@@ -11,8 +11,8 @@
 
 <html>
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" href="boardCSS/board.css">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="smr/css/board.css">
 </head>
 <body>
 <c:set var="list" value="${requestScope.list}"></c:set>
@@ -22,25 +22,25 @@
 <c:set var="endpage" value="${requestScope.endpage}"></c:set>
 <c:set var="search_txt" value="${requestScope.search_txt}"></c:set>
 
-<div id="wrap">
+<div class="wrap">
     <ul class="notice_list">
         <a href="boardlist.do"> <h1>고객센터</h1></a>
-        <a href="boardlist.do"> <li>공지사항</li></a>
-        <a href="##"> <li>자주 묻는 질문</li></a>
+        <a href="boardlist.do"> <li class="notice">공지사항</li></a>
+        <a href="faqlist.do"> <li class="faq">자주 묻는 질문</li></a>
     </ul>
 
-    <div id="notice_write">
+    <div class="wrap_right">
+    <div class="notice_write">
         <h3>공지사항</h3>
-
-        <a href="board_write.do" id="write_btn">글쓰기</a>
+        <a href="board_write.do" class="write_btn">글쓰기</a>
     </div>
 
-    <form method="get" action="boardlist.do" id="search">
-        <input type="text" name="search_txt" id="search_bar" placeholder="  검색">
-        <input type="submit" value="검색" id="search_btn">
+    <form method="get" action="boardlist.do" class="search">
+        <input type="text" name="search_txt" class="search_bar" placeholder="검색어를 입력하세요">
+        <input type="submit" value="검색" class="search_btn">
     </form>
 
-    <ul>
+    <ul class="list">
         <c:choose>
             <c:when test="${empty list || fn:length(list)==0}">
                 <li>해당 자료가 없습니다.</li>
@@ -48,16 +48,14 @@
             <c:otherwise>
                 <c:forEach var="item" items="${list}">
                     <li>
-                        <a href="board_detail.do?bno=${item.b_no}"> <c:out value="${item.title}"></c:out></a>
+                        <span><a href="board_detail.do?bno=${item.b_no}"><c:out value="${item.title}"/></a></span>
+                        <span><c:out value="${item.writedate}"/></span>
                     </li>
-                    <%--                            <li>--%>
-                    <%--                                <c:out value="${item.writedate}"></c:out>--%>
-                    <%--                            </li>--%>
-
                 </c:forEach>
             </c:otherwise>
         </c:choose>
     </ul>
+        <div class="pagenum">
     <c:if test="${startpage>1}">
         <a href="boardlist.do?bno=${startpage-1}&search_txt=${search_txt}">이전</a>
     </c:if>
@@ -72,6 +70,8 @@
     <c:if test="${endpage < total_page}">
         <a href="boardlist.do?curr=${endpage+1}&search_txt=${search_txt}">다음</a>
     </c:if>
+        </div>
+    </div>
 </div>
 </body>
 </html>

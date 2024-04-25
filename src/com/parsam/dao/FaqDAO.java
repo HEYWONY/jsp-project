@@ -1,6 +1,6 @@
-package com.parsam.dao.board;
+package com.parsam.dao;
 
-import com.parsam.dto.BoardDTO;
+import com.parsam.dto.FaqDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,30 +9,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardDAO {
-    private static BoardDAO dao = new BoardDAO();
-    public static BoardDAO getDao(){
+public class FaqDAO {
+    private static FaqDAO dao = new FaqDAO();
+    public static FaqDAO getDao(){
         return dao;
     }
-    private BoardDAO(){}
+    private FaqDAO(){}
 
 
-    public List<BoardDTO> getList(Connection conn, int startrow, int pagesize, String search_txt) throws SQLException {
+    public List<FaqDTO> getList(Connection conn, int startrow, int pagesize, String search_txt) throws SQLException {
         StringBuilder sql= new StringBuilder();
-        sql.append("  select         b_no         ");
+        sql.append("  select         f_no         ");
         sql.append("                 , title      ");
         sql.append("                 , content    ");
         sql.append("                 , writer     ");
         sql.append("                 , writedate  ");
         sql.append("                 , readno     ");
-        sql.append("  from  board                 ");
+        sql.append("  from  faq                 ");
         if (!"".equals(search_txt)){
             sql.append(" where title like ? or content like ? ");
         }
         sql.append("  limit ?, ?                  ");;
 
         ResultSet rs = null;
-        List<BoardDTO> arr = new ArrayList<>();
+        List<FaqDTO> arr = new ArrayList<>();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
             if(!"".equals(search_txt)){
                 pstmt.setString(1, "%"+search_txt+"%");
@@ -46,9 +46,10 @@ public class BoardDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()){
-                BoardDTO dto = new BoardDTO();
-                dto.setB_no(rs.getLong("b_no")); //gfdagafsdafdsafds
+                FaqDTO dto = new FaqDTO();
+                dto.setF_no(rs.getLong("f_no"));
                 dto.setTitle(rs.getString("title"));
+                dto.setWritedate(rs.getDate("writedate").toLocalDate());
                 arr.add(dto);
             }
         }finally {
@@ -57,24 +58,24 @@ public class BoardDAO {
         return arr;
     }
 
-    public BoardDTO showDetail(Connection conn, int bno) throws SQLException{
+    public FaqDTO showDetail(Connection conn, int bno) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append("  select         b_no        ");
+        sql.append("  select         f_no        ");
         sql.append("                 , title     ");
         sql.append("                 , content   ");
         sql.append("                 , writer    ");
         sql.append("                 , writedate ");
         sql.append("                 , readno    ");
-        sql.append("  from  board                ");
-        sql.append("  where b_no= ?              ");
+        sql.append("  from  faq                  ");
+        sql.append("  where f_no= ?              ");
         ResultSet rs = null;
 
-        BoardDTO dto = new BoardDTO();
+        FaqDTO dto = new FaqDTO();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
             pstmt.setInt(1, bno);
             rs=pstmt.executeQuery();
             while (rs.next()){
-                dto.setB_no(rs.getLong("b_no"));
+                dto.setF_no(rs.getLong("f_no"));
                 dto.setTitle(rs.getString("title"));
                 dto.setContent(rs.getString("content"));
                 dto.setWriter(rs.getString("writer"));
@@ -89,8 +90,8 @@ public class BoardDAO {
 
     public void deleteData(Connection conn, int bno) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append("  delete   from board       ");
-        sql.append("  where b_no = ?              ");
+        sql.append("  delete   from faq           ");
+        sql.append("  where f_no = ?              ");
 
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
             pstmt.setInt(1, bno);
@@ -98,9 +99,9 @@ public class BoardDAO {
         }
     }
 
-    public void insertData(Connection conn, BoardDTO dto) throws SQLException{
+    public void insertData(Connection conn, FaqDTO dto) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" insert into  board( title        ");
+        sql.append(" insert into  faq  ( title        ");
         sql.append("                     , content    ");
         sql.append("                     , writer     ");
         sql.append("                     , writedate  ");
@@ -115,28 +116,28 @@ public class BoardDAO {
         }
     }
 
-    public void updateData(Connection conn, BoardDTO dto) throws SQLException{
+    public void updateData(Connection conn, FaqDTO dto) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append("  update  board            ");
+        sql.append("  update  faq              ");
         sql.append("  set                      ");
         sql.append("          title = ?        ");
         sql.append("          , content = ?    ");
-        sql.append("  where  b_no = ?          ");
+        sql.append("  where  f_no = ?          ");
 
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
             pstmt.setString(1, dto.getTitle());
             pstmt.setString(2, dto.getContent());
-            pstmt.setLong(3, dto.getB_no());
+            pstmt.setLong(3, dto.getF_no());
             pstmt.executeUpdate();
         }
     }
 
     public int addReadnoCount(Connection conn, int bno) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append("  update  board                 ");
+        sql.append("  update  faq                 ");
         sql.append("  set                           ");
         sql.append("      readno=ifnull(readno,0)+1 ");
-        sql.append("  where b_no = ?                ");
+        sql.append("  where f_no = ?                ");
 
         int result= 0;
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
@@ -149,7 +150,7 @@ public class BoardDAO {
     public int getCount(Connection conn, String search_txt) throws SQLException{
         StringBuilder sql=new StringBuilder();
         sql.append("  select   count(*)         ");
-        sql.append("  from     board            ");
+        sql.append("  from     faq            ");
         if (!"".equals(search_txt)){
             sql.append(" where title like ? or content like ? ");
         }
