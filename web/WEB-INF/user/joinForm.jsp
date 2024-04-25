@@ -14,7 +14,7 @@
 </head>
 <body>
 <%-- 마이페이지(TEST) --%>
-<a href="myPage.do"><h5>마이페이지 TEST</h5></a>
+<a href="myPage.do"><h5>마이페이지</h5></a>
 
 <h2>회원가입</h2>
 <form method="post" action="joinResult.do" >
