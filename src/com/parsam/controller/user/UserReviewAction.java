@@ -2,36 +2,27 @@ package com.parsam.controller.user;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
-import com.parsam.dto.ProductDTO;
-import com.parsam.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-public class UserSoldListAction implements Action {
+public class UserReviewAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // 파라미터
+        Long pid = Long.valueOf(request.getParameter("pid"));
         Long u_id = Long.valueOf(request.getParameter("u_id"));
+        String id = request.getParameter("id");
 
-        // 사용자 거래완료 내역 가져오기
-        UserService service = UserService.getService();
-        List<ProductDTO> list = service.getUserSoldList(u_id);
-
-
-
-
+        request.setAttribute("pid", pid);
         request.setAttribute("u_id", u_id);
-        request.setAttribute("list", list);
+        request.setAttribute("id", id);
 
-        // 판매완료 목록으로 이동
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/index.jsp?page=user/userSoldList.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=user/review.jsp");
 
         return forward;
     }

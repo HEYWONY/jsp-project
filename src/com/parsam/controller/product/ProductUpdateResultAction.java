@@ -34,7 +34,6 @@ public class ProductUpdateResultAction implements Action {
         String pstate = multi.getParameter("pstate");
         String ptrade = multi.getParameter("ptrade");
         String pplace = multi.getParameter("pplace");
-        long u_id = Long.parseLong(multi.getParameter("u_id"));
 
         ProductDTO pdto = new ProductDTO();
 //        System.out.println(new_pimg+".........new pimg");
@@ -69,7 +68,6 @@ public class ProductUpdateResultAction implements Action {
         pdto.setP_state(pstate);
         pdto.setP_place(pplace);
         pdto.setP_trade(ptrade);
-        pdto.setU_id(u_id);
 
         service.updateData(pdto);
 

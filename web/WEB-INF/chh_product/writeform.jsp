@@ -5,27 +5,39 @@
     <title>Title</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="chh/js/writeform.js"></script>
+    <script src="chh/js/ripple.js"></script>
+    <link rel="stylesheet" href="chh/css/ripple.css">
+    <link rel="stylesheet" href="chh/css/writeform.css">
+    <link rel="stylesheet" href="chh/css/file_custom.scss">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+
 </head>
 <body>
 
 <div id="wrap">
+    <div class="full-landing-image">
     <form method="post" action="product_write_result.do" enctype="multipart/form-data">
-        <h1>상품 등록</h1>
         <ul>
             <li>
-                <label for="pimg">상품 사진 업로드</label><br>
-                <input type="file" name="pimg" id="pimg">
+                <h1>상품 등록</h1>
             </li>
             <li>
-                <label for="pname">상품명</label><br>
-                <input type="text" name="pname" id="pname" required>
+                <label class="field" for="pimg"><b>상품 사진 업로드</b></label><br>
+                <img id="preview"/><br>
+                <input type="file" name="pimg" id="pimg" accept="image/*" onchange="readURL(this);">
             </li>
             <li>
-                <label for="pprice">가격</label><br>
-                <input type="number" min="0" name="pprice" id="pprice" required>
+                <label class="field" for="pname"><b>상품명</b></label><br>
+                <input class="input_text" type="text" name="pname" id="pname" required>
             </li>
             <li>
-                <label for="pcate">카테고리</label><br>
+                <label class="field" for="pprice"><b>가격</b></label><br>
+                <input class="input_text" type="number" min="0" name="pprice" id="pprice" required>
+            </li>
+            <li>
+                <label class="field" for="pcate"><b>카테고리</b></label><br>
                 <select name="pcate" id="pcate">
                     <option value="교재" selected>교재</option>
                     <option value="교구">교구</option>
@@ -35,20 +47,20 @@
 
             </li>
             <li>
-                <label for="pcnt">재고 수량</label><br>
-                <input type="number" min="1" name="pcnt" id="pcnt" required>
+                <label class="field" for="pcnt"><b>재고 수량</b></label><br>
+                <input class="input_text" type="number" min="1" name="pcnt" id="pcnt" required>
             </li>
             <li>
-                <label for="pdesc"> 상품 상세 설명</label><br>
-                <textarea name="pdesc" id="pdesc" required></textarea>
+                <label class="field" for="pdesc"><b>상품 상세 설명</b></label><br>
+                <textarea name="pdesc" id="pdesc" cols="20" rows="3" required></textarea>
             </li>
             <li>
-                <label for="popenchat">오픈 카톡 링크</label><br>
-                <input type="text" name="popenchat" id="popenchat" required>
+                <label class="field" for="popenchat"><b>오픈 카톡 링크</b></label><br>
+                <input class="input_text" type="text" name="popenchat" id="popenchat" required>
             </li>
 
             <li>
-                <label for="pstate">제품 상태</label><br>
+                <label class="field" for="pstate"><b>제품 상태</b></label><br>
                 <select name="pstate" id="pstate">
                     <option value="미개봉" selected>미개봉</option>
                     <option value="거의 새것">거의 새것</option>
@@ -57,7 +69,7 @@
             </li>
 
             <li>
-                <label for="ptrade">거래방식</label><br>
+                <label class="field" for="ptrade"><b>거래방식</b></label><br>
                 <select name="ptrade" id="ptrade" onchange="changeFn()">
                     <option value="meet" selected>직거래</option>
                     <option value="deliver">택배</option>
@@ -67,18 +79,17 @@
 
             <li>
                 <div id="address_choice_li">
-                    <label>직거래 희망 장소 </label><br>
-                    <input type="text" id="input_addr" name="pplace" placeholder="주소 선택" readonly>
-                    <input type="button" onclick="select_addr()" value="주소 검색"><br>
+                    <label class="field" ><b>직거래 희망 장소</b></label><br>
+                    <input class="input_text" type="text" id="input_addr" name="pplace" placeholder="주소 선택" readonly>
+                    <input type="button" class="form_btn" onclick="select_addr()" value="주소 검색"><br>
                 </div>
             </li>
             <li>
-                <button type="submit" id="submit_btn">상품등록</button>
+                <button type="submit" class="form_btn" id="submit_btn">등록 하기</button>
             </li>
         </ul>
-
-
     </form>
+    </div>
 </div>
 
 </body>

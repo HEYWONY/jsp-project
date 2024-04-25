@@ -15,7 +15,7 @@
 
     <div class="trade">
         <h4><a href="userSaleList.do?u_id=${u_id}">판매내역</a></h4>
-        <h4><a href="">구매내역</a></h4>
+        <h4><a href="userShoppingList.do?u_id=${u_id}">구매내역</a></h4>
     </div>
     <div class="tradeState">
         <h5><a href="userSaleList.do?u_id=${u_id}">판매중</a></h5>

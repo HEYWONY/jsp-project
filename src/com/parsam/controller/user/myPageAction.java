@@ -26,7 +26,7 @@ public class myPageAction implements Action {
         if(!dto.isTeacher_ck()) {
             teacher_ck = "인증이 진행중입니다.";
         }else {
-            teacher_ck = "인증 완료 되었습니다.";
+            teacher_ck = "교사 인증 완료";
         }
 
         request.setAttribute("dto", dto);

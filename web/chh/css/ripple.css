@@ -1,0 +1,6 @@
+.full-landing-image {
+    width: 100%;
+    height: 100%;
+    background: url(https://i.postimg.cc/VsRVrhv3/image.png) no-repeat center; /* css 이미지 url */
+    background-size: cover;
+}
