@@ -37,7 +37,11 @@ header {
 }
 
 .header_03_1 {
-    width: 30px;
+    display: inline-block;
+}
+
+.header_03_1_1 {
+    margin-right: 15px;
 }
 
 nav ul {

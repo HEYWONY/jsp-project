@@ -27,8 +27,8 @@
         </c:when>
         <c:otherwise>
             <span class="header_03_1">
-         <a href="product_write.do">상품등록</a><br>
-             <a href="myPage.do">마이페이지</a>
+                <a class="header_03_1_1" href="product_write.do">상품등록</a>
+                <a href="myPage.do">마이페이지</a>
             </span>
         </c:otherwise>
     </c:choose>
