@@ -1,8 +1,8 @@
-package com.parsam.service.board;
+package com.parsam.service;
 
 import com.parsam.comm.DBConnection;
-import com.parsam.dao.board.BoardDAO;
-import com.parsam.dto.BoardDTO;
+import com.parsam.dao.FaqDAO;
+import com.parsam.dto.FaqDTO;
 
 import javax.naming.NamingException;
 import java.sql.Connection;
@@ -10,23 +10,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardService {
-    private static BoardService service = new BoardService();
-    public static BoardService getService(){
+public class FaqService {
+    private static FaqService service = new FaqService();
+    public static FaqService getService(){
         return service;
     }
-    private BoardService(){}
+    private FaqService(){}
 
 
-    public List<BoardDTO> getList(int startrow, int pagesize, String search_txt) {
+    public List<FaqDTO> getList(int startrow, int pagesize, String search_txt) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        List<BoardDTO> arr = new ArrayList<>();
+        List<FaqDTO> arr = new ArrayList<>();
 
         try{
             conn = db.getConnection();
             conn.setAutoCommit(false);
-            BoardDAO dao = BoardDAO.getDao();
+            FaqDAO dao = FaqDAO.getDao();
             arr = dao.getList(conn, startrow, pagesize, search_txt);
 
             conn.commit();
@@ -39,11 +39,11 @@ public class BoardService {
         return arr;
     }
 
-    public BoardDTO showDetail(int bno) {
+    public FaqDTO showDetail(int bno) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        BoardDAO dao = BoardDAO.getDao();
-        BoardDTO dto = new BoardDTO();
+        FaqDAO dao = FaqDAO.getDao();
+        FaqDTO dto = new FaqDTO();
 
         try{
             conn= db.getConnection();
@@ -65,7 +65,7 @@ public class BoardService {
     public void deleteData(int bno){
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        BoardDAO dao = BoardDAO.getDao();
+        FaqDAO dao = FaqDAO.getDao();
         try{
             conn= db.getConnection();
             conn.setAutoCommit(false);
@@ -81,10 +81,10 @@ public class BoardService {
         }
     }
 
-    public void insertData(BoardDTO dto) {
+    public void insertData(FaqDTO dto) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        BoardDAO dao = BoardDAO.getDao();
+        FaqDAO dao = FaqDAO.getDao();
 
         try{
             conn= db.getConnection();
@@ -100,10 +100,10 @@ public class BoardService {
         }
     }
 
-    public void updateData(BoardDTO dto) {
+    public void updateData(FaqDTO dto) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        BoardDAO dao = BoardDAO.getDao();
+        FaqDAO dao = FaqDAO.getDao();
         try{
             conn = db.getConnection();
             conn.setAutoCommit(false);
@@ -121,7 +121,7 @@ public class BoardService {
     public int getCount(String search_txt) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        BoardDAO dao = BoardDAO.getDao();
+        FaqDAO dao = FaqDAO.getDao();
         int total_data = 0;
         try{
             conn = db.getConnection();

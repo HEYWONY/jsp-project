@@ -1,4 +1,4 @@
-package com.parsam.dao.user;
+package com.parsam.dao;
 
 import com.parsam.dto.ProductDTO;
 import com.parsam.dto.UserDTO;

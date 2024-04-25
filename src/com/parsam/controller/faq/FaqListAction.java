@@ -1,9 +1,9 @@
-package com.parsam.controller.board;
+package com.parsam.controller.faq;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
-import com.parsam.dto.BoardDTO;
-import com.parsam.service.BoardService;
+import com.parsam.dto.FaqDTO;
+import com.parsam.service.FaqService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class BoardListAction implements Action {
+public class FaqListAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String curr = request.getParameter("curr");
         String search_txt  = request.getParameter("search_txt");
 
-        BoardService service = BoardService.getService();
+        FaqService service = FaqService.getService();
 
         if(search_txt==null)
             search_txt= "";
@@ -41,7 +41,7 @@ public class BoardListAction implements Action {
             endpage = total_page;
         }
 
-        List<BoardDTO> list = service.getList(startrow, pagesize, search_txt);
+        List<FaqDTO> list = service.getList(startrow, pagesize, search_txt);
         request.setAttribute("list", list);
         request.setAttribute("currpage", currpage);
         request.setAttribute("total_page", total_page);
@@ -52,7 +52,7 @@ public class BoardListAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/index.jsp?page=board/boardlist.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=faq/faqlist.jsp");
 
         return forward;
     }

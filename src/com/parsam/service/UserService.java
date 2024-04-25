@@ -1,7 +1,7 @@
 package com.parsam.service;
 
 import com.parsam.comm.DBConnection;
-import com.parsam.dao.user.UserDAO;
+import com.parsam.dao.UserDAO;
 import com.parsam.dto.ProductDTO;
 import com.parsam.dto.UserDTO;
 

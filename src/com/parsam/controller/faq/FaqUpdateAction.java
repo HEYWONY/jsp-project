@@ -1,27 +1,28 @@
-package com.parsam.controller.board;
+package com.parsam.controller.faq;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
-import com.parsam.dto.BoardDTO;
-import com.parsam.service.BoardService;
+import com.parsam.dto.FaqDTO;
+import com.parsam.service.FaqService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class BoardDetailAction implements Action {
+public class FaqUpdateAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int bno = Integer.parseInt(request.getParameter("bno"));
+        int b_no = Integer.parseInt(request.getParameter("bno"));
 
-        BoardService service = BoardService.getService();
-        BoardDTO dto = service.showDetail(bno);
+        FaqService service = FaqService.getService();
+        FaqDTO dto = service.showDetail(b_no);
         request.setAttribute("dto", dto);
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/index.jsp?page=board/boardDetail.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=faq/faqupdate.jsp");
+
         return forward;
     }
 }
