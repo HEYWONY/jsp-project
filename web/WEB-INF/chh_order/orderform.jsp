@@ -66,10 +66,10 @@
                     </li>
                     <li>
                         <label class="field">배송지 입력</label><br>
-                        <input class="input_text" type="text" id="postcode" name="addr1" placeholder="우편번호" readonly>
+                        <input class="input_text" type="text" id="postcode" name="addr1" placeholder="우편번호" required readonly>
                         <input class="form_btn" type="button" onclick="find_postcode()" value="우편번호 찾기"><br>
-                        <input class="input_text" type="text" id="address" name="addr2" placeholder="주소" readonly><br>
-                        <input class="input_text" type="text" id="detailAddress" name="addr3" placeholder="상세주소">
+                        <input class="input_text" type="text" id="address" name="addr2" placeholder="주소" required readonly><br>
+                        <input class="input_text" type="text" id="detailAddress" name="addr3" placeholder="상세주소" required>
                         <input class="input_text" type="text" id="extraAddress" name="addr4" placeholder="참고항목">
                     </li>
                     <li>

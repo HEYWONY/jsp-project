@@ -3,6 +3,12 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="chh/css/ripple.css">
+    <link rel="stylesheet" href="chh/css/orderconfirm.css">
+    <script src="chh/js/ripple.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+
 </head>
 <body>
 <c:set var="pid" value="${requestScope.pid}"/>
@@ -16,56 +22,59 @@
 <c:set var="omemo" value="${requestScope.omemo}"/>
 
 <div id="wrap">
-    <h2>주문확인서</h2>
-    <p>주문 정보를 다시 한 번 확인해 주세요.</p>
+    <div class="full-landing-image">
+        <section id="confirm_info">
+            <div class="form_title">
+                <h1>주문확인서</h1>
+                <p class="info_txt">주문 정보를 다시 한 번 확인해 주세요.</p>
+            </div>
 
-    <div id="order_info">
-        <ul>
-            <input type="hidden" id="pid" value=${pid}>
-            <li>
-                <span class="field">상품명: </span>
-                <span class="info" id="pname">${pname}</span>
-            </li>
-            <li>
-                <span class="field">가격: </span>
-                <span class="info" id="pprice">${pprice}</span>
-                <span>원</span>
-            </li>
-            <li>
-                <span class="field">수량: </span>
-                <span class="info" id="ocnt">${ocnt}</span>
-                <span>개</span>
-            </li>
-            <li>
-                <span class="field">총 결제금액: </span>
-                <span class="info" id="total">${total}</span>
-                <span>원</span>
-            </li>
-            <li>
-                <span class="field">주문자 이름: </span>
-                <span class="info" id="oname">${oname}</span>
-            </li>
-            <li>
-                <span class="field">전화 번호: </span>
-                <span class="info" id="ophone">${ophone}</span>
-            </li>
-            <li>
-                <span class="field">배송지 주소: </span>
-                <span class="info" id="oaddr">${oaddr}</span>
-            </li>
-            <li>
-                <span class="field">배송 방법: </span>
-                <span class="info"> 택배 </span>
-            </li>
-            <li>
-                <span class="field">배송 메모: </span>
-                <span class="info" id="omemo">${omemo}</span>
-            </li>
-            <li>
-                <button>결제하기</button>
-            </li>
-
-        </ul>
+            <div id="order_info">
+                <ul>
+                    <input type="hidden" id="pid" value=${pid}>
+                    <li>
+                        <span class="field">상품명: </span>
+                        <span class="info" id="pname">${pname}</span>
+                    </li>
+                    <li>
+                        <span class="field">가격: </span>
+                        <span class="info" id="pprice">${pprice}</span>
+                        <span>원</span>
+                    </li>
+                    <li>
+                        <span class="field">수량: </span>
+                        <span class="info" id="ocnt">${ocnt}</span>
+                        <span>개</span>
+                    </li>
+                    <li>
+                        <span class="field">총 결제금액: </span>
+                        <span class="info" id="total">${total}</span>
+                        <span>원</span>
+                    </li>
+                    <li>
+                        <span class="field">주문자 이름: </span>
+                        <span class="info" id="oname">${oname}</span>
+                    </li>
+                    <li>
+                        <span class="field">전화 번호: </span>
+                        <span class="info" id="ophone">${ophone}</span>
+                    </li>
+                    <li>
+                        <span class="field">배송지 주소: </span>
+                        <span class="info" id="oaddr">${oaddr}</span>
+                    </li>
+                    <li>
+                        <span class="field">배송 방법: </span>
+                        <span class="info"> 택배 </span>
+                    </li>
+                    <li>
+                        <p class="field">배송 메모: </p>
+                        <textarea class="info" id="omemo" cols="20" rows="1" readonly>${omemo}</textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="end_btn"><button id="pay_btn">결제하기</button></div>
+        </section>
     </div>
 </div>
 
