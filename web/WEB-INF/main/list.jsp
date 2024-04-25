@@ -32,7 +32,23 @@
     <c:forEach var="item" items="${list}">
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
-            <li class="mainList_li_2">${item.p_cate}</li>
+            <c:choose>
+                <c:when test="${item.p_cate == '교재'}">
+                    <li class="mainList_li_textbook">${item.p_cate}</li>
+                </c:when>
+                <c:when test="${item.p_cate == '교구'}">
+                    <li class="mainList_li_adis">${item.p_cate}</li>
+                </c:when>
+                <c:when test="${item.p_cate == '수업자료'}">
+                    <li class="mainList_li_handout">${item.p_cate}</li>
+                </c:when>
+                <c:when test="${item.p_cate == '기타'}">
+                    <li class="mainList_li_etc">${item.p_cate}</li>
+                </c:when>
+                <c:otherwise>
+                    <li class="mainList_li_ddk">미분류</li>
+                </c:otherwise>
+            </c:choose>
             <li class="mainList_li_3"><a href="product_detail.do?pid=${item.p_id}">${item.p_name}</a></li>
             <li class="mainList_li_4">₩${item.p_price}</li>
             <li class="mainList_li_5">${item.p_state}</li>
