@@ -9,9 +9,8 @@
 <body>
 
 <div id="wrap">
-    <form method="post" action="product_write_result.do" enctype="multipart/form-data"> <!--나중에 post로 바꿀 것-->
+    <form method="post" action="product_write_result.do" enctype="multipart/form-data">
         <h1>상품 등록</h1>
-        <input type="hidden" name="u_id" id="u_id" value="3"> <!--임시 테스트 - 세션 u_id로 바꿀 것-->
         <ul>
             <li>
                 <label for="pimg">상품 사진 업로드</label><br>

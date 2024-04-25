@@ -41,7 +41,7 @@ public class OrderConfirmAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/main/index.jsp?page=../chh_order/orderconfirm.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_order/orderconfirm.jsp");
         return forward;
     }
 }

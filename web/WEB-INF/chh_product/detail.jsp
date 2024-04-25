@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="chh/css/product_detail.css">
 </head>
 <body>
-
 <c:set var="dto" value="${requestScope.pdto}"/>
+<c:set var="uid" value="${requestScope.uid}"/>
+<c:set var="fav_cnt" value="${requestScope.fav_cnt}"/>
+
 <div id="wrap">
     <div>
         <div id="product_detail_1">
-            <img id="pimg" src="productUpload/${dto.p_img}" alt="${dto.p_img}">
+            <img id="pimg" src="productUpload/${dto.p_img}" onerror="this.src='chh/img/noimg2.png'" alt="${dto.p_img}">
 
             <section>
                 <ul>
@@ -26,7 +28,7 @@
                         <h3>${dto.p_price}</h3>
                     </li>
                     <li>
-                        ${dto.p_date} | ${dto.p_stock}개 남음 | 조회 ${dto.readno} | 찜 ${dto.p_fav}
+                        ${dto.p_date} | ${dto.p_stock}개 남음 | 조회 ${dto.readno} | 찜 ${fav_cnt}
                     </li>
                     <hr>
 
@@ -60,14 +62,18 @@
                     </div>
 
                     <li>
-                        <!--로그인에 따라 (판매자/사용자) 다르게 보일 버튼-->
                         <div>
-                            <a href="#">찜하기</a>
-                            <a href="product_order.do?pid=${dto.p_id}">바로구매</a>
-                        </div>
-                        <div>
-                            <a href="product_update.do?pid=${dto.p_id}">수정하기</a>
-                            <a href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
+                            <!--로그인 한 사용자에 따라 버튼 다르게 보이도록 구현-->
+                            <c:choose>
+                                <c:when test="${dto.u_id==uid || uid==1}">
+                                    <a href="product_update.do?pid=${dto.p_id}">수정하기</a>
+                                    <a href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="#">찜하기</a>
+                                    <a href="product_order.do?pid=${dto.p_id}">바로구매</a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </li>
                 </ul>

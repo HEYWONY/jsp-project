@@ -7,8 +7,7 @@
 </head>
 <body>
 <%// String id = (String) session.getAttribute("id");%>
-<c:set var="session_id" value="${sessionScope.id}"></c:set>
-<c:out value="hello ${session_id}"></c:out>
+<c:set var="session_id" value="${sessionScope.id}"/>
 
 <header>
         <span class="header_01">
@@ -22,16 +21,14 @@
     </div>
     <c:choose>
         <c:when test="${session_id==null ||  empty session_id || session_id == '' }">
-            <c:out value="logout"></c:out>
             <span class="header_03">
                 <a href="login.do">로그인</a>
             </span>
         </c:when>
         <c:otherwise>
-            <c:out value="login"></c:out>
             <span class="header_03_1">
-         <a href="product_write.do">상품등록</a><br>
-             <a href="#">마이페이지</a>
+                <a class="header_03_1_1" href="product_write.do">상품등록</a>
+                <a href="myPage.do">마이페이지</a>
             </span>
         </c:otherwise>
     </c:choose>

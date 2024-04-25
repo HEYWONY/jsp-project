@@ -4,7 +4,7 @@
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
-          <deploymentDescriptor name="context.xml" url="file://$MODULE_DIR$/META-INF/context.xml" />
+          <deploymentDescriptor name="context.xml" url="file://$MODULE_DIR$/web/META-INF/context.xml" />
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
@@ -21,9 +21,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="el-api" level="project" />
-    <orderEntry type="library" name="javax.servlet.jstl" level="project" />
     <orderEntry type="library" name="mariadb.jdbc.java.client" level="project" />
     <orderEntry type="library" name="servlets.cos" level="project" />
-    <orderEntry type="library" name="iamport" level="application" />
+    <orderEntry type="library" name="javax.servlet.jstl" level="project" />
   </component>
 </module>

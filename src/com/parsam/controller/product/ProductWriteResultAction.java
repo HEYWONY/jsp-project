@@ -6,10 +6,12 @@ import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
 import com.parsam.dto.ProductDTO;
 import com.parsam.service.ProductService;
+import com.parsam.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class ProductWriteResultAction implements Action {
@@ -18,6 +20,11 @@ public class ProductWriteResultAction implements Action {
         int filesize=1024*1024*100;
         String uploadpath=request.getServletContext().getRealPath("productUpload");
         MultipartRequest multi = new MultipartRequest(request, uploadpath, filesize,"utf-8",new DefaultFileRenamePolicy());
+
+        HttpSession session = request.getSession(false);
+        String id = (String) session.getAttribute("id");
+        UserService uservice = UserService.getService();
+        long uid = uservice.getUid(id);
 
         String pimg = multi.getFilesystemName("pimg");
         String pname = multi.getParameter("pname");
@@ -29,7 +36,6 @@ public class ProductWriteResultAction implements Action {
         String pstate = multi.getParameter("pstate");
         String ptrade = multi.getParameter("ptrade");
         String pplace = multi.getParameter("pplace");
-        long u_id = Long.parseLong(multi.getParameter("u_id"));
 
         ProductDTO pdto = new ProductDTO();
         pdto.setP_img(pimg);
@@ -42,7 +48,7 @@ public class ProductWriteResultAction implements Action {
         pdto.setP_state(pstate);
         pdto.setP_place(pplace);
         pdto.setP_trade(ptrade);
-        pdto.setU_id(u_id);
+        pdto.setU_id(uid);
 
         ProductService service = ProductService.getService();
         service.insertData(pdto);

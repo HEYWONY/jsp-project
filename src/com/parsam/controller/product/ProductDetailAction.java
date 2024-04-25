@@ -4,6 +4,7 @@ import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
 import com.parsam.dto.ProductDTO;
 import com.parsam.service.ProductService;
+import com.parsam.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,19 @@ public class ProductDetailAction implements Action {
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long pid = Long.parseLong(request.getParameter("pid"));
 
+
         ProductService service = ProductService.getService();
         ProductDTO pdto = service.showDetail(pid);
+        int fav_cnt = service.getFavCnt(pid);
 
+        HttpSession session = request.getSession(false);
+        String id = (String) session.getAttribute("id");
+        UserService uservice = UserService.getService();
+        long uid = uservice.getUid(id);
+
+        request.setAttribute("pdto",pdto);
+        request.setAttribute("uid", uid);
+        request.setAttribute("fav_cnt",fav_cnt);
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("WEB-INF/index.jsp?page=chh_product/detail.jsp");

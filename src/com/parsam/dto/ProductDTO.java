@@ -19,6 +19,17 @@ public class ProductDTO {
     private long u_id;
     private String p_place;
     private String p_trade;
+    //　ｐｏｒｄｅｒ의　ｏ＿ｄａｔｅ　추가
+    private LocalDate o_date;
+
+    public LocalDate getO_date() {
+        return o_date;
+    }
+
+    public void setO_date(LocalDate o_date) {
+        this.o_date = o_date;
+    }
+
 
     public String getP_trade() {
         return p_trade;

@@ -75,7 +75,7 @@ public class ProductUpdateResultAction implements Action {
 
         request.setAttribute("pid",pid);
         Forward forward = new Forward();
-        forward.setForward(false);
+        forward.setForward(true);
         forward.setUrl("product_update_alert.do");
         return forward;
     }
