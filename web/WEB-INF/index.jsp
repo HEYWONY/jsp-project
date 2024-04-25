@@ -44,7 +44,6 @@
 
     <section>
         <c:set var="contentpage" value="${param.page}"/>
-        <c:out value="${contentpage}"/>
         <c:choose>
             <c:when test="${empty contentpage || contentpage==''}">
                 <jsp:include page="main/mainList.jsp"/>

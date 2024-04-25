@@ -8,30 +8,31 @@ import com.parsam.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-public class UserSoldListAction implements Action {
+public class UserShoppingListAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 파라미터
+        HttpSession session = request.getSession();
+        String id = (String) session.getAttribute("id");
         Long u_id = Long.valueOf(request.getParameter("u_id"));
 
-        // 사용자 거래완료 내역 가져오기
+        // 사용자 구매목록 가져오는 서비스
         UserService service = UserService.getService();
-        List<ProductDTO> list = service.getUserSoldList(u_id);
+        List<ProductDTO> list = service.getUserShoppingList(u_id);
 
-
-
-
-        request.setAttribute("u_id", u_id);
+        // list로 묶는다
         request.setAttribute("list", list);
+        request.setAttribute("u_id", u_id);
+        request.setAttribute("id", id);
 
-        // 판매완료 목록으로 이동
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/index.jsp?page=user/userSoldList.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=user/userShoppingList.jsp");
 
         return forward;
     }

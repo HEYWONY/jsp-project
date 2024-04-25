@@ -28,12 +28,12 @@ public class LoginResultAction implements Action {
                 forward.setForward(false);
                 forward.setUrl("index.do");
             } else { //비번 틀렸을 경우
-                forward.setForward(false);
-                forward.setUrl("login.do");
+                forward.setForward(true);
+                forward.setUrl("WEB-INF/user/loginalert.jsp");
             }
         }else {
-            forward.setForward(false);
-            forward.setUrl("login.do");
+            forward.setForward(true);
+            forward.setUrl("WEB-INF/user/loginalert.jsp");
         }
         return forward;
     }

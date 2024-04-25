@@ -130,6 +130,35 @@ public class UserDAO {
         return result;
     }
 
+    /* 아이디 찾기 */
+    public String  findId(Connection conn, String name, String email) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append("   select       id              ");
+        sql.append("   from   user                  ");
+        sql.append("   where name= ? and email= ?   ");
+
+        ResultSet rs = null;
+        //UserDTO dto = new UserDTO();
+
+        String id = null;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getString("id");
+            }
+
+        } finally {
+            if (rs != null) try {
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return id;
+    }
+
     public long getUid(Connection conn, String id) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT u_id             ");
@@ -236,6 +265,92 @@ public class UserDAO {
             if(rs!=null) try {
                 rs.close();
             }catch (SQLException e){}
+        }
+        return arr;
+
+    }
+
+    /* 사용자 구매목록 */
+    public List<ProductDTO> getUserShoppingList(Connection conn, Long u_id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select    p_cate                             ");
+        sql.append("         , p_name                             ");
+        sql.append("         , p_price                            ");
+        sql.append("         , o_date                             ");
+        sql.append("         , p.p_id                             ");
+        sql.append(" from      product p , porder o               ");
+        sql.append(" where     p.p_id = o.p_id                    ");
+        sql.append(" and       o.u_id = ?                         ");
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setLong(1, u_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setO_date(rs.getDate("o_date").toLocalDate());
+                dto.setP_id(rs.getLong("p_id"));
+                arr.add(dto);
+            }
+        }finally {
+            if(rs!=null) try {
+                rs.close();
+            }catch (SQLException e){}
+        }
+        return arr;
+    }
+
+    /* 리뷰하기 */
+    public int getReview(Connection conn, String id, Long u_id, Long pid, int rank) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("  insert   into    review   (               ");
+        sql.append("                                r_rank      ");
+        sql.append("                              , p_id        ");
+        sql.append("                              , u_id     )  ");
+        sql.append("  values ( ? , ? , ? )                      ");
+
+        int result = 0;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1, rank);
+            pstmt.setLong(2, pid);
+            pstmt.setLong(3, u_id);
+            result = pstmt.executeUpdate();
+        }
+
+        return result;
+    }
+
+    /* 찜 목록 */
+    public List<ProductDTO> getFavList(Connection conn, Long u_id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select   p.p_id            ");
+        sql.append("        , p_name            ");
+        sql.append("        , p_price           ");
+        sql.append("        , p_img             ");
+        sql.append("        , p_state           ");
+        sql.append(" from   product p, fav f    ");
+        sql.append(" where  p.p_id = f.p_id     ");
+        sql.append(" and    f.u_id = ?          ");
+
+        List<ProductDTO> arr = new ArrayList<>();
+        ResultSet rs = null;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setLong(1,u_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_state(rs.getString("p_state"));
+                arr.add(dto);
+            }
+
         }
         return arr;
     }

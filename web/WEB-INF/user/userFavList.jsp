@@ -1,34 +1,24 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="indexCSS/list.css">
+    <title>찜한 목록</title>
 </head>
 <body>
+<h3>찜 목록</h3>
 <c:set var="list" value="${requestScope.list}"/>
-
-<h1>전체매물</h1>
-<form method="post" action="listResult.do">
-    <select name="p_cate" id="p_cate">
-        <option value="교재">교재</option>
-        <option value="교구">교구</option>
-        <option value="수업자료">수업자료</option>
-        <option value="기타">기타</option>
-    </select>
-    <select name="p_state" id="p_state">
-        <option value="미개봉">미개봉</option>
-        <option value="거의 새것">거의 새것</option>
-        <option value="사용감 있음">사용감 있음</option>
-    </select>
-    <select name="p_trade" id="p_trade">
-        <option value="직거래">직거래</option>
-        <option value="택배거래">택배거래</option>
-        <option value="직거래, 택배거래">직거래, 택배거래</option>
-    </select>
-    <input type="submit" value="전송">
-</form>
 <div class="list_ul">
+    <c:if test="${empty list}">
+        <ul>
+        <li>찜한 상품이 없습니다.</li>
+        <li><a href="myPage.do?id=${id}">이전으로</a></li>
+        <li><a href="index.do">홈으로</a></li>
+        </ul>
+    </c:if>
     <c:forEach var="item" items="${list}">
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
@@ -58,3 +48,4 @@
 </div>
 </body>
 </html>
+    

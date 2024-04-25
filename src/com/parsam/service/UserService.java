@@ -84,7 +84,7 @@ public class UserService {
         }
         return result;
     }
-
+    /* 로그인 */
     public boolean doLogin(String id, String pw) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
@@ -104,6 +104,29 @@ public class UserService {
             if(conn!=null) try{conn.close();} catch (Exception e){}
         }
         return result;
+    }
+
+  /* 아이디 찾기 */
+    public String findId(String name, String email) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        //UserDTO dto = new UserDTO();
+
+        String id =null;
+        try{
+            conn= db.getConnection();
+            conn.setAutoCommit(false);
+            id = dao.findId(conn, name, email);
+
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }finally {
+            if(conn!=null) try{conn.close();} catch (Exception e){}
+        }
+        return id;
     }
 
 
@@ -141,6 +164,7 @@ public class UserService {
         }
     }
 
+
     /* 사용자 핀매내역(판매중) 내역 가져오기 */
     public List<ProductDTO> getUserSaleList(long u_id) {
         DBConnection db = DBConnection.getInstance();
@@ -149,11 +173,13 @@ public class UserService {
 
         try {
             conn = db.getConnection();
-
+            conn.setAutoCommit(false);
             UserDAO dao = UserDAO.getDAO();
             arr = dao.getUserSaleList(conn, u_id);
+            conn.commit();
 
         } catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -169,16 +195,59 @@ public class UserService {
 
         try {
             conn = db.getConnection();
-
+            conn.setAutoCommit(false);
             UserDAO dao = UserDAO.getDAO();
             arr = dao.getUserSoldList(conn, u_id);
-
+            conn.commit();
         } catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
             System.out.println(e);
         } finally {
             db.disconn(conn);
         }
         return arr;
+    }
+
+    /* 사용자 구매내역 가져오기 */
+    public List<ProductDTO> getUserShoppingList(Long u_id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        List<ProductDTO> arr= new ArrayList<>();
+
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            UserDAO dao = UserDAO.getDAO();
+            arr = dao.getUserShoppingList(conn, u_id);
+            conn.commit();
+        } catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    /* 리뷰하기 */
+    public int getReview(int rank, String id, Long u_id, Long pid) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        int result = 0;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            UserDAO dao = UserDAO.getDAO();
+            result = dao.getReview(conn, id, u_id, pid, rank);
+
+            conn.commit();
+        } catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return result;
     }
 
 

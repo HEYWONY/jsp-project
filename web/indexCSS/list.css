@@ -24,12 +24,35 @@ ul > li {
     flex-direction: column;
 }
 
-.mainList_li_2 {
+.mainList_li_textbook {
     background-color: #FDE2E4;
     border-radius: 15px;
     padding: 5px 10px;
     width: max-content;
-
+}
+.mainList_li_adis {
+    background-color: #CDDAFD;
+    border-radius: 15px;
+    padding: 5px 10px;
+    width: max-content;
+}
+.mainList_li_handout {
+    background-color: #D1E6D3;
+    border-radius: 15px;
+    padding: 5px 10px;
+    width: max-content;
+}
+.mainList_li_etc {
+    background-color: #F0EFEB;
+    border-radius: 15px;
+    padding: 5px 10px;
+    width: max-content;
+}
+.mainList_li_ddk{
+    background-color: #418FFE;
+    border-radius: 15px;
+    padding: 5px 10px;
+    width: max-content;
 }
 
 .mainList_li_3 {

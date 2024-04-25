@@ -29,5 +29,6 @@
     <orderEntry type="library" name="jquery-latest" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="jquery.ripples" level="application" />
+    <orderEntry type="library" name="googlecode.json.simple" level="project" />
   </component>
 </module>
