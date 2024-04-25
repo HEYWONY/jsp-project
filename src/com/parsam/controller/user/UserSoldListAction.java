@@ -22,6 +22,9 @@ public class UserSoldListAction implements Action {
         UserService service = UserService.getService();
         List<ProductDTO> list = service.getUserSoldList(u_id);
 
+
+
+
         request.setAttribute("u_id", u_id);
         request.setAttribute("list", list);
 

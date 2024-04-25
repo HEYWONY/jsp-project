@@ -15,12 +15,12 @@
 <%-- 로그인한 user 정보 가져오기 --%>
 <%--<c:set var="userDto" value="${requestScope.dto}"/>--%>
 <%-- 프로필 수정 폼 --%>
+<h3>프로필 보기</h3>
 <form method="post" action="userModifyResult.do">
     <ul>
         <li>
-            <label>사진 영역</label>
-            <input type="button" value="수정">
-            <input type="button" value="삭제">
+            <label></label>
+
         </li>
         <li>
             <label for="id">아이디</label>
@@ -49,7 +49,7 @@
         <li>
             <label for="email">이메일</label>
             <input type="text" id="email" name="email" value="${email}">
-            <input type="button" value="중복확인"><br>
+            <input type="button" id="emailCk" value="중복확인"><br>
         </li>
         <li>
             <input type="submit" value="수정" id="modify">
@@ -63,6 +63,11 @@
         alert("회원 정보 수정 완료되었습니다.");
         location.href = "myPage.do?id=${id}";
     }
+    /*
+    document.getElementById('emailck').onclick = function () {
+
+    }
+    */
 </script>
 </body>
 </html>

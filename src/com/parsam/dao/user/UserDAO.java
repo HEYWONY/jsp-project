@@ -324,4 +324,34 @@ public class UserDAO {
         return result;
     }
 
+    /* 찜 목록 */
+    public List<ProductDTO> getFavList(Connection conn, Long u_id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select   p.p_id            ");
+        sql.append("        , p_name            ");
+        sql.append("        , p_price           ");
+        sql.append("        , p_img             ");
+        sql.append("        , p_state           ");
+        sql.append(" from   product p, fav f    ");
+        sql.append(" where  p.p_id = f.p_id     ");
+        sql.append(" and    f.u_id = ?          ");
+
+        List<ProductDTO> arr = new ArrayList<>();
+        ResultSet rs = null;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setLong(1,u_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_state(rs.getString("p_state"));
+                arr.add(dto);
+            }
+
+        }
+        return arr;
+    }
 }
