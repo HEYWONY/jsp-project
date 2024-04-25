@@ -141,19 +141,23 @@ public class UserDAO {
         //UserDTO dto = new UserDTO();
 
         String id = null;
-        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
             pstmt.setString(1, name);
             pstmt.setString(2, email);
             rs = pstmt.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 id = rs.getString("id");
             }
 
-        }finally {
-            if(rs!=null) try {rs.close();}catch (Exception e){}
+        } finally {
+            if (rs != null) try {
+                rs.close();
+            } catch (Exception e) {
+            }
         }
         return id;
+    }
 
     public long getUid(Connection conn, String id) throws SQLException{
         StringBuilder sql = new StringBuilder();
