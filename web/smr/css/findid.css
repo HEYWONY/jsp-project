@@ -3,17 +3,18 @@
     margin-bottom: 150px;
     text-align: center;
 }
-.lo_title{
+
+.findid_title{
     font-size: 2rem;
 }
 
-.loginbox{
+.findbox{
     display: inline-block;
     list-style: none;
     max-width: 400px;
 }
 
-.logintitle{
+.findtitle{
     display: inline-block;
     font-size: 1.2rem;
     font-weight: 600;
@@ -24,8 +25,11 @@
     position: relative;
     left: -175px;
 }
+#nametxt{
+    margin-left: -15px;
+}
 
-.logininput{
+.findinput{
     display: inline-block;
     font-size: 1rem;
     font-weight: bold;
@@ -36,30 +40,18 @@
     width: 90%;
     min-width: 400px;
 }
-#pwtxt{
-    padding-left: 25px;
-}
 
-.loginbtn{
+.findbtn{
     margin:20px;
-    padding:10px 175px;
+    padding:10px 182px;
     border: #2F80ED 2px solid;
     background-color: #2F80ED;
     border-radius: 15px;
     font-size: 1.2rem;
     color: white;
 }
-.loginbtn:hover{
+
+.findbtn:hover{
     background-color: white;
     color: #2F80ED;
-}
-
-.join, .idsearch, .pwsearch{
-    font-weight: bold;
-}
-.join:hover, .idsearch:hover, .pwsearch:hover{
-    border-bottom: #2F80ED 2px solid;
-}
-.idsearch{
-    margin: 0px 70px 0px 90px;
 }

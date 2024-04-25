@@ -124,4 +124,29 @@ public class UserDAO {
         }
         return result;
     }
+
+    public String  findId(Connection conn, String name, String email) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append("   select       id              ");
+        sql.append("   from   user                  ");
+        sql.append("   where name= ? and email= ?   ");
+
+        ResultSet rs = null;
+        //UserDTO dto = new UserDTO();
+
+        String id = null;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                id = rs.getString("id");
+            }
+
+        }finally {
+            if(rs!=null) try {rs.close();}catch (Exception e){}
+        }
+        return id;
+    }
 }
