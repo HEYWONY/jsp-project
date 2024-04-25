@@ -3,6 +3,7 @@ package com.parsam.service;
 import com.parsam.comm.DBConnection;
 import com.parsam.dao.FavDAO;
 import com.parsam.dao.ProductDAO;
+import com.parsam.dao.user.UserDAO;
 import com.parsam.dto.ProductDTO;
 
 import javax.naming.NamingException;
@@ -211,5 +212,25 @@ public class ProductService {
             db.disconn(conn);
         }
         return  favcnt;
+    }
+
+    /* 찜 목록 */
+    public List<ProductDTO> getFavList(Long u_id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        List<ProductDTO> arr = new ArrayList<>();
+
+        try{
+            conn = db.getConnection();
+            arr = dao.getFavList(conn, u_id);
+        }catch (SQLException | NamingException e) {
+            System.out.println(e);
+        }finally {
+            db.disconn(conn);
+        }
+
+        return arr;
+
     }
 }

@@ -13,21 +13,19 @@
 <%-- 회원 사진 --%>
 <p>${dto.nickname}님</p>
 <p>${teacher_ck}</p>
+<p></p>
 <ul>
     <li><a href="userModify.do">프로필 보기</a></li>
-    <li><a href="">찜한 목록</a></li>
+    <li><a href="userFav.do?u_id=${dto.u_id}&id=${dto.id}">찜한 목록</a></li>
     <li><a href="userSaleList.do?u_id=${dto.u_id}">거래 내역</a></li>
-    <li><a href="">FAQ</a></li>
-    <li><a href="">로그아웃</a></li>
-    <%-- 회원 탈퇴 만들기 --%>
+    <li><a href="#">FAQ</a></li>
+    <li><a href="logout.do">로그아웃</a></li>
+    <%-- 회원 탈퇴 이동 예정 --%>
+    <li><a href="userDelete.do?u_id=${dto.u_id}">회원탈퇴</a></li>
+
 </ul>
 </div>
 </body>
-<script>
-    // 사진 수정버튼 클릭시
-    document.getElementById('btn').onclick = function () {
-        // location =
-    }
-</script>
+
 </html>
     
