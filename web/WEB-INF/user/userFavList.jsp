@@ -15,7 +15,7 @@
     <c:if test="${empty list}">
         <ul>
         <li>찜한 상품이 없습니다.</li>
-        <li><a href="myPage.do?id=${id}">이전으로</a></li>
+        <li><a href="myPage.do?u_id=${id}">이전으로</a></li>
         <li><a href="index.do">홈으로</a></li>
         </ul>
     </c:if>

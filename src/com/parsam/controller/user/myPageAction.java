@@ -16,12 +16,26 @@ public class myPageAction implements Action {
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 파라미터
+        // 로그인한 사용자의 dto
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("id");
 
         UserService service = UserService.getService();
-        UserDTO dto = service.getModifyList(id);
+        Long u_id = service.getUid(id);
+        UserDTO dto = service.getModifyList(u_id);
 
+        // 판매자 u_id 예외처리
+        Long uid = Long.valueOf(0);
+        try {
+            uid = Long.parseLong(request.getParameter("uid")); // 판매자의 u_id
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        // 판매자의 회원 정보
+        UserDTO pdto = service.getModifyList(uid);
+
+        // 교사 인증 현황
         String teacher_ck = "";
         if(!dto.isTeacher_ck()) {
             teacher_ck = "인증이 진행중입니다.";
@@ -29,7 +43,9 @@ public class myPageAction implements Action {
             teacher_ck = "교사 인증 완료";
         }
 
+        request.setAttribute("uid", uid);
         request.setAttribute("dto", dto);
+        request.setAttribute("pdto", pdto);
         request.setAttribute("teacher_ck", teacher_ck);
 
         Forward forward = new Forward();

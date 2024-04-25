@@ -47,7 +47,7 @@ public class UserDAO {
     }
 
     /* 회원 정보 가져오기(수정 화면) */
-    public UserDTO getModifyList(Connection conn, String id) throws SQLException{
+    public UserDTO getModifyList(Connection conn, Long u_id) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" select       id            ");
         sql.append("            , name          ");
@@ -58,12 +58,12 @@ public class UserDAO {
         sql.append("            , photo         ");
         sql.append("            , u_id          ");
         sql.append("  from        user          ");
-        sql.append("  where       id = ?        ");
+        sql.append("  where       u_id = ?        ");
 
         ResultSet rs = null;
         UserDTO dto = new UserDTO();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
-            pstmt.setString(1, id);
+            pstmt.setLong(1, u_id);
             rs = pstmt.executeQuery();
             if(rs.next()) {
                 dto.setId(rs.getString("id"));
@@ -332,6 +332,7 @@ public class UserDAO {
         sql.append("        , p_price           ");
         sql.append("        , p_img             ");
         sql.append("        , p_state           ");
+        sql.append("        , p_cate            ");
         sql.append(" from   product p, fav f    ");
         sql.append(" where  p.p_id = f.p_id     ");
         sql.append(" and    f.u_id = ?          ");
@@ -348,6 +349,7 @@ public class UserDAO {
                 dto.setP_price(rs.getInt("p_price"));
                 dto.setP_img(rs.getString("p_img"));
                 dto.setP_state(rs.getString("p_state"));
+                dto.setP_cate(rs.getString("p_cate"));
                 arr.add(dto);
             }
 

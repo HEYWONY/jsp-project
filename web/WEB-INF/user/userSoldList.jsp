@@ -15,7 +15,9 @@
 
     <div class="trade">
         <h4><a href="userSaleList.do?u_id=${u_id}">판매내역</a></h4>
-        <h4><a href="userShoppingList.do?u_id=${u_id}">구매내역</a></h4>
+        <c:if test="${u_id == uid}">
+            <h4><a href="userShoppingList.do?u_id=${u_id}">구매내역</a></h4>
+        </c:if>
     </div>
     <div class="tradeState">
         <h5><a href="userSaleList.do?u_id=${u_id}">판매중</a></h5>
@@ -31,7 +33,7 @@
         <li>찜수</li>
     </ul>
     <c:if test="${empty list}">
-        <p>판매중인 자료가 없습니다.</p>
+        <p>거래 완료된 내역이 없습니다.</p>
     </c:if>
 
     <c:if test="${!(empty list)}">

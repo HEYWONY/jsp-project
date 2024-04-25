@@ -85,7 +85,7 @@
         <section>
             <h2>상품 설명</h2>
             <p>${dto.p_desc}</p>
-            <a href="#">판매자 홈 ></a> <!--dto.u_id로 마이페이지 링크 걸기-->
+            <a href="myPage.do?uid=${dto.u_id}">판매자 홈 ></a> <!--dto.u_id로 마이페이지 링크 걸기-->
             <a href="${dto.p_openchat}">상품 문의</a>
         </section>
     </div>
