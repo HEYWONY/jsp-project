@@ -58,7 +58,12 @@
 
     </ul>
 </form>
-scri
+<script>
+    document.getElementById('modify').onclick = function () {
+        alert("회원 정보 수정 완료되었습니다.");
+        location.href = "myPage.do?id=${id}";
+    }
+</script>
 </body>
 </html>
     
