@@ -25,6 +25,10 @@
     <orderEntry type="library" name="mariadb.jdbc.java.client" level="project" />
     <orderEntry type="library" name="servlets.cos" level="project" />
     <orderEntry type="library" name="javax.servlet.jstl" level="project" />
+    <orderEntry type="library" name="iamport" level="application" />
+    <orderEntry type="library" name="jquery-latest" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery.ripples" level="application" />
     <orderEntry type="library" name="googlecode.json.simple" level="project" />
   </component>
 </module>
