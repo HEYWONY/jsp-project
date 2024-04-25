@@ -64,6 +64,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void doReq(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        System.out.println("한글");
         String path = request.getServletPath();
 
         Action act = hm.get(path);

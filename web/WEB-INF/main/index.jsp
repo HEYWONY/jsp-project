@@ -37,9 +37,7 @@
     </style>
 </head>
 <body>
-<%--<%
-    System.out.println("한글아 나와줄래.... (star...)");
-%>--%>
+
     <jsp:include page="top.jsp" flush="true"/>
     <section>
         <c:set var="contentpage" value="${param.page}"/>

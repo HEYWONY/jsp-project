@@ -1,6 +1,7 @@
 package com.parsam.dao;
 
 import com.parsam.dto.ProductDTO;
+import org.checkerframework.checker.units.qual.A;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -253,8 +254,11 @@ public class ProductDAO {
                 }
 
             }
-            return list;
+
+        } finally {
+            if(rs!=null) try{rs.close();} catch (Exception e) {}
         }
+        return list;
     }
 
     // 최신글
@@ -323,10 +327,86 @@ public class ProductDAO {
                 dto.setP_fav(rs.getInt("p_fav"));
                 list.add(dto);
             }
+        } finally {
+            if(rs!=null) try{rs.close();} catch (Exception e) {}
         }
         return list;
     }
 
+    public List<ProductDTO> getAdisList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_id          ");
+        sql.append("        , p_img         ");
+        sql.append("        , p_cate        ");
+        sql.append("        , p_name        ");
+        sql.append("        , p_price       ");
+        sql.append("        , p_state       ");
+        sql.append("        , p_fav         ");
+        sql.append(" FROM product           ");
+        sql.append(" WHERE p_cate = '교재'   ");
+
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                list.add(dto);
+            }
+        } finally {
+            if(rs!=null) try{rs.close();} catch (Exception e) {}
+        }
+        return list;
+    }
+
+    // 전체 검색
+    public List<ProductDTO> searchResult(Connection conn, String search) throws SQLException{
+        // 전체 검색을 위한 쿼리... 어떻게 짜야 할까? ㅠㅠ ㅋㅋ 테이블을 전부 엮어서 해야 할까?
+        // 일단 product 들어오는 건 확실한데, 이거하고 board하고 연관된 게 없어서 하기 애매함 ㅠ
+        // 글 내용
+        // % search % 해서 where 절 조건에 넣어야 하는 건 알 것 같은데... ㅠㅋㅋ
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select   p_id                   ");
+        sql.append("        , p_img                  ");
+        sql.append("        , p_cate                 ");
+        sql.append("        , p_name                 ");
+        sql.append("        , p_price                ");
+        sql.append("        , p_state                ");
+        sql.append("        , p_fav                  ");
+        sql.append(" FROM product                    ");
+        sql.append(" WHERE p_name LIKE ?             ");
+
+        List<ProductDTO> arr = new ArrayList<>();
+        ResultSet rs = null;
+
+        try (PreparedStatement pstmt = (conn.prepareStatement(sql.toString()))){
+            pstmt.setString(1, "%" + search + "%");
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                arr.add(dto);
+            }
+        } finally {
+            if(rs!=null) try{rs.close();} catch (Exception e) {}
+        }
+        return arr;
+    }
 }
 
 

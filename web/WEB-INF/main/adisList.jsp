@@ -1,20 +1,20 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: FULL8-011
+  Date: 2024-04-24
+  Time: 오전 9:45
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="indexCSS/list.css">
 </head>
 <body>
     <c:set var="list" value="${requestScope.list}"/>
+    
     <h1>전체매물</h1>
     <form method="post" action="listResult.do">
-        <select name="p_cate" id="p_cate">
-            <option value="교재">교재</option>
-            <option value="교구">교구</option>
-            <option value="수업자료">수업자료</option>
-            <option value="기타">기타</option>
-        </select>
         <select name="p_state" id="p_state">
             <option value="미개봉">미개봉</option>
             <option value="거의 새것">거의 새것</option>
@@ -31,23 +31,7 @@
         <c:forEach var="item" items="${list}">
             <ul>
                 <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
-                <c:choose>
-                    <c:when test="${item.p_cate == '교재'}">
-                        <li class="mainList_li_textbook">${item.p_cate}</li>
-                    </c:when>
-                    <c:when test="${item.p_cate == '교구'}">
-                        <li class="mainList_li_adis">${item.p_cate}</li>
-                    </c:when>
-                    <c:when test="${item.p_cate == '수업자료'}">
-                        <li class="mainList_li_handout">${item.p_cate}</li>
-                    </c:when>
-                    <c:when test="${item.p_cate == '기타'}">
-                        <li class="mainList_li_etc">${item.p_cate}</li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="mainList_li_ddk">미분류</li>
-                    </c:otherwise>
-                </c:choose>
+                <li class="mainList_li_2">${item.p_cate}</li>
                 <li class="mainList_li_3"><a href="product_detail.do?pid=${item.p_id}">${item.p_name}</a></li>
                 <li class="mainList_li_4">₩${item.p_price}</li>
                 <li class="mainList_li_5">${item.p_state}</li>

@@ -151,7 +151,6 @@ public class ProductService {
         ProductDAO dao = ProductDAO.getDao();
         List<ProductDTO> arr = new ArrayList<>();
         try (Connection conn = db.getConnection()){
-            System.out.println("hi");
             arr = dao.getNewList(conn);
         } catch (SQLException | NamingException e){
             System.out.println(e);
@@ -195,4 +194,15 @@ public class ProductService {
         return arr;
     }
 
+    public List<ProductDTO> adisListService() {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        try (Connection conn = db.getConnection()){
+            arr = dao.getAdisList(conn);
+        } catch (SQLException | NamingException e){
+            System.out.println(e);
+        }
+        return arr;
+    }
 }
