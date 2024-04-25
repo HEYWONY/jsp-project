@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <script defer src="smr/js/login.js"></script>
   <link rel="stylesheet" href="smr/css/login.css">
     <title>로그인</title>
 </head>
@@ -33,7 +32,7 @@
       <input type="submit" class="loginbtn" value="로그인">
     </li>
       <a href="join.do" class="join">회원가입</a>
-      <a href="#" class="idsearch">아이디 찾기</a>
+      <a href="findId.do" class="idsearch">아이디 찾기</a>
       <a href="#" class="pwsearch">비밀번호 찾기</a>
 
   </ul>

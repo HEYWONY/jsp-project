@@ -84,7 +84,7 @@ public class UserService {
         }
         return result;
     }
-
+    /* 로그인 */
     public boolean doLogin(String id, String pw) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
@@ -104,6 +104,29 @@ public class UserService {
             if(conn!=null) try{conn.close();} catch (Exception e){}
         }
         return result;
+    }
+
+  /* 아이디 찾기 */
+    public String findId(String name, String email) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        //UserDTO dto = new UserDTO();
+
+        String id =null;
+        try{
+            conn= db.getConnection();
+            conn.setAutoCommit(false);
+            id = dao.findId(conn, name, email);
+
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }finally {
+            if(conn!=null) try{conn.close();} catch (Exception e){}
+        }
+        return id;
     }
 
 
@@ -180,6 +203,7 @@ public class UserService {
         }
         return arr;
     }
+
 
 
 }
