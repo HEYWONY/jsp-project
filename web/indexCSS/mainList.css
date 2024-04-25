@@ -22,6 +22,12 @@ article > h1 {
     justify-content: flex-start;
 }
 
+.mainList2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
 .mainList_li_textbook {
     background-color: #FDE2E4;
     border-radius: 15px;
