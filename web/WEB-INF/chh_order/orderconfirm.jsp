@@ -26,9 +26,9 @@
         <section id="confirm_info">
             <div class="form_title">
                 <h1>주문확인서</h1>
-                <p class="info_txt">주문 정보를 다시 한 번 확인해 주세요.</p>
+                <h6 class="info_txt">주문 정보를 다시 한 번 확인해 주세요.</h6>
             </div>
-
+            <div class="line"></div>
             <div id="order_info">
                 <ul>
                     <input type="hidden" id="pid" value=${pid}>
@@ -46,7 +46,7 @@
                         <span class="info" id="ocnt">${ocnt}</span>
                         <span>개</span>
                     </li>
-                    <li>
+                    <li class="strong_info">
                         <span class="field">총 결제금액: </span>
                         <span class="info" id="total">${total}</span>
                         <span>원</span>
@@ -68,12 +68,15 @@
                         <span class="info"> 택배 </span>
                     </li>
                     <li>
-                        <p class="field">배송 메모: </p>
-                        <textarea class="info" id="omemo" cols="20" rows="1" readonly>${omemo}</textarea>
+                        <span class="field">배송 메모: </span>
+                        <input class="info" id="omemo" readonly value="${omemo}">
+                    </li>
+                    <li>
+                        <div class="end_btn"><button id="pay_btn">결제하기</button></div>
                     </li>
                 </ul>
             </div>
-            <div class="end_btn"><button id="pay_btn">결제하기</button></div>
+
         </section>
     </div>
 </div>

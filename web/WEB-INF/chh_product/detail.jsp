@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="chh/css/product_detail.css">
+    <link rel="stylesheet" href="chh/css/detail.css">
 </head>
 <body>
 <c:set var="dto" value="${requestScope.pdto}"/>
@@ -18,30 +18,59 @@
 
             <section>
                 <ul>
-                    <li>
-                        카테고리 > ${dto.p_cate}
+                    <li class="cate_box">
+                        <c:choose>
+                            <c:when test="${dto.p_cate=='교구'}">
+                                <span class="cate" id="cate1">${dto.p_cate}</span>
+                            </c:when>
+                            <c:when test="${dto.p_cate=='교재'}">
+                                <span class="cate" id="cate2">${dto.p_cate}</span>
+                            </c:when>
+                            <c:when test="${dto.p_cate=='수업자료'}">
+                                <span class="cate" id="cate3">${dto.p_cate}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="cate" id="cate4">${dto.p_cate}</span>
+                            </c:otherwise>
+                        </c:choose>
                     </li>
+
                     <li>
                         <h2>${dto.p_name}</h2>
                     </li>
                     <li>
-                        <h3>${dto.p_price}</h3>
+                        <h3>${dto.p_price}원</h3>
                     </li>
-                    <li>
+                    <li class="font_gray">
                         ${dto.p_date} | ${dto.p_stock}개 남음 | 조회 ${dto.readno} | 찜 ${fav_cnt}
                     </li>
-                    <hr>
+
+                    <c:choose>
+                        <c:when test="${dto.p_cate=='교구'}">
+                            <div class="line, line1"></div>
+                        </c:when>
+                        <c:when test="${dto.p_cate=='교재'}">
+                            <div class="line, line2"></div>
+                        </c:when>
+                        <c:when test="${dto.p_cate=='수업자료'}">
+                            <div class="line, line3"></div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="line, line4"></div>
+                        </c:otherwise>
+                    </c:choose>
+
 
                     <div id="product_info_box">
                         <c:if test="${!(empty dto.p_place) || fn:length(dto.p_place)!=0}">
                             <li>
-                                <label>거래 희망 장소</label>
+                                <label class="label_field">거래 희망 장소</label>
                                 <p class="label_text">${dto.p_place}</p>
                             </li>
                         </c:if>
 
                         <li>
-                            <label>거래 방식</label>
+                            <label class="label_field">거래 방식</label>
                             <c:choose>
                                 <c:when test="${dto.p_trade=='deliver'}">
                                     <p class="label_text">택배</p>
@@ -56,22 +85,22 @@
 
                         </li>
                         <li>
-                            <label>제품 상태</label>
+                            <label class="label_field">제품 상태</label>
                             <p class="label_text">${dto.p_state}</p>
                         </li>
                     </div>
 
                     <li>
-                        <div>
+                        <div class="division_btn">
                             <!--로그인 한 사용자에 따라 버튼 다르게 보이도록 구현-->
                             <c:choose>
                                 <c:when test="${dto.u_id==uid || uid==1}">
-                                    <a href="product_update.do?pid=${dto.p_id}">수정하기</a>
-                                    <a href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
+                                    <a class="left_btn" href="product_update.do?pid=${dto.p_id}">수정하기</a>
+                                    <a class="right_btn" href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="#">찜하기</a>
-                                    <a href="product_order.do?pid=${dto.p_id}">바로구매</a>
+                                    <a class="left_btn" href="#">찜하기</a>
+                                    <a class="right_btn" href="product_order.do?pid=${dto.p_id}">바로구매</a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -84,9 +113,22 @@
 
         <section>
             <h2>상품 설명</h2>
-            <p>${dto.p_desc}</p>
-            <a href="myPage.do?uid=${dto.u_id}">판매자 홈 ></a> <!--dto.u_id로 마이페이지 링크 걸기-->
-            <a href="${dto.p_openchat}">상품 문의</a>
+            <p class="desc_txt">${dto.p_desc}</p>
+            <div class="desc_btn">
+                <a class="btn_style" href="myPage.do?uid=${dto.u_id}">
+                    <span>
+                        <img class="btn_icon" src="chh/img/home_icon.png" alt="홈 아이콘"/>
+                    판매자 홈
+                    </span>
+
+                </a> <!--dto.u_id로 마이페이지 링크 걸기-->
+                <a class="btn_style" href="${dto.p_openchat}">
+                    <span>
+                        <img class="btn_icon" src="chh/img/chat_icon.png" alt="채팅 아이콘"/>
+                    상품 문의
+                    </span>
+                </a>
+            </div>
         </section>
     </div>
 </div>
