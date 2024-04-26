@@ -426,7 +426,7 @@ public class UserDAO {
          return result;
     }
 
-    public void teacherCK_Ok(Connection conn, String id) throws SQLException{
+    public void teacherCK_Ok(Connection conn, String id) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append("   update  user              ");
         sql.append("   set                       ");
@@ -434,10 +434,11 @@ public class UserDAO {
         sql.append("   where  id = ?             ");
 
 
-        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
         }
+    }
 
     /* 아이디 중복 체크 */
     public boolean getIdCheck(Connection conn, String id) throws SQLException {

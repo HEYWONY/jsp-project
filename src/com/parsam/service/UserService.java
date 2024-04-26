@@ -323,18 +323,21 @@ public class UserService {
         Connection conn = null;
         UserDAO dao = UserDAO.getDAO();
 
-        try{
-            conn= db.getConnection();
+        try {
+            conn = db.getConnection();
             conn.setAutoCommit(false);
             dao.teacherCK_Ok(conn, id);
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try {conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
-        }finally {
+        } finally {
             disconn(conn);
         }
-
+    }
 
     /* 아이디 중복 확인 */
     public boolean getIdCheck(String id) {
