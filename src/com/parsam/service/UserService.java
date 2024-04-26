@@ -250,6 +250,92 @@ public class UserService {
         return result;
     }
 
+
+    /* 교사 승인여부 */
+    public List<UserDTO> teacherCK() {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        List<UserDTO> arr = new ArrayList<>();
+
+        try{
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.teacherCK(conn);
+
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    /* 관리자페이지 유저리스트 */
+    public List<UserDTO> userlist() {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        List<UserDTO> arr = new ArrayList<>();
+
+        try{
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.userlist(conn);
+
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try {conn.rollback();} catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        }finally {
+            disconn(conn);
+        }
+        return arr;
+    }
+
+    public int userDelete(String id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn =null;
+        UserDAO dao = UserDAO.getDAO();
+        int result = 0;
+        try{
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            result = dao.userDelete(conn, id);
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try {conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }finally {
+            disconn(conn);
+        }
+        System.out.println(result+".........User Service");
+        return  result;
+
+    }
+
+    public void teacherCK_Ok(String id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+
+        try{
+            conn= db.getConnection();
+            conn.setAutoCommit(false);
+            dao.teacherCK_Ok(conn, id);
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            try {conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }finally {
+            disconn(conn);
+        }
+
+
     /* 아이디 중복 확인 */
     public boolean getIdCheck(String id) {
         DBConnection db = DBConnection.getInstance();
@@ -266,5 +352,6 @@ public class UserService {
             System.out.println(e);
         }
         return result;
+
     }
 }

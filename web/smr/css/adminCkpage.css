@@ -1,0 +1,17 @@
+.wrap{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+.wpahr{
+    padding-bottom: 20px;
+}
+
+.wpahr, .sodyd{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}

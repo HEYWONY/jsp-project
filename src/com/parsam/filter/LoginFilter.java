@@ -50,11 +50,11 @@ public class LoginFilter implements Filter {
                            filterChain.doFilter(request, response);
 
                        } else {
-                           RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
+                           RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp?page=user/login.jsp");
                            dispatcher.forward(request, response);
                        }
                } else {
-                       RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
+                       RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp?page=user/login.jsp");
                        dispatcher.forward(request, response);
                        }
                 }

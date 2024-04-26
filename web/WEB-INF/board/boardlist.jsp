@@ -21,6 +21,7 @@
 <c:set var="startpage" value="${requestScope.startpage}"></c:set>
 <c:set var="endpage" value="${requestScope.endpage}"></c:set>
 <c:set var="search_txt" value="${requestScope.search_txt}"></c:set>
+<c:set var="uid" value="${requestScope.uid}"/>
 
 <div class="wrap">
     <ul class="notice_list">
@@ -32,7 +33,11 @@
     <div class="wrap_right">
     <div class="notice_write">
         <h3>공지사항</h3>
-        <a href="board_write.do" class="write_btn">글쓰기</a>
+        <c:choose>
+            <c:when test="${uid==1}">
+                <a href="board_write.do" class="write_btn">글쓰기</a>
+            </c:when>
+        </c:choose>
     </div>
 
     <form method="get" action="boardlist.do" class="search">
