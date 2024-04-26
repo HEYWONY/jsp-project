@@ -1,0 +1,104 @@
+.wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+
+}
+
+
+
+
+article {
+    font-family: Arial, sans-serif;
+    padding-bottom: 200px;
+    background-color: #f8f9fa; /* Background color */
+    border-radius: 30px;
+}
+
+.wrap {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+article h2 {
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+    padding-bottom: 40px;
+    font-size: 2rem;
+}
+
+article h3 {
+    margin: 20px 0;
+    color: #2F80ED; /* Heading color */
+}
+
+/*article ul {
+    list-style: none;
+    padding: 0;
+}*/
+
+article ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* 리스트 아이템 가운데 정렬 */
+}
+
+.te_ck, .userlist {
+    /* margin: 0 auto; /* 리스트 컨테이너 가운데 정렬 */
+    width: 80%; /* 필요에 따라 너비 조정 */
+    margin: 0 50px;
+    height: auto;
+}
+
+article li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd; /* Separator color */
+}
+
+article li span {
+    flex: 1; /* 각 요소가 동일한 너비를 가지도록 설정 */
+}
+
+/* Admin Check Page Styles */
+.te_ck {
+    background-color: #fff; /* Background color */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+    width: 100%;
+}
+
+.wpahr {
+    background-color: #f1f3f5; /* Alternate background color */
+}
+
+/* Admin User List Styles */
+.userlist {
+    background-color: #fff; /* Background color */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+    width: 100%;
+}
+
+.wpahr {
+    background-color: #f1f3f5; /* Alternate background color */
+}
+
+/* Button Styles */
+article input[type="submit"] {
+    background-color: #2F80ED; /* Button color */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+article input[type="submit"]:hover {
+    background-color: #1E63D6; /* Hover color */
+}

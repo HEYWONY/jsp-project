@@ -356,4 +356,86 @@ public class UserDAO {
         }
         return arr;
     }
+
+    /* 교사 승인여부 */
+    public List<UserDTO> teacherCK(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("  select      id              ");
+        sql.append("  from user                   ");
+        sql.append("  where teacher_ck = false    ");
+        ResultSet rs = null;
+
+        List<UserDTO> arr = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                UserDTO dto = new UserDTO();
+                dto.setId(rs.getString("id"));
+                arr.add(dto);
+            }
+        }
+        return arr;
+    }
+
+    /* 관리자페이지 유저리스트 */
+    public List<UserDTO> userlist(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("  select       id           ");
+        sql.append("               , name       ");
+        sql.append("               , nickname   ");
+        sql.append("  from  user                ");
+        ResultSet rs = null;
+        List<UserDTO> arr = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                UserDTO dto = new UserDTO();
+                dto.setId(rs.getString("id"));
+                dto.setName(rs.getString("name"));
+                dto.setNickname(rs.getString("nickname"));
+                arr.add(dto);
+            }
+        } finally {
+            if (rs != null){
+                try {
+                    rs.close();
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+        }
+        return arr;
+    }
+
+    public int userDelete(Connection conn, String id) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" delete from user          ");
+        sql.append(" where  id = ?             ");
+
+        int result = 0;
+
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, id);
+            result = pstmt.executeUpdate();
+        }
+
+        System.out.println(result+".........User dao");
+         return result;
+    }
+
+    public void teacherCK_Ok(Connection conn, String id) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("   update  user              ");
+        sql.append("   set                       ");
+        sql.append("            teacher_ck =true ");
+        sql.append("   where  id = ?             ");
+
+
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        }
+    }
 }

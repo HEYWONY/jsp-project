@@ -43,6 +43,7 @@
         <li><a href="#">기타</a></li>
         <li><a href="list.do">전체매물</a></li>
         <li><a href="boardlist.do">공지사항</a></li>
+        <li><a href="admin.do">관리자 페이지</a></li>
     </ul>
 </nav>
 
