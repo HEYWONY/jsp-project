@@ -49,4 +49,30 @@ public class LikeService {
             db.disconn(conn);
         }
     }
+
+    public long getFav(String id, long pid) {
+        System.out.println("dd");
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        FavDAO dao = FavDAO.getDao();
+        long result = 0;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+
+            long uid = dao.getUId(conn, id);
+            result = dao.getFavCheck(conn, pid, uid);
+            System.out.println("a " + result);
+            conn.commit();
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (Exception e2) {
+                System.out.println(e2);
+            }
+        } finally {
+            db.disconn(conn);
+        }
+        return result;
+    }
 }

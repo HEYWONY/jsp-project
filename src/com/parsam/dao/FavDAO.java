@@ -38,30 +38,6 @@ public class FavDAO {
         return favcnt;
     }
 
-    public int likeChange(Connection conn, long pid) throws SQLException {
-
-        StringBuilder sql = new StringBuilder();
-        sql.append(" SELECT p_fav          ");
-        sql.append(" FROM           ");
-        sql.append(" WHERE p_id = ?        ");
-
-        ResultSet rs = null;
-        int countFav = 0; // fav가 0이라면...
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
-            pstmt.setLong(1, pid);
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                countFav = rs.getInt("p_fav");
-            }
-
-        } finally {
-            if(rs!=null) try{rs.close();}catch (Exception e) {}
-        }
-        return 0;
-    }
-
     public long getFav(Connection conn, String id, long pid) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" select f_id                  ");
@@ -161,5 +137,29 @@ public class FavDAO {
             pstmt.setLong(1, pid);
             pstmt.executeUpdate();
         }
+    }
+
+    public long getFavCheck(Connection conn, long pid, long uid) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select f_id           ");
+        sql.append(" from fav              ");
+        sql.append(" where p_id = ? and    ");
+        sql.append("       u_id = ?        ");
+
+        System.out.println("aa");
+        long result = 0;
+        ResultSet rs = null;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setLong(1, pid);
+            pstmt.setLong(2, uid);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                result = rs.getLong("f_id");
+            }
+        } finally {
+            if(rs!=null) try{rs.close();} catch (Exception e) {}
+        }
+        return result ;
     }
 }
