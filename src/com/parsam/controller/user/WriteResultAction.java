@@ -24,7 +24,7 @@ public class WriteResultAction implements Action {
         String addr1 = request.getParameter("addr1");       // 우편변호
         String addr2 = request.getParameter("addr2");       // 주소
         String addr3 = request.getParameter("addr3");       // 상세주소
-        String addr4 = request.getParameter("addr4");       // 참고항목
+//        String addr4 = request.getParameter("addr4");       // 참고항목
         String phone = request.getParameter("phone");       // 연락처
 
         // dto에 담아서 회원가입 정보 넘긴다
@@ -34,21 +34,22 @@ public class WriteResultAction implements Action {
         dto.setId(id);
         dto.setPw(pw);
         dto.setEmail(email);
-        dto.setAddr(addr1+ "<br>" + addr2 + "<br>" +addr3 +"<br>" + addr4);
+        dto.setAddr(addr1+ "<br>" + addr2 + "<br>" +addr3 );
         dto.setPhone(phone);
 
         // UserService에 dto에 회원가입 데이터 담아서 넘긴다
         UserService service = UserService.getService();
         int result = service.insertUserData(dto);
         Forward forward = new Forward();
-        forward.setForward(true);
 
         if(result == 1) {
             System.out.println("회원가입 성공!");
+            forward.setForward(true);
             forward.setUrl("WEB-INF/index.jsp?page=user/joinSuccess.jsp");
         }else {
             System.out.println("회원가입 실패");
-            forward.setUrl("WEB-INF/index.jsp?page=user/joinForm.jsp");
+            forward.setForward(false);
+            forward.setUrl("join.do");
         }
 
         return forward;

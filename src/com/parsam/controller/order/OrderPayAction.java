@@ -36,7 +36,7 @@ public class OrderPayAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/index.jsp?page=chh_order/order_complete.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=chh_order/ordercomplete.jsp");
         return forward;
     }
 }

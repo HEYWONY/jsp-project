@@ -357,6 +357,7 @@ public class UserDAO {
         return arr;
     }
 
+
     /* 교사 승인여부 */
     public List<UserDTO> teacherCK(Connection conn) throws SQLException{
         StringBuilder sql = new StringBuilder();
@@ -437,5 +438,24 @@ public class UserDAO {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
         }
+
+    /* 아이디 중복 체크 */
+    public boolean getIdCheck(Connection conn, String id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select    id     ");
+        sql.append(" from      user   ");
+        sql.append(" where    id = ?  ");
+
+        ResultSet rs = null;
+        boolean result = true;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if(!rs.next()) {
+                result = false;
+            }
+        }
+        return result;
+
     }
 }

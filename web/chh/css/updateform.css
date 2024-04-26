@@ -57,12 +57,21 @@ ul li{
 }
 
 form{
-    background-color: rgba(255,255,255,0.5);
-    margin: 100px 200px;
+    background-color: rgba(255,255,255,0.6);
     padding: 50px;
     border-radius: 30px;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
 }
 
 canvas{
     border-radius: 50px;
+}
+
+.full-landing-image{
+    padding: 100px 200px 200px 200px;
+}
+
+label{
+    display: inline-block;
+    width: 200px;
 }
