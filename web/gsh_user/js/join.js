@@ -101,10 +101,3 @@ elInputPwCk.onkeyup = function () {
         elMismatch.classList.add('hide'); // 실패 메시지가 가려져야 함
     }
 };
-
-/* 아이디 중복확인 */
-document.getElementById('btn').onclick = function () {
-
-}
-
-

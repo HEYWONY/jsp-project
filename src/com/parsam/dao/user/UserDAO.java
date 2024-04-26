@@ -356,4 +356,23 @@ public class UserDAO {
         }
         return arr;
     }
+
+    /* 아이디 중복 체크 */
+    public boolean getIdCheck(Connection conn, String id) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select    id     ");
+        sql.append(" from      user   ");
+        sql.append(" where    id = ?  ");
+
+        ResultSet rs = null;
+        boolean result = true;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if(!rs.next()) {
+                result = false;
+            }
+        }
+        return result;
+    }
 }

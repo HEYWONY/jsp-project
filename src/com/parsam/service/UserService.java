@@ -250,5 +250,21 @@ public class UserService {
         return result;
     }
 
-
+    /* 아이디 중복 확인 */
+    public boolean getIdCheck(String id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        boolean result = true;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);;
+            UserDAO dao = UserDAO.getDAO();
+            result = dao.getIdCheck(conn, id);
+            conn.commit();
+        }catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }
+        return result;
+    }
 }
