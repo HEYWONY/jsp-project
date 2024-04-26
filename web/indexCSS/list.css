@@ -19,7 +19,7 @@ article > h1 {
     flex-wrap: wrap;
     justify-content: flex-start;
 }
-ul > li {
+ul li {
     display: flex;
     flex-direction: column;
 }
@@ -68,5 +68,11 @@ ul > li {
 .mainList_li_5 {
     font-size: 16px;
     color: #b1b9c0;
+}
+.like {
+    width: 25px;
+    position: relative;
+    bottom: 38px;
+    left: 172px;
 }
 

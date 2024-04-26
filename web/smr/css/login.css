@@ -1,3 +1,7 @@
+ul > li {
+    list-style: none;
+}
+
 .wrap{
     margin-top: 70px;
     margin-bottom: 150px;
