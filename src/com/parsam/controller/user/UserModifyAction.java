@@ -14,14 +14,12 @@ import java.io.IOException;
 public class UserModifyAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 로그인한 세션 가져오기
-        HttpSession session = request.getSession();
-        String id = (String) session.getAttribute("id");
+        // 파라미터
+        // 마이페이지에서 u_id 파라미터 받는다
+        Long u_id = Long.parseLong(request.getParameter("u_id"));
 
         UserService service = UserService.getService();
-        UserDTO dto = service.getModifyList(id);
-
-//        System.out.println(dto.getAddr());
+        UserDTO dto = service.getModifyList(u_id);
 
         String address = dto.getAddr();
         String addr[] = address.split("<br>");

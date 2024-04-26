@@ -3,7 +3,7 @@ package com.parsam.controller.board;
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
 import com.parsam.dto.BoardDTO;
-import com.parsam.service.board.BoardService;
+import com.parsam.service.BoardService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ public class BoardListAction implements Action {
         if(curr!=null){
             currpage = Integer.parseInt(curr);
         }
-        int pagesize = 10;
+        int pagesize = 8;
         int blocksize = 3;
         int startrow = (currpage-1)*pagesize;
 

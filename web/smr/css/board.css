@@ -1,50 +1,75 @@
-#notice{
-    padding: 10px;
-}
-#wrap{
+.wrap{
     margin-left: auto;
     margin-right: auto;
     max-width: 1280px;
-    padding: 40px 40px 160px;
-}
-.notice_list {
-    list-style: none;
-    text-decoration: none;
-}
-
-#notice_write{
+    padding: 0px 40px 160px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+.notice_list {
+    margin-top: 0px;
+    list-style: none;
+    text-decoration: none;
+    padding-right: 20px;
+    text-align: center;
 }
 
-#write_btn{ /*이거 다시해야됨*/
-    display: inline-block;
+.notice_list > a> h1{
+    font-size: 2rem;
+}
+.notice_list > a> li{
+    font-size: 1rem;
+    padding-bottom: 10px;
+}
+.notice{
+    font-weight: 600;
+}
+
+.notice_list > h1{
+    font-size: 2rem;
+}
+
+.wrap_right{
+    min-width: 80%;
+}
+
+.notice_write{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px black solid;
+    margin-bottom: 15px
+}
+.notice_write > h3{
+    font-size: 1.5rem;
+}
+
+
+.write_btn{
     position: relative;
-    top: 2vh;
-    padding-top: 1vh;
-    width: 8vw;
-    height: 3vh;
-    padding-left: 2vw;
+    text-align: center;
+    top: 25px;
+    width: 60px;
+    height: 28px;
     text-decoration: none;
+    padding: 10px 0px 0px ;
     border-radius: 10px;
     border: #2F80ED 2px solid;
     background-color: white;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
-#search{
+.search{
     display: flex;
-    justify-content: left;
 }
-#search_bar{
+.search_bar{
     border-radius: 15px;
-    width: 50%;
+    width: 100%;
     padding: 8px;
     margin-right: 5px;
     border: none;
     background-color: #f5f5f5;
 }
-#search_btn{
+.search_btn{
     border-radius: 10px;
     padding: 10px 15px;
     border: #2F80ED 2px solid;
@@ -54,4 +79,19 @@
 
 ul li{
     text-decoration: none;
+}
+.list{
+    padding: 0px;
+}
+
+.list li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 0px;
+    border-bottom: 1px solid silver;
+}
+
+.pagenum{
+    text-align: center;
 }

@@ -17,7 +17,7 @@
 <a href="myPage.do"><h5>마이페이지</h5></a>
 
 <h2>회원가입</h2>
-<form method="post" action="joinResult.do" >
+<form method="post" action="joinResult.do" name="userInfo" onsubmit="retrun checkValue()">
     <%-- 교사 증빙서류 등록--%>
     <ul>
         <li>교사인증</li>
@@ -39,10 +39,12 @@
         </li>
         <li>
             <label for="id">아이디 <span>*</span></label>
-            <input type="text" id="id" name="id"placeholder="영어 또는 숫자만 입력해주세요." required>
-            <input type="button" id="btn" value="중복 확인"><br>
+            <input type="text" id="id" name="id"placeholder="영어 또는 숫자만 입력해주세요." onkeydown="inputIdChk()" required>
+            <input type="button" id="btn" value="중복 확인" onclick="openIdChk()">
+            <input type="hidden" name="idDuplication" value="idUncheck">
+
         </li>
-        <div class="success-message hide">사용할 수 있는 아이디입니다.</div>
+        <div class="success-message hide"> </div>
         <div class="failure-message hide">4 ~ 10글자 이내로 입력해주세요.</div>
         <div class="failure-message2 hide">영어 또는 숫자만 입력해주세요.</div>
         <li>
@@ -89,9 +91,9 @@
         </li>
     </ul>
 </form>
-
-
-
 </body>
+<script>
+
+</script>
 </html>
     

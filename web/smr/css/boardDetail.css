@@ -1,0 +1,42 @@
+.wrap{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    padding: 30px 0px 160px;
+}
+.notice{
+    font-weight: bold;
+    margin-left: 50px;
+    border-bottom: 2px black solid;
+}
+
+.wrap ul li{
+    padding: 10px 0px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid silver;
+}
+
+
+.titletxt{
+    font-weight: bold;
+}
+.contentbox{
+    min-height: 150px;
+    line-height: 1.5;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+.btn button{
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: #2F80ED 2px solid;
+    background-color: white;
+    font-size: medium;
+}

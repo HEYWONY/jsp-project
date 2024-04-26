@@ -9,30 +9,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>공지사항</title>
+    <link rel="stylesheet" href="smr/css/boardupdate.css">
 </head>
 <body>
 <c:set var="dto" value="${requestScope.dto}"></c:set>
-<ul>
-    <form method="post" action="board_update_result.do">
-        <li>
-            <label for="b_no">번  호</label>
-            <input type="text" name="b_no" id="b_no" value="${dto.b_no}" readonly><br>
-        </li>
-        <li>
-            <label for="title">제목</label>
-            <input type="text" name="title" id="title" value="${dto.title}">
-        </li>
-        <li>
-            <label for="content">내용</label>
-            <textarea name="content" id="content" cols="30" rows="7">${dto.content}</textarea>
-        </li>
-        <li>
-            <button type="submit">등록</button>
-            <button type="reset">취소</button>
-        </li>
-    </form>
-</ul>
 
+<div class="wrap">
+
+    <div class="notice">
+        <h3>공지사항 수정</h3>
+    </div>
+
+    <ul>
+        <form method="post" action="board_update_result.do">
+            <input type="hidden" name="b_no" value="${dto.b_no}">
+            <li>
+                <label for="title">제목</label>
+                <input type="text" name="title" id="title" value="${dto.title}">
+            </li>
+            <li>
+                <label for="content">내용</label>
+                <textarea name="content" id="content" cols="30" rows="7">${dto.content}</textarea>
+            </li>
+            <li class="btn">
+                <button type="submit">등록</button>
+                <button type="reset">취소</button>
+            </li>
+        </form>
+    </ul>
+
+</div>
 </body>
 </html>

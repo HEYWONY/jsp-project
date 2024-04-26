@@ -46,21 +46,17 @@ function find_postcode() {
     }).open();
 }
 
-
-
 window.onload=function () {
     calc_total();
-
     const price=document.getElementById('price').textContent;
     const ocnt = document.getElementById('ocnt');
     const stock= document.getElementById('pstock');
     const total_pay=document.getElementById('total_pay');
 
     document.getElementById('minus_btn').onclick=function () {
-
         if (Number(ocnt.value)>1){
             ocnt.value=Number(ocnt.value)-Number(1);
-            total_pay.textContent="총 결제금액: "+Number(price)*Number(ocnt.value);
+            total_pay.textContent="총 결제금액: "+Number(price)*Number(ocnt.value)+"원";
         } else {
             alert('최소 수량은 1입니다.');
         }
@@ -71,7 +67,7 @@ window.onload=function () {
             alert('재고 수량 이하로 주문하세요!');
         } else {
             ocnt.value=Number(ocnt.value)+Number(1);
-            total_pay.textContent="총 결제금액: "+Number(price)*Number(ocnt.value);
+            total_pay.textContent="총 결제금액: "+Number(price)*Number(ocnt.value)+"원";
         }
     }
 }
@@ -81,5 +77,5 @@ function calc_total(){
     const price=document.getElementById('price').textContent;
     let cnt = document.getElementById('ocnt').value;
 
-    total_pay.textContent="총 결제금액: "+Number(price)*Number(cnt);
+    total_pay.textContent="총 결제금액: "+Number(price)*Number(cnt)+"원";
 }

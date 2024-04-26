@@ -2,7 +2,7 @@ package com.parsam.controller.board;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
-import com.parsam.service.board.BoardService;
+import com.parsam.service.BoardService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

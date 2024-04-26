@@ -38,6 +38,21 @@ function changeFn() {
     }
 }
 
+
+
 window.onload=function (){ //수정 폼에서 로드 시 선택 되어 있는 거래 방식에 따라 주소 입력창 가시성 설정
     changeFn();
+}
+
+//이미지 미리보기 코드
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        document.getElementById('preview').src = "";
+    }
 }

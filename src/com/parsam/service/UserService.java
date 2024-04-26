@@ -44,7 +44,7 @@ public class UserService {
     }
 
     /* 회원 정보 리스트 - 회원 정보 수정에 사용 */
-    public UserDTO getModifyList(String id) {
+    public UserDTO getModifyList(Long u_id) {
 
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
@@ -53,7 +53,7 @@ public class UserService {
 
         try {
             conn = db.getConnection();  // db 연결
-            dto = dao.getModifyList(conn, id);
+            dto = dao.getModifyList(conn, u_id);
 
         }catch (SQLException | NamingException e) {
             System.out.println(e);

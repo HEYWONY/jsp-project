@@ -8,9 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>공지사항</title>
+    <link rel="stylesheet" href="smr/css/boardwrite.css">
 </head>
 <body>
+<div class="wrap">
+
+    <div class="notice">
+        <h3>공지사항 작성</h3>
+    </div>
+
   <ul>
     <form method="post" action="board_result.do">
         <li>
@@ -25,11 +32,12 @@
             <label for="writer">작성자</label>
             <input type="text" name="writer" id="writer">
         </li>
-        <li>
+        <li class="btn">
             <button type="submit">등록</button>
             <button type="reset">취소</button>
         </li>
     </form>
   </ul>
+</div>
 </body>
 </html>

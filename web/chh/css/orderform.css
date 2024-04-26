@@ -1,0 +1,104 @@
+.form_title{
+    text-align: center;
+}
+#pimg{
+    width: 200px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+}
+
+#product_detail_1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+ul li{
+    list-style: none;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.line{
+    border: 1px solid white;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.font_big{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#wrap{
+    margin: 5vh 0;
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    background-color: rgba(255,255,255,0.6);
+    margin: 100px 200px;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
+}
+
+canvas{
+    border-radius: 50px;
+}
+
+#ocnt{
+    width: 50px;
+    text-align: center;
+}
+
+.input_text, select{
+    border: 2px solid #2F80ED;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+}
+
+textarea{
+    border: 2px solid #2F80ED;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+}
+
+.form_btn{
+    width: 100px;
+    height: auto;
+    padding: 5px;
+    background-color: #2F80ED;
+    color: white;
+    border: 2px solid #2F80ED;
+    border-radius: 10px;
+}
+
+.form_btn:hover{
+    border: 2px solid #2F80ED;
+    background-color: white;
+    color: #2F80ED;
+}
+
+.button_sort{
+    display: flex;
+    justify-content: center;
+}
+
+#ocnt, .field{
+    font-weight: bold;
+}

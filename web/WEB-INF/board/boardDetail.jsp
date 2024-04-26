@@ -9,27 +9,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>공지사항</title>
+    <link rel="stylesheet" href="smr/css/boardDetail.css">
 </head>
 <body>
  <c:set var="detail" value="${requestScope.dto}"/>
-<ul>
-    <c:if test="${empty detail}">
-        <li>자료가 없습니다.</li>
-    </c:if>
-    <c:if test="${!(empty detail)}">
-        <li>${detail.b_no}</li>
-        <li>${detail.title}</li>
-        <li>${detail.content}</li>
-        <li>${detail.writer}</li>
-        <li>${detail.writedate}</li>
-        <li>${detail.readno}</li>
-    </c:if>
-</ul>
- <a href="boardlist.do">목록보기</a>
- <a href="board_update.do?bno=${detail.b_no}">수정</a>
- <a href="board_delete.do?bno=${detail.b_no}">삭제</a>
+ <div class="wrap">
+     <div class="notice">
+         <h3>공지사항</h3>
+     </div>
 
+    <ul>
+        <c:if test="${empty detail}">
+            <li>자료가 없습니다.</li>
+        </c:if>
+        <c:if test="${!(empty detail)}">
+            <li>
+                <span class="titletxt">${detail.title}</span>
+                <span>조회수 : ${detail.readno}</span>
+            </li>
+            <li class="contentbox">${detail.content}</li>
+            <li>작성자 : ${detail.writer}</li>
+            <li>작성일 : ${detail.writedate}</li>
 
+        </c:if>
+    </ul>
+
+     <div class="btn">
+         <a href="boardlist.do"><button type="button">목록보기</button></a>
+         <a href="board_update.do?bno=${detail.b_no}"><button type="button">수정</button></a>
+         <a href="board_delete.do?bno=${detail.b_no}"><button type="button">삭제</button></a>
+     </div>
+
+ </div>
 </body>
 </html>
