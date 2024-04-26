@@ -11,9 +11,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebFilter(urlPatterns = "*.do", initParams={@WebInitParam(
+@WebFilter(urlPatterns = {"*.do","/like"}, initParams={@WebInitParam(
         name="exclude"
-        , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /board_detail.do, /faqlist.do, /faq_detail.do,/list.do, /join.do, /findId.do, /findId_result.do")})
+        , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /board_detail.do, /faqlist.do, /faq_detail.do,/list.do, /join.do, /findId.do, /findId_result.do, /joinResult.do , /idCheck.do")})
 public class LoginFilter implements Filter {
     private final Set<String> excluded=Collections.synchronizedSet(new HashSet<>());
 
@@ -50,11 +50,11 @@ public class LoginFilter implements Filter {
                            filterChain.doFilter(request, response);
 
                        } else {
-                           RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
+                           RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp?page=user/login.jsp");
                            dispatcher.forward(request, response);
                        }
                } else {
-                       RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user/login.jsp");
+                       RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/index.jsp?page=user/login.jsp");
                        dispatcher.forward(request, response);
                        }
                 }

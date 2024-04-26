@@ -1,0 +1,9 @@
+.wrap{
+    width: 700px;
+    height: 500px;
+    margin: 100px 100px 300px 100px;
+}
+
+ul > li{
+    padding: 10px;
+}

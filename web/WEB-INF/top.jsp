@@ -26,6 +26,11 @@
                 <a href="login.do">로그인</a>
             </span>
         </c:when>
+        <c:when test="${session_id == 'admin'}">
+            <span class="header_03_admin">
+                <a href="#">관리자페이지</a>
+            </span>
+        </c:when>
         <c:otherwise>
             <span class="header_03_1">
                 <a class="header_03_1_1" href="product_write.do">상품등록</a>
@@ -43,6 +48,7 @@
         <li><a href="#">기타</a></li>
         <li><a href="list.do">전체매물</a></li>
         <li><a href="boardlist.do">공지사항</a></li>
+        <li><a href="admin.do">관리자 페이지</a></li>
     </ul>
 </nav>
 
@@ -50,45 +56,55 @@
 </ul>
 
 <script>
-    window.onload=function() {
-        document.getElementById('header_search').onkeyup = function(e) {
-            if(e.keyCode === 13) {
-                let search_data=this.value;
-                let result = document.getElementById('result');
+    let typingTimer;
+    let doneTypingInterval = 100;
+    
+    window.onload = function() {
+        let searchInput = document.getElementById('header_search');
+        let result = document.getElementById('result');
 
-                result.innerHTML = '';
-                fetch("listjson?header_search="+search_data,
-                    { method : "get"
-                        , headers : {'Accept' : 'text/json'}
-                    }).then(response => {
-                    if(!response.ok) throw new Error('로드 실패');
+        searchInput.onkeyup = function() {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(function() {
+                let search_data = searchInput.value.trim();
+                if (search_data.length === 0) {
+                    result.innerHTML = '';
+                    return;
+                }
+
+                fetch("listjson?header_search=" + search_data, {
+                    method: "get",
+                    headers: {'Accept': 'text/json'}
+                }).then(response => {
+                    if (!response.ok) throw new Error('로드 실패');
                     return response.json();
                 }).then(data => {
-                    console.log(data,'data');
+                    console.log(data, 'data');
+                    result.innerHTML = '';
+
                     if (data.length === 0) {
                         let noResultItem = document.createElement('li');
                         noResultItem.textContent = "결과가 없습니다.";
                         result.appendChild(noResultItem);
                     } else {
-                        data.forEach(item=> {
-                            let d1 = document.createElement('li');
-                            let aTag = document.createElement('a');
-                            let txt1 = document.createTextNode(item.p_name);
-                            aTag.href = 'product_detail.do?pid=' + item.p_id;
-                            aTag.textContent = txt1.textContent;
-
-                            d1.appendChild(aTag);
-                            result.appendChild(d1);
+                        data.forEach(item => {
+                            let listItem = document.createElement('li');
+                            let link = document.createElement('a');
+                            link.href = 'product_detail.do?pid=' + item.p_id;
+                            link.textContent = item.p_name;
+                            listItem.appendChild(link);
+                            result.appendChild(listItem);
                         });
                     }
-                }).catch(
-                    error=>console.log(error)
-                ).finally(
-                    ()=>console.log('finally')
-                )
-            }
-        }
-    }
+                }).catch(error => {
+                    console.log(error);
+                    result.innerHTML = '';
+                }).finally(() => console.log('finally'));
+            }, doneTypingInterval);
+        };
+    };
+
+
 </script>
 </body>
 </html>

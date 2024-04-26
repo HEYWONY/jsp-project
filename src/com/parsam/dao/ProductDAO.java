@@ -1,6 +1,8 @@
 package com.parsam.dao;
 
+import com.parsam.dto.FavDTO;
 import com.parsam.dto.ProductDTO;
+import com.parsam.dto.UserDTO;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -63,6 +65,7 @@ public class ProductDAO {
         sql.append("        , p_price                ");
         sql.append("        , p_state                ");
         sql.append("        , p_fav                  ");
+        sql.append("        , u_id                   ");
         sql.append(" FROM product                    ");
 
         ResultSet rs = null;
@@ -79,6 +82,7 @@ public class ProductDAO {
                 dto.setP_price(rs.getInt("p_price"));
                 dto.setP_state(rs.getString("p_state"));
                 dto.setP_fav(rs.getInt("p_fav"));
+                dto.setU_id(rs.getInt("u_id"));
                 arr.add(dto);
             }
         }
@@ -355,6 +359,12 @@ public class ProductDAO {
         }
         return arr;
     }
+
+    /*public String userId(String id) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select id             ");
+        sql.
+    }*/
 }
 
 

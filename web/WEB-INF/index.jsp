@@ -34,6 +34,7 @@
         * {
             font-family: 'SeoulNamsanM';
         }
+
     </style>
 </head>
 <body>
@@ -48,12 +49,15 @@
             <c:when test="${empty contentpage || contentpage==''}">
                 <jsp:include page="main/mainList.jsp"/>
             </c:when>
+            <c:when test="admin.do">
+                <jsp:include page="user/admin.jsp"/>
+            </c:when>
             <c:otherwise>
                 <jsp:include page="${contentpage}"/>
             </c:otherwise>
         </c:choose>
-    
     </section>
+
     <jsp:include page="footer.jsp" flush="true"/>
 </body>
 </html>

@@ -1,0 +1,99 @@
+#wrap{
+    border-radius: 50px;
+    text-overflow: ellipsis;
+}
+
+#pay_btn{
+    width: 100px;
+    height: auto;
+    padding: 5px;
+    background-color: #2F80ED;
+    color: white;
+    border: 2px solid #2F80ED;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#pay_btn:hover{
+    border: 2px solid #2F80ED;
+    background-color: white;
+    color: #2F80ED;
+}
+
+ul{
+    padding-inline-start: 0;
+}
+
+span{
+    font-weight: bold;
+}
+
+ul li{
+    margin: 10px;
+}
+
+#confirm_info{
+    background-color: rgba(255,255,255,0.6);
+    margin: 100px 200px;
+    padding: 50px;
+    border-radius: 30px;
+    height: 400px;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
+}
+
+canvas{
+    border-radius: 50px;
+}
+
+.full-landing-image{
+    display: flex;
+    justify-content: center;
+    height: 700px;
+    width: 100%;
+}
+
+.info_txt{
+    color: rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+h1{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.field{
+    display: inline-block;
+    text-align: start;
+    width: 150px;
+}
+
+.form_title{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#omemo{
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+}
+
+.strong_info{
+    color: #2F80ED;
+}
+.end_btn{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.line{
+    border: 1px solid white;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}

@@ -16,16 +16,18 @@ public class UserFavAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Long u_id = Long.valueOf(request.getParameter("u_id"));
-        String id = request.getParameter("id");
+        Long u_id = Long.parseLong(request.getParameter("u_id"));
 
         ProductService service = ProductService.getService();
         List<ProductDTO> list = service.getFavList(u_id);
 
         UserService userService = UserService.getService();
 
+        System.out.println(list.toString());
+        System.out.println(u_id);
+
         request.setAttribute("list", list);
-        request.setAttribute("id", id);
+        request.setAttribute("u_id", u_id);
 
         Forward forward = new Forward();
         forward.setForward(true);

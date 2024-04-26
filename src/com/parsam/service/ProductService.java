@@ -5,6 +5,7 @@ import com.parsam.dao.FavDAO;
 import com.parsam.dao.ProductDAO;
 import com.parsam.dao.user.UserDAO;
 import com.parsam.dto.ProductDTO;
+import com.parsam.dto.UserDTO;
 
 import javax.naming.NamingException;
 import java.io.File;
@@ -213,6 +214,28 @@ public class ProductService {
         }
         return  favcnt;
     }
+
+    /*public String userId(String id) {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+
+        Connection conn = null;
+        String result = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            result = dao.userId(id);
+            conn.commit();
+        } catch (SQLException | NamingException e){
+            try { conn.rollback();} catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            disconn(conn);
+        }
+        return result;
+    }*/
 
     /* 찜 목록 */
     public List<ProductDTO> getFavList(Long u_id) {

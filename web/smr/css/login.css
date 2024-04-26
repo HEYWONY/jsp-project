@@ -1,3 +1,12 @@
+a {
+    text-decoration-line: none;
+    color: black;
+}
+
+ul > li {
+    list-style: none;
+}
+
 .wrap{
     margin-top: 70px;
     margin-bottom: 150px;
