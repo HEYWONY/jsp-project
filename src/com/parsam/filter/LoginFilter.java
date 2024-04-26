@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebFilter(urlPatterns = "*.do", initParams={@WebInitParam(
+@WebFilter(urlPatterns = {"*.do","/like"}, initParams={@WebInitParam(
         name="exclude"
         , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /list.do, /join.do, /findId.do, /findId_result.do")})
 public class LoginFilter implements Filter {
