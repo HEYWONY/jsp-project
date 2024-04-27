@@ -9,7 +9,7 @@
     <input type="hidden" name="u_id" value="${u_id}">
     <input type="hidden" name="pid" value="${pid}">
     <ul>
-        <li>~구매한 상품의 평점을 남겨주세요~</li>
+        <li>구매한 상품의 평점을 남겨주세요</li>
         <li>
             <input type="radio" name="rank" value="5" checked>5점
             <input type="radio" name="rank" value="4" >4점
@@ -18,8 +18,8 @@
             <input type="radio" name="rank" value="1" >1점
         </li>
         <li>
-            <input type="submit" id="submit" value="전송">
-            <input type="reset" value="취소">
+            <input type="submit" id="submit" value="입력하기">
+            <input type="reset" value="다시선택">
         </li>
     </ul>
 </form>

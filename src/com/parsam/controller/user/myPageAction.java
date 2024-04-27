@@ -2,6 +2,7 @@ package com.parsam.controller.user;
 
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
+import com.parsam.dto.ReviewDTO;
 import com.parsam.dto.UserDTO;
 import com.parsam.service.UserService;
 
@@ -28,9 +29,7 @@ public class myPageAction implements Action {
         Long uid = Long.valueOf(0);
         try {
             uid = Long.parseLong(request.getParameter("uid")); // 판매자의 u_id
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        }catch (Exception e){}
 
         // 판매자의 회원 정보
         UserDTO pdto = service.getModifyList(uid);
@@ -43,10 +42,18 @@ public class myPageAction implements Action {
             teacher_ck = "교사 인증 완료";
         }
 
+        // 판매자 리뷰 평점 가져오기
+        ReviewDTO reviewAvg = service.getReviewAvg(u_id);
+        Double avg = reviewAvg.getAvg();
+
         request.setAttribute("uid", uid);
         request.setAttribute("dto", dto);
         request.setAttribute("pdto", pdto);
         request.setAttribute("teacher_ck", teacher_ck);
+        request.setAttribute("avg", avg);
+
+
+
 
         Forward forward = new Forward();
         forward.setForward(true);
