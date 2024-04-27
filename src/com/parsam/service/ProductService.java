@@ -56,10 +56,21 @@ public class ProductService {
         DBConnection db = DBConnection.getInstance();
         ProductDAO dao = ProductDAO.getDao();
         List<ProductDTO> arr = new ArrayList<>();
-        try (Connection conn = db.getConnection()){
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
             arr = dao.getList(conn);
+            conn.commit();
         } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
+        } finally {
+            db.disconn(conn);
         }
         return arr;
     }
@@ -106,6 +117,7 @@ public class ProductService {
             conn.setAutoCommit(false);
 
             int result = dao.updateData(conn, pdto);
+
             conn.commit();
 
         } catch (SQLException | NamingException e){
@@ -153,10 +165,18 @@ public class ProductService {
         DBConnection db = DBConnection.getInstance();
         ProductDAO dao = ProductDAO.getDao();
         List<ProductDTO> arr = new ArrayList<>();
-        try (Connection conn = db.getConnection()){
-            System.out.println("hi");
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
             arr = dao.getNewList(conn);
+            conn.commit();
         } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
         }
         return arr;
@@ -189,8 +209,15 @@ public class ProductService {
 
         try {
             conn = db.getConnection();
+            conn.setAutoCommit(false);
             arr = dao.getPopList(conn);
+            conn.commit();
         } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);

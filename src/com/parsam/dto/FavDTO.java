@@ -3,9 +3,18 @@ package com.parsam.dto;
 import java.time.LocalDate;
 
 public class FavDTO {
+    private long f_id;
     private long u_id;
     private long p_id;
     private LocalDate fav_date;
+
+    public long getF_id() {
+        return f_id;
+    }
+
+    public void setF_id(long f_id) {
+        this.f_id = f_id;
+    }
 
     public long getU_id() {
         return u_id;

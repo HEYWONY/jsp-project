@@ -62,7 +62,6 @@ public class LikeService {
 
             long uid = dao.getUId(conn, id);
             result = dao.getFavCheck(conn, pid, uid);
-            System.out.println("a " + result);
             conn.commit();
         } catch (SQLException | NamingException e) {
             try {
