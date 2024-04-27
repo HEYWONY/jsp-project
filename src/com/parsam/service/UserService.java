@@ -395,6 +395,7 @@ public class UserService {
             try{conn.rollback();} catch (SQLException e2){}
             System.out.println(e);
         }
+        return result;
     }
 
     /* 판매자 리뷰 평점 평균 */

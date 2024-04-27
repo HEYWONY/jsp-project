@@ -42,7 +42,6 @@ public class LikeController extends HttpServlet {
         LikeService service = LikeService.getService();
         service.likeChange(id, pid);
         result = service.getFav(id, pid);
-        System.out.println("con " + result);
 
         PrintWriter out = response.getWriter();
         out.print(result);

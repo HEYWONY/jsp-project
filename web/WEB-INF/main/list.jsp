@@ -5,6 +5,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="indexCSS/list.css">
+    <script defer src="indexCSS/heart.js"></script>
 </head>
 <body>
 
@@ -13,7 +14,6 @@
 <c:set var="uid" value="${requestScope.uid}"/>
 <c:set var="like_data" value="${requestScope.like_data}"/>
 <c:set var="session_id" value="${sessionScope.id}"/>
-
 
 <h1>전체매물</h1>
 <form method="post" action="listResult.do">
@@ -37,8 +37,7 @@
 </form>
 <div class="list_ul">
     <c:set var="number" value="0"/>
-<%--    <c:forEach var="item" items="${list}">--%>
-      <c:forEach var="i" begin="0" end="${fn:length(list)}" step="1">
+      <c:forEach var="i" begin="0" end="${fn:length(list)}" step="1" varStatus="loop">
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
             <c:choose>
@@ -61,97 +60,31 @@
             <li class="mainList_li_3"><a href="product_detail.do?pid=${list[i].p_id}">${list[i].p_name}</a></li>
             <li class="mainList_li_4">₩${list[i].p_price}</li>
             <li class="mainList_li_5">${list[i].p_state}</li>
-            <li class="mainList_li_6" id="fav${number}">
-                <c:choose>
+
+            <li class="mainList_li_6" id="fav${list[i].p_id}">
+                    <c:choose>
+                        <c:when test="${like_data[i]==0}"> <%--like_date가 0 -> 내가 좋아요 안 누름--%>
+                            <img src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
+                        </c:when>
+                        <c:otherwise>
+                            <img src="indexImg/yeslike.png" class="like" alt="찬하트" onclick="check(${list[i].p_id})"/>
+                        </c:otherwise>
+                </c:choose>
+
+                <%--<img src="indexImg/pasam_logo.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"> --%>
+                <%--<c:choose> &lt;%&ndash;로그인 안 했을 때&ndash;%&gt;
                     <c:when test="${empty session_id}">
                         <input type="image" src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
                     </c:when>
-                    <c:otherwise>
-                        <c:choose>
-                            <c:when test="${like_data[i]==0}">
-                                <input type="image" src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
-                            </c:when>
-                            <c:otherwise>
-                                <input type="image" src="indexImg/yeslike.png" class="like" alt="찬하트" onclick="check(${list[i].p_id})"/>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:otherwise>
-                </c:choose>
+
+                </c:choose>--%>
             </li>
             <c:set var="number" value="${number+1}"/>
+
+
         </ul>
     </c:forEach>
 </div>
-
-<script>
-    let check = function(pid) {
-
-        let likeButton = document.getElementById('fav' + pid);
-        let nullInput1 = document.createElement('input');
-        let fullInput1 = document.createElement('input');
-        if (nullInput1.src === 'indexImg/nolike.png') {
-            fullInput1.src = 'indexImg/yeslike.png'
-            likeButton.innerHTML = '';
-            likeButton.appendChild(fullInput1);
-        } else if (fullInput1.src === 'indexImg/yeslike.png'){
-            nullInput1.src = 'indexImg/nolike.png'
-            likeButton.innerHTML = '';
-            likeButton.appendChild(nullInput1);
-        }
-
-        let id = '${session_id}';
-        console.log("id" + id);
-        if(id === "null"){
-            alert('로그인이 필요한 기능입니다.');
-        } else {
-            fetch('like?p_id='+pid,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'text/plain'
-                    }
-                }).then(response => {
-                if (!response.ok) throw new Error('로드 실패');
-                return response.text();
-            }).then(data => {
-                console.log(data + "data");
-                let likeButton = document.getElementById('fav' + pid);
-                if (likeButton) { // likeButton이 null이 아닌지 확인
-                    if (data >= 1) {
-                        console.log("data1 : " + data);
-                        let nullInput = document.createElement('input');
-                        nullInput.type = 'image';
-                        nullInput.src = 'indexImg/nolike.png';
-                        nullInput.classList.add('like'); // like 클래스 추가
-                        nullInput.alt = '빈하트';
-                        nullInput.onclick = function() {
-                            check(pid); // onclick 이벤트에 check 함수 연결
-                        };
-                        likeButton.innerHTML = ''; // 기존 내용을 비웁니다.
-                        likeButton.appendChild(nullInput); // 새로 생성한 input 요소를 likeButton에 추가합니다.
-                    } else {
-                        console.log("data2 : " + data);
-                        let fullInput = document.createElement('input');
-                        fullInput.type = 'image';
-                        fullInput.src = 'indexImg/yeslike.png';
-                        fullInput.classList.add('like'); // like 클래스 추가
-                        fullInput.alt = '찬하트';
-                        fullInput.onclick = function() {
-                            check(pid); // onclick 이벤트에 check 함수 연결
-                        };
-                        likeButton.innerHTML = ''; // 기존 내용을 비웁니다.
-                        likeButton.appendChild(fullInput); // 새로 생성한 input 요소를 likeButton에 추가
-                    }
-                } else {
-                    console.error('Element with ID "fav' + pid + '" not found.');
-                }
-            }).catch(error => {
-                console.log(error);
-            }).finally(() => console.log('finally'));
-        }
-        
-    }
-</script>
 
 </body>
 </html>
