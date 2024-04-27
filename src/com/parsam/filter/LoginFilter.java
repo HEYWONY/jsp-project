@@ -13,7 +13,8 @@ import java.util.Set;
 
 @WebFilter(urlPatterns = {"*.do","/like"}, initParams={@WebInitParam(
         name="exclude"
-        , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /board_detail.do, /faqlist.do, /faq_detail.do,/list.do, /join.do, /findId.do, /findId_result.do, /joinResult.do , /idCheck.do")})
+        , value="/login.do, /login_result.do, /index.do ,/boardlist.do, /board_detail.do, /faqlist.do, /faq_detail.do,/list.do, /join.do, /findId.do, /findId_result.do, /joinResult.do , /idCheck.do" +
+        "       , /etc.do, /handout_list.do, /textbook.do, /adis_list.do")})
 public class LoginFilter implements Filter {
     private final Set<String> excluded=Collections.synchronizedSet(new HashSet<>());
 

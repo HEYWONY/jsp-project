@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ProductService {
@@ -168,16 +169,11 @@ public class ProductService {
         Connection conn = null;
         try {
             conn = db.getConnection();
-            conn.setAutoCommit(false);
             arr = dao.getNewList(conn);
-            conn.commit();
         } catch (SQLException | NamingException e){
-            try {
-                conn.rollback();
-            } catch (SQLException e2){
-                System.out.println(e2);
-            }
             System.out.println(e);
+        } finally {
+            db.disconn(conn);
         }
         return arr;
     }
@@ -242,28 +238,6 @@ public class ProductService {
         return  favcnt;
     }
 
-    /*public String userId(String id) {
-        DBConnection db = DBConnection.getInstance();
-        ProductDAO dao = ProductDAO.getDao();
-
-        Connection conn = null;
-        String result = null;
-        try {
-            conn = db.getConnection();
-            conn.setAutoCommit(false);
-            result = dao.userId(id);
-            conn.commit();
-        } catch (SQLException | NamingException e){
-            try { conn.rollback();} catch (SQLException e2){
-                System.out.println(e2);
-            }
-            System.out.println(e);
-        } finally {
-            disconn(conn);
-        }
-        return result;
-    }*/
-
     /* 찜 목록 */
     public List<ProductDTO> getFavList(Long u_id) {
         DBConnection db = DBConnection.getInstance();
@@ -281,6 +255,97 @@ public class ProductService {
         }
 
         return arr;
+    }
 
+    public List<ProductDTO> getadisList(){
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.getadisList(conn);
+            conn.commit();
+        } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> getEtcList() {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.getEtcList(conn);
+            conn.commit();
+        } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> getHandoutList() {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.getHandoutList(conn);
+            conn.commit();
+        } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> getTextbookList() {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.getTextbookList(conn);
+            conn.commit();
+        } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
     }
 }

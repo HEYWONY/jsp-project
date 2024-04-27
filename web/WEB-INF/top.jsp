@@ -10,17 +10,16 @@
 <c:set var="session_id" value="${sessionScope.id}"/>
 
 <header>
-        <span class="header_01">
-            <a href="index.do"><img class="header_img" src="indexImg/pasam_logo.png" alt="pasam_logo"></a>
-        </span>
+    <span class="header_01">
+        <a href="index.do"><img class="header_img" src="indexImg/pasam_logo.png" alt="pasam_logo"></a>
+    </span>
     <div class="header_02">
         <label>
             <input class="header_search" id="header_search" name="header_search" type="text" placeholder="어떤 상품을 찾으시나요?">
         </label>
         <img src="indexImg/search.png" alt="search">
     </div>
-    
-    <c:choose>
+        <c:choose>
         <c:when test="${session_id==null ||  empty session_id || session_id == '' }">
             <span class="header_03">
                 <a href="login.do">로그인</a>
@@ -28,7 +27,7 @@
         </c:when>
         <c:when test="${session_id == 'admin'}">
             <span class="header_03_admin">
-                <a href="#">관리자페이지</a>
+                <a href="admin.do">관리자페이지</a>
             </span>
         </c:when>
         <c:otherwise>
@@ -38,22 +37,20 @@
             </span>
         </c:otherwise>
     </c:choose>
-
 </header>
+
 <nav>
     <ul>
-        <li><a href="#">교구</a></li>
-        <li><a href="#">교재</a></li>
-        <li><a href="#">수업자료</a></li>
-        <li><a href="#">기타</a></li>
+        <li><a href="adis_list.do">교구</a></li>
+        <li><a href="textbook.do">교재</a></li>
+        <li><a href="handout_list.do">수업자료</a></li>
+        <li><a href="etc.do">기타</a></li>
         <li><a href="list.do">전체매물</a></li>
         <li><a href="boardlist.do">공지사항</a></li>
-        <li><a href="admin.do">관리자 페이지</a></li>
     </ul>
 </nav>
 
-<ul id="result">
-</ul>
+<ul id="result"></ul>
 
 <script>
     let typingTimer;

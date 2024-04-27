@@ -9,7 +9,6 @@
 </head>
 <body>
 
-<%-- 로그인한 사람만 찜버튼 누를 수 있게 설계하기 위해서... --%>
 <c:set var="list" value="${requestScope.list}"/>
 <c:set var="uid" value="${requestScope.uid}"/>
 <c:set var="like_data" value="${requestScope.like_data}"/>
@@ -24,6 +23,7 @@
         <option value="기타">기타</option>
     </select>
     <select name="p_state" id="p_state">
+        <option value="상관없음" selected>상관없음</option>
         <option value="미개봉">미개봉</option>
         <option value="거의 새것">거의 새것</option>
         <option value="사용감 있음">사용감 있음</option>
@@ -36,7 +36,6 @@
     <input type="submit" value="전송">
 </form>
 <div class="list_ul">
-    <c:set var="number" value="0"/>
       <c:forEach var="i" begin="0" end="${fn:length(list)}" step="1" varStatus="loop">
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
@@ -62,30 +61,25 @@
             <li class="mainList_li_5">${list[i].p_state}</li>
 
             <li class="mainList_li_6" id="fav${list[i].p_id}">
-                    <c:choose>
-                        <c:when test="${like_data[i]==0}"> <%--like_date가 0 -> 내가 좋아요 안 누름--%>
-                            <img src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
-                        </c:when>
-                        <c:otherwise>
-                            <img src="indexImg/yeslike.png" class="like" alt="찬하트" onclick="check(${list[i].p_id})"/>
-                        </c:otherwise>
-                </c:choose>
-
-                <%--<img src="indexImg/pasam_logo.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"> --%>
-                <%--<c:choose> &lt;%&ndash;로그인 안 했을 때&ndash;%&gt;
+                <c:choose>
                     <c:when test="${empty session_id}">
-                        <input type="image" src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
+                        <img src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
                     </c:when>
-
-                </c:choose>--%>
+                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${like_data[i]==0}"> <%--like_date가 0 -> 내가 좋아요 안 누름--%>
+                                <img src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="indexImg/yeslike.png" class="like" alt="찬하트" onclick="check(${list[i].p_id})"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:otherwise>
+            </c:choose>
             </li>
-            <c:set var="number" value="${number+1}"/>
-
-
         </ul>
     </c:forEach>
 </div>
-
 </body>
 </html>
 

@@ -13,18 +13,26 @@ import java.io.IOException;
 public class ProductlistResultAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        // 선택지 받기
+        String textbook = request.getParameter("교재");
+        String adis = request.getParameter("교구");
+        String handout = request.getParameter("수업자료");
+        String etc = request.getParameter("기타");
 
-        // 선택지의 값을 받는다.
-        String p_cate = request.getParameter("p_cate");
-        String p_state = request.getParameter("p_state");
-        String p_trade = request.getParameter("p_trade");
-        System.out.println("p_cate :" + p_cate);
+        String no = request.getParameter("상관없음");
+        String good = request.getParameter("미개봉");
+        String soso = request.getParameter("거의 새것");
+        String bad = request.getParameter("사용감 있음 ");
+
+        String trade = request.getParameter("택배거래");
+        String state = request.getParameter("직거래");
+        String all = request.getParameter("직거래, 택배거래");
 
         // 선택지의 모음을 넘겨야 하는데 이걸 DTO? 혹은 다르게 처리?
         ProductDTO dto = new ProductDTO();
-        dto.setP_cate(p_cate);
-        dto.setP_state(p_state);
-        dto.setP_trade(p_trade);
+        dto.setP_state(state);
+        dto.setP_trade(trade);
 
         // 넘겨야 하니까...
         request.setAttribute("list", dto);
