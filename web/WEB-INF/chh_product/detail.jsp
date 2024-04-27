@@ -122,7 +122,14 @@
                     <span>
                         <span class="wave"></span>
                         <img class="btn_icon" src="chh/img/home_icon.png" alt="홈 아이콘"/>
-                    판매자 홈
+                        <c:choose>
+                            <c:when test="${dto.u_id==uid}">
+                                마이 홈
+                            </c:when>
+                            <c:otherwise>
+                                판매자 홈
+                            </c:otherwise>
+                        </c:choose>
                     </span>
 
                 </a> <!--dto.u_id로 마이페이지 링크 걸기-->
@@ -130,7 +137,14 @@
                     <span>
                         <span class="wave"></span>
                         <img class="btn_icon" src="chh/img/chat_icon.png" alt="채팅 아이콘"/>
-                    상품 문의
+                    <c:choose>
+                        <c:when test="${dto.u_id==uid}">
+                            오픈 채팅
+                        </c:when>
+                        <c:otherwise>
+                            상품 문의
+                        </c:otherwise>
+                    </c:choose>
                     </span>
                 </a>
             </div>
