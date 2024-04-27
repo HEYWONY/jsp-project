@@ -99,7 +99,10 @@
                                     <a class="right_btn" href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="left_btn" href="#">찜하기</a>
+                                    <a class="left_btn" href="#">
+                                        <img class="btn_icon" src="chh/img/empty_star.png" alt="빈별">
+                                        찜하기
+                                    </a>
                                     <a class="right_btn" href="product_order.do?pid=${dto.p_id}">바로구매</a>
                                 </c:otherwise>
                             </c:choose>
@@ -117,6 +120,7 @@
             <div class="desc_btn">
                 <a class="btn_style" href="myPage.do?uid=${dto.u_id}">
                     <span>
+                        <span class="wave"></span>
                         <img class="btn_icon" src="chh/img/home_icon.png" alt="홈 아이콘"/>
                     판매자 홈
                     </span>
@@ -124,6 +128,7 @@
                 </a> <!--dto.u_id로 마이페이지 링크 걸기-->
                 <a class="btn_style" href="${dto.p_openchat}">
                     <span>
+                        <span class="wave"></span>
                         <img class="btn_icon" src="chh/img/chat_icon.png" alt="채팅 아이콘"/>
                     상품 문의
                     </span>

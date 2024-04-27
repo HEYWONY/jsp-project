@@ -14,10 +14,13 @@ import java.util.List;
 public class UserService {
     // 싱글톤
     private static UserService service = new UserService();
-    public static UserService getService(){
+
+    public static UserService getService() {
         return service;
     }
-    private UserService() {}
+
+    private UserService() {
+    }
 
     /* 회원 가입 */
     public int insertUserData(UserDTO dto) {
@@ -33,12 +36,13 @@ public class UserService {
 
             result = dao.insertUserData(conn, dto);
 
-        }catch (SQLException | NamingException e){
+        } catch (SQLException | NamingException e) {
             System.out.println(e);
-        }finally {
-            if (conn!=null) try {
+        } finally {
+            if (conn != null) try {
                 conn.close();
-            }catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
         return result;
     }
@@ -55,12 +59,13 @@ public class UserService {
             conn = db.getConnection();  // db 연결
             dto = dao.getModifyList(conn, u_id);
 
-        }catch (SQLException | NamingException e) {
+        } catch (SQLException | NamingException e) {
             System.out.println(e);
-        }finally {
-            if(conn!=null) try {
+        } finally {
+            if (conn != null) try {
                 conn.close();
-            }catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
 
         return dto;
@@ -68,22 +73,24 @@ public class UserService {
 
     /* 회원정보 수정 */
     public int updateUserData(UserDTO dto) {
-        DBConnection db =  DBConnection.getInstance();
+        DBConnection db = DBConnection.getInstance();
         Connection conn = null;
         UserDAO dao = UserDAO.getDAO();
         int result = 0;
         try {
             conn = db.getConnection();
             result = dao.updateUserData(conn, dto);
-        }catch (SQLException | NamingException e) {
+        } catch (SQLException | NamingException e) {
             System.out.println(e);
-        }finally {
-            if(conn!=null) try {
+        } finally {
+            if (conn != null) try {
                 conn.close();
-            }catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
         return result;
     }
+
     /* 로그인 */
     public boolean doLogin(String id, String pw) {
         DBConnection db = DBConnection.getInstance();
@@ -91,40 +98,52 @@ public class UserService {
         UserDAO dao = UserDAO.getDAO();
 
         boolean result = false;
-        try{
-            conn=db.getConnection();
+        try {
+            conn = db.getConnection();
             conn.setAutoCommit(false);
             result = dao.doLogin(conn, id, pw);
 
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try{conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
-        }finally {
-            if(conn!=null) try{conn.close();} catch (Exception e){}
+        } finally {
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+            }
         }
         return result;
     }
 
-  /* 아이디 찾기 */
+    /* 아이디 찾기 */
     public String findId(String name, String email) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
         UserDAO dao = UserDAO.getDAO();
         //UserDTO dto = new UserDTO();
 
-        String id =null;
-        try{
-            conn= db.getConnection();
+        String id = null;
+        try {
+            conn = db.getConnection();
             conn.setAutoCommit(false);
             id = dao.findId(conn, name, email);
 
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try{conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
-        }finally {
-            if(conn!=null) try{conn.close();} catch (Exception e){}
+        } finally {
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+            }
         }
         return id;
     }
@@ -135,16 +154,16 @@ public class UserService {
         Connection conn = null;
         UserDAO dao = UserDAO.getDAO();
 
-        long uid=0;
+        long uid = 0;
         try {
-            conn=db.getConnection();
+            conn = db.getConnection();
             conn.setAutoCommit(false);
-            uid = dao.getUid(conn,id);
+            uid = dao.getUid(conn, id);
             conn.commit();
-        } catch (SQLException | NamingException e){
+        } catch (SQLException | NamingException e) {
             try {
                 conn.rollback();
-            } catch (SQLException e2){
+            } catch (SQLException e2) {
                 System.out.println(e2);
             }
             System.out.println(e);
@@ -154,11 +173,11 @@ public class UserService {
         return uid;
     }
 
-    private void disconn(Connection conn){
-        if (conn!=null){
+    private void disconn(Connection conn) {
+        if (conn != null) {
             try {
                 conn.close();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e);
             }
         }
@@ -169,7 +188,7 @@ public class UserService {
     public List<ProductDTO> getUserSaleList(long u_id) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        List<ProductDTO> arr= new ArrayList<>();
+        List<ProductDTO> arr = new ArrayList<>();
 
         try {
             conn = db.getConnection();
@@ -179,7 +198,10 @@ public class UserService {
             conn.commit();
 
         } catch (SQLException | NamingException e) {
-            try{conn.rollback();} catch (SQLException e2){}
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -191,7 +213,7 @@ public class UserService {
     public List<ProductDTO> getUserSoldList(Long u_id) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        List<ProductDTO> arr= new ArrayList<>();
+        List<ProductDTO> arr = new ArrayList<>();
 
         try {
             conn = db.getConnection();
@@ -200,7 +222,10 @@ public class UserService {
             arr = dao.getUserSoldList(conn, u_id);
             conn.commit();
         } catch (SQLException | NamingException e) {
-            try{conn.rollback();} catch (SQLException e2){}
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -212,7 +237,7 @@ public class UserService {
     public List<ProductDTO> getUserShoppingList(Long u_id) {
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
-        List<ProductDTO> arr= new ArrayList<>();
+        List<ProductDTO> arr = new ArrayList<>();
 
         try {
             conn = db.getConnection();
@@ -221,7 +246,10 @@ public class UserService {
             arr = dao.getUserShoppingList(conn, u_id);
             conn.commit();
         } catch (SQLException | NamingException e) {
-            try{conn.rollback();} catch (SQLException e2){}
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -242,7 +270,10 @@ public class UserService {
 
             conn.commit();
         } catch (SQLException | NamingException e) {
-            try{conn.rollback();} catch (SQLException e2){}
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -258,16 +289,19 @@ public class UserService {
         UserDAO dao = UserDAO.getDAO();
         List<UserDTO> arr = new ArrayList<>();
 
-        try{
+        try {
             conn = db.getConnection();
             conn.setAutoCommit(false);
             arr = dao.teacherCK(conn);
 
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try{conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
-        }finally {
+        } finally {
             db.disconn(conn);
         }
         return arr;
@@ -280,18 +314,20 @@ public class UserService {
         UserDAO dao = UserDAO.getDAO();
         List<UserDTO> arr = new ArrayList<>();
 
-        try{
+        try {
             conn = db.getConnection();
             conn.setAutoCommit(false);
             arr = dao.userlist(conn);
 
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try {conn.rollback();} catch (SQLException e2){
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
                 System.out.println(e2);
             }
             System.out.println(e);
-        }finally {
+        } finally {
             disconn(conn);
         }
         return arr;
@@ -299,22 +335,25 @@ public class UserService {
 
     public int userDelete(String id) {
         DBConnection db = DBConnection.getInstance();
-        Connection conn =null;
+        Connection conn = null;
         UserDAO dao = UserDAO.getDAO();
         int result = 0;
-        try{
+        try {
             conn = db.getConnection();
             conn.setAutoCommit(false);
             result = dao.userDelete(conn, id);
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try {conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
-        }finally {
+        } finally {
             disconn(conn);
         }
-        System.out.println(result+".........User Service");
-        return  result;
+        System.out.println(result + ".........User Service");
+        return result;
 
     }
 
@@ -323,35 +362,43 @@ public class UserService {
         Connection conn = null;
         UserDAO dao = UserDAO.getDAO();
 
-        try{
-            conn= db.getConnection();
+        try {
+            conn = db.getConnection();
             conn.setAutoCommit(false);
             dao.teacherCK_Ok(conn, id);
             conn.commit();
-        }catch (SQLException | NamingException e){
-            try {conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
-        }finally {
+        } finally {
             disconn(conn);
         }
-
-
-    /* 아이디 중복 확인 */
-    public boolean getIdCheck(String id) {
-        DBConnection db = DBConnection.getInstance();
-        Connection conn = null;
-        boolean result = true;
-        try {
-            conn = db.getConnection();
-            conn.setAutoCommit(false);;
-            UserDAO dao = UserDAO.getDAO();
-            result = dao.getIdCheck(conn, id);
-            conn.commit();
-        }catch (SQLException | NamingException e) {
-            try{conn.rollback();} catch (SQLException e2){}
-            System.out.println(e);
-        }
-        return result;
-
     }
+
+
+        /* 아이디 중복 확인 */
+        public boolean getIdCheck (String id){
+            DBConnection db = DBConnection.getInstance();
+            Connection conn = null;
+            boolean result = true;
+            try {
+                conn = db.getConnection();
+                conn.setAutoCommit(false);
+                ;
+                UserDAO dao = UserDAO.getDAO();
+                result = dao.getIdCheck(conn, id);
+                conn.commit();
+            } catch (SQLException | NamingException e) {
+                try {
+                    conn.rollback();
+                } catch (SQLException e2) {
+                }
+                System.out.println(e);
+            }
+            return result;
+        }
+
 }

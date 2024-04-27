@@ -438,6 +438,7 @@ public class UserDAO {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
         }
+    }
 
     /* 아이디 중복 체크 */
     public boolean getIdCheck(Connection conn, String id) throws SQLException {

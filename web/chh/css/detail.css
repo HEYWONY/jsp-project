@@ -62,11 +62,15 @@ ul li{
 
 .btn_style{
     padding: 10px;
-    background-color: white;
     color: #2F80ED;
     border: 2px solid #2F80ED;
     border-radius: 10px;
     text-align: center;
+
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
 }
 
 .left_btn{
@@ -90,6 +94,18 @@ ul li{
     text-align: center;
 }
 
+.right_btn:hover{
+    border: 2px solid #5096FF;
+    background-color: #5096FF;
+    color: white;
+}
+
+.left_btn:hover{
+    border: 2px solid #5096FF;
+    background-color: white;
+    color: #5096FF;
+}
+
 .division_btn{
     display: flex;
     justify-content: space-evenly;
@@ -98,6 +114,8 @@ ul li{
 .btn_icon{
     width: 15px;
     height: 15px;
+    position: relative;
+    top:2px;
 }
 
 .label_field{
@@ -135,4 +153,37 @@ ul li{
 
 .cate_box{
     margin-bottom: 15px;
+}
+
+
+.wave {
+    opacity: .4;
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    background: #0af;
+    width: 300px;
+    height: 300px;
+    margin-left: -150px;
+    margin-bottom: -301px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+
+    transition-duration: 1s;
+    transition-property: margin-bottom;
+    transition-timing-function: ease;
+}
+
+.btn_style:hover{
+    color: darkblue;
+}
+
+.btn_style:hover .wave {
+    margin-bottom: -250px;
+    animation: rotate 2000ms infinite linear;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    from { transform: rotate(360deg); }
 }
