@@ -14,15 +14,24 @@
 <%-- 판매자의 회원정보--%>
 <c:set var="uid" value="${requestScope.uid}"/>
 <c:set var="pdto" value="${requestScope.pdto}"/>
-<%-- 교사 인증 체크 --%>
-<c:set var="teachek_ck" value="${requestScope.teachek_ck}"/>
-<%-- 회원 사진 --%>
+
 <div class="wrap">
     <ul>
+
         <c:choose>
         <c:when test="${dto.u_id == uid || uid == 0 }">
         <li class="nickname">${dto.nickname}님</li>
         <li class="auth">${teacher_ck}</li>
+        <li class="avg">
+            <c:choose>
+                <c:when test="${avg != 0.0}">
+                    리뷰 평균 : ${avg}
+                </c:when>
+                <c:otherwise>
+                    아직 리뷰가 등록되지 않았어요!
+                </c:otherwise>
+            </c:choose>
+        </li>
     </ul>
     <ul class="list">
         <li><a href="userModify.do?u_id=${dto.u_id}">프로필 보기</a></li>
@@ -32,7 +41,7 @@
         <li><a href="logout.do">로그아웃</a></li>
 
             <%-- 회원 탈퇴 구현해야함!! --%>
-            <%--            <li><a href="userDelete.do?u_id=${dto.u_id}">회원탈퇴</a></li>--%>
+            <%-- <li><a href="userDelete.do?u_id=${dto.u_id}">회원탈퇴</a></li>--%>
         </c:when>
         <c:otherwise>
             <li>${pdto.nickname}님</li>

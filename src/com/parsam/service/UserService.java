@@ -3,6 +3,7 @@ package com.parsam.service;
 import com.parsam.comm.DBConnection;
 import com.parsam.dao.user.UserDAO;
 import com.parsam.dto.ProductDTO;
+import com.parsam.dto.ReviewDTO;
 import com.parsam.dto.UserDTO;
 
 import javax.naming.NamingException;
@@ -379,26 +380,39 @@ public class UserService {
     }
 
 
-        /* 아이디 중복 확인 */
-        public boolean getIdCheck (String id){
-            DBConnection db = DBConnection.getInstance();
-            Connection conn = null;
-            boolean result = true;
-            try {
-                conn = db.getConnection();
-                conn.setAutoCommit(false);
-                ;
-                UserDAO dao = UserDAO.getDAO();
-                result = dao.getIdCheck(conn, id);
-                conn.commit();
-            } catch (SQLException | NamingException e) {
-                try {
-                    conn.rollback();
-                } catch (SQLException e2) {
-                }
-                System.out.println(e);
-            }
-            return result;
+    /* 아이디 중복 확인 */
+    public boolean getIdCheck(String id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDAO();
+        boolean result = true;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);;
+            result = dao.getIdCheck(conn, id);
+            conn.commit();
+        }catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
         }
+    }
 
+    /* 판매자 리뷰 평점 평균 */
+    public ReviewDTO getReviewAvg(Long u_id) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        ReviewDTO dto = new ReviewDTO();
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);;
+            UserDAO dao = UserDAO.getDAO();
+            dto = dao.getReviewAvg(conn, u_id);
+            conn.commit();
+        }catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }
+        return dto;
+
+    }
 }

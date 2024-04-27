@@ -1,6 +1,7 @@
 package com.parsam.dao.user;
 
 import com.parsam.dto.ProductDTO;
+import com.parsam.dto.ReviewDTO;
 import com.parsam.dto.UserDTO;
 
 import java.sql.Connection;
@@ -426,7 +427,7 @@ public class UserDAO {
          return result;
     }
 
-    public void teacherCK_Ok(Connection conn, String id) throws SQLException{
+    public void teacherCK_Ok(Connection conn, String id) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append("   update  user              ");
         sql.append("   set                       ");
@@ -434,7 +435,7 @@ public class UserDAO {
         sql.append("   where  id = ?             ");
 
 
-        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
         }
@@ -449,14 +450,56 @@ public class UserDAO {
 
         ResultSet rs = null;
         boolean result = true;
-        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
-            if(!rs.next()) {
+            if (!rs.next()) {
                 result = false;
             }
-        }
-        return result;
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            return result;
 
+        }
     }
-}
+        /* 리뷰 평점 구하기 */
+        public ReviewDTO getReviewAvg (Connection conn, Long u_id) throws SQLException {
+            StringBuilder sql = new StringBuilder();
+            sql.append(" select     p.u_id as u_id                      ");
+            sql.append("          , truncate(avg(r_rank),1) as avg      ");
+            sql.append(" from       review r inner join product p       ");
+            sql.append(" on         r.p_id = p.p_id                     ");
+            sql.append(" where      p.u_id = ?                          ");
+            sql.append(" group by   p.u_id                              ");
+
+            ResultSet rs = null;
+            ReviewDTO dto = new ReviewDTO();
+            try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+                pstmt.setLong(1, u_id);
+                rs = pstmt.executeQuery();
+                if(rs.next()){
+                    dto.setU_id(rs.getLong("u_id"));
+                    dto.setAvg(rs.getDouble("avg"));
+                }
+            } finally {
+                if (rs != null) {
+                    try {
+                        rs.close();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+
+            }
+            return dto;
+        }
+
+
+
+    } // class
