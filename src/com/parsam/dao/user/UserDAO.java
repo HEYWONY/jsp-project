@@ -475,8 +475,8 @@ public class UserDAO {
             sql.append("          , truncate(avg(r_rank),1) as avg      ");
             sql.append(" from       review r inner join product p       ");
             sql.append(" on         r.p_id = p.p_id                     ");
-            sql.append(" where      r.u_id = ?                          ");
-            sql.append(" group by   r.u_id                              ");
+            sql.append(" where      p.u_id = ?                          ");
+            sql.append(" group by   p.u_id                              ");
 
             ResultSet rs = null;
             ReviewDTO dto = new ReviewDTO();

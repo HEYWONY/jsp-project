@@ -52,9 +52,6 @@ public class myPageAction implements Action {
         request.setAttribute("teacher_ck", teacher_ck);
         request.setAttribute("avg", avg);
 
-
-
-
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("WEB-INF/index.jsp?page=user/myPage.jsp");
