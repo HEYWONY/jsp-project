@@ -51,7 +51,6 @@ public class LikeService {
     }
 
     public long getFav(String id, long pid) {
-        System.out.println("dd");
         DBConnection db = DBConnection.getInstance();
         Connection conn = null;
         FavDAO dao = FavDAO.getDao();

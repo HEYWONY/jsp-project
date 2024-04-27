@@ -15,12 +15,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListAction implements Action {
-
+public class TextBookListAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService service = ProductService.getService();
-        List<ProductDTO> list = service.productListService();
+        List<ProductDTO> list = service.getTextbookList();
         request.setAttribute("list", list);
         List<Long> like_data=new ArrayList<>();
 
@@ -30,7 +29,7 @@ public class ProductListAction implements Action {
         if (session == null) {
             Forward forward = new Forward();
             forward.setForward(true);
-            forward.setUrl("WEB-INF/index.jsp?page=main/list.jsp");
+            forward.setUrl("WEB-INF/index.jsp?page=main/textbook.jsp");
             return forward;
         } else {
             // 세션 값 받아오기
@@ -50,10 +49,9 @@ public class ProductListAction implements Action {
             request.setAttribute("like_data", like_data);
         }
 
-
-            Forward forward = new Forward();
+        Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("WEB-INF/index.jsp?page=main/list.jsp");
+        forward.setUrl("WEB-INF/index.jsp?page=main/textbook.jsp");
         return forward;
     }
 }

@@ -146,7 +146,6 @@ public class FavDAO {
         sql.append(" where p_id = ? and    ");
         sql.append("       u_id = ?        ");
 
-        System.out.println("aa");
         long result = 0;
         ResultSet rs = null;
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {

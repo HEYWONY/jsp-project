@@ -109,3 +109,9 @@ ul > li {
     color: #b1b9c0;
 }
 
+.like {
+    width: 25px;
+    position: relative;
+    bottom: 38px;
+    left: 172px;
+}

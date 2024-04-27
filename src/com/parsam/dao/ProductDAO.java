@@ -85,6 +85,8 @@ public class ProductDAO {
                 dto.setU_id(rs.getInt("u_id"));
                 arr.add(dto);
             }
+        } finally {
+            disconn(rs);
         }
         return arr;
     }
@@ -246,6 +248,8 @@ public class ProductDAO {
 
             }
             return list;
+        }finally {
+            disconn(rs);
         }
     }
 
@@ -315,6 +319,8 @@ public class ProductDAO {
                 dto.setP_fav(rs.getInt("p_fav"));
                 list.add(dto);
             }
+        } finally {
+            disconn(rs);
         }
         return list;
     }
@@ -365,6 +371,154 @@ public class ProductDAO {
         sql.append(" select id             ");
         sql.
     }*/
+
+    public List<ProductDTO> getadisList(Connection conn) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_id                   ");
+        sql.append("        , p_img                  ");
+        sql.append("        , p_cate                 ");
+        sql.append("        , p_name                 ");
+        sql.append("        , p_price                ");
+        sql.append("        , p_state                ");
+        sql.append("        , p_fav                  ");
+        sql.append("        , u_id                   ");
+        sql.append(" FROM product                    ");
+        sql.append(" where p_cate = ?                ");
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setString(1, "교구");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                dto.setU_id(rs.getInt("u_id"));
+                arr.add(dto);
+            }
+        } finally {
+            disconn(rs);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> getEtcList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_id                   ");
+        sql.append("        , p_img                  ");
+        sql.append("        , p_cate                 ");
+        sql.append("        , p_name                 ");
+        sql.append("        , p_price                ");
+        sql.append("        , p_state                ");
+        sql.append("        , p_fav                  ");
+        sql.append("        , u_id                   ");
+        sql.append(" FROM product                    ");
+        sql.append(" where p_cate = ?                ");
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setString(1, "기타");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                dto.setU_id(rs.getInt("u_id"));
+                arr.add(dto);
+            }
+        } finally {
+            disconn(rs);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> getHandoutList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_id                   ");
+        sql.append("        , p_img                  ");
+        sql.append("        , p_cate                 ");
+        sql.append("        , p_name                 ");
+        sql.append("        , p_price                ");
+        sql.append("        , p_state                ");
+        sql.append("        , p_fav                  ");
+        sql.append("        , u_id                   ");
+        sql.append(" FROM product                    ");
+        sql.append(" where p_cate = ?                ");
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setString(1, "수업자료");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                dto.setU_id(rs.getInt("u_id"));
+                arr.add(dto);
+            }
+        } finally {
+            disconn(rs);
+        }
+        return arr;
+    }
+
+    public List<ProductDTO> getTextbookList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_id                   ");
+        sql.append("        , p_img                  ");
+        sql.append("        , p_cate                 ");
+        sql.append("        , p_name                 ");
+        sql.append("        , p_price                ");
+        sql.append("        , p_state                ");
+        sql.append("        , p_fav                  ");
+        sql.append("        , u_id                   ");
+        sql.append(" FROM product                    ");
+        sql.append(" where p_cate = ?                ");
+
+        ResultSet rs = null;
+        List<ProductDTO> arr = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setString(1, "교재");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                dto.setU_id(rs.getInt("u_id"));
+                arr.add(dto);
+            }
+        } finally {
+            disconn(rs);
+        }
+        return arr;
+    }
 }
 
 

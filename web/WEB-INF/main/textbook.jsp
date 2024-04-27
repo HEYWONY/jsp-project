@@ -1,3 +1,16 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: user
+  Date: 2024-04-28
+  Time: 오전 3:54
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -33,8 +46,8 @@
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
             <c:choose>
-                <c:when test="${list[i].p_cate == '교구'}">
-                    <li class="mainList_li_adis">${list[i].p_cate}</li>
+                <c:when test="${list[i].p_cate == '교재'}">
+                    <li class="mainList_li_textbook">${list[i].p_cate}</li>
                 </c:when>
                 <c:otherwise>
                     <li class="mainList_li_ddk">미분류</li>
@@ -68,3 +81,6 @@
 </body>
 </html>
 
+
+</body>
+</html>

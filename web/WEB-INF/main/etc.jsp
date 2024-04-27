@@ -33,8 +33,8 @@
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
             <c:choose>
-                <c:when test="${list[i].p_cate == '교구'}">
-                    <li class="mainList_li_adis">${list[i].p_cate}</li>
+                <c:when test="${list[i].p_cate == '기타'}">
+                    <li class="mainList_li_etc">${list[i].p_cate}</li>
                 </c:when>
                 <c:otherwise>
                     <li class="mainList_li_ddk">미분류</li>
