@@ -27,6 +27,7 @@ public class ProductDetailAction implements Action {
         String id = (String) session.getAttribute("id");
         UserService uservice = UserService.getService();
         long uid = uservice.getUid(id);
+        int teacher_ck = uservice.getTcCheck(uid);
 
         FavService fservice = FavService.getService();
         int fav_yn = fservice.find_fav_yn(uid,pid);
@@ -35,6 +36,7 @@ public class ProductDetailAction implements Action {
         request.setAttribute("uid", uid);
         request.setAttribute("fav_cnt",fav_cnt);
         request.setAttribute("fav_yn",fav_yn);
+        request.setAttribute("teacher_ck", teacher_ck);
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("WEB-INF/index.jsp?page=chh_product/detail.jsp");

@@ -509,5 +509,31 @@ public class UserDAO {
         }
 
 
+    public int getTcCheck(Connection conn, long uid) throws SQLException{
+            StringBuilder sql = new StringBuilder();
+            sql.append(" select teacher_ck        ");
+            sql.append(" from user                ");
+            sql.append(" where u_id = ?           ");
 
-    } // class
+            ResultSet rs = null;
+            int teacher_ck = 0;
+            try (
+                    PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+                    ){
+                pstmt.setLong(1, uid);
+                rs = pstmt.executeQuery();
+                if (rs.next()){
+                    teacher_ck = rs.getInt(1);
+                }
+            } finally {
+                if (rs != null){
+                    try {
+                        rs.close();
+                    } catch (Exception e){
+                        System.out.println(e);
+                    }
+                }
+            }
+            return teacher_ck;
+    }
+} // class

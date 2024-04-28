@@ -410,7 +410,7 @@ public class UserService {
         ReviewDTO dto = new ReviewDTO();
         try {
             conn = db.getConnection();
-            conn.setAutoCommit(false);;
+            conn.setAutoCommit(false);
             UserDAO dao = UserDAO.getDAO();
             dto = dao.getReviewAvg(conn, u_id);
             conn.commit();
@@ -422,5 +422,21 @@ public class UserService {
 
     }
 
+    public int getTcCheck(long uid) {
+        DBConnection db = DBConnection.getInstance();
+        Connection conn = null;
+        int teacher_ck = 0;
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            UserDAO dao = UserDAO.getDAO();
+            teacher_ck= dao.getTcCheck(conn, uid);
+            conn.commit();
+        }catch (SQLException | NamingException e) {
+            try{conn.rollback();} catch (SQLException e2){}
+            System.out.println(e);
+        }
+        return teacher_ck;
+    }
 }
 
