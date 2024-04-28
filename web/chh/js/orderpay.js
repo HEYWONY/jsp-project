@@ -9,7 +9,7 @@ const total_price = document.getElementById('total').textContent;
 const order_name = document.getElementById('oname').textContent;
 const order_phone = document.getElementById('ophone').textContent;
 const order_addr = document.getElementById('oaddr').textContent;
-const post_memo = document.getElementById('omemo').textContent;
+const post_memo = document.getElementById('omemo').value;
 const order_count = document.getElementById('ocnt').textContent;
 
 const order_no_random = "order_test_"+(Math.random()*100) //주문번호가 동일하면 같은 결제 반복. 랜덤으로 생성(임시)

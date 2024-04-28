@@ -5,10 +5,12 @@ import com.parsam.comm.Forward;
 import com.parsam.dto.BoardDTO;
 import com.parsam.dto.OrderDTO;
 import com.parsam.service.OrderService;
+import com.parsam.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class OrderPayAction implements Action {
@@ -19,7 +21,11 @@ public class OrderPayAction implements Action {
         String ophone = request.getParameter("ophone");
         long pid = Long.parseLong(request.getParameter("pid"));
         int ocnt = Integer.parseInt(request.getParameter("ocnt"));
-        long uid = 3; //orderform에서 부터 session으로 넘겨 받을 것 (임시, 수정해야 함)
+
+        HttpSession session = request.getSession(false);
+        String id = (String) session.getAttribute("id");
+        UserService uservice = UserService.getService();
+        long uid = uservice.getUid(id);
 
         OrderDTO odto = new OrderDTO();
         odto.setO_addr(oaddr);

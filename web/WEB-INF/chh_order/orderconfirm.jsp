@@ -69,7 +69,7 @@
                     </li>
                     <li>
                         <span class="field">배송 메모: </span>
-                        <input class="info" id="omemo" readonly value="${omemo}">
+                        <input class="info" id="omemo" value="${omemo}" readonly>
                     </li>
                     <li>
                         <div class="end_btn"><button id="pay_btn">결제하기</button></div>
