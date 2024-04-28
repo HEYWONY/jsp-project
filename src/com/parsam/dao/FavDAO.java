@@ -161,4 +161,27 @@ public class FavDAO {
         }
         return result ;
     }
+
+    public int findFavYn(Connection conn, long uid, long pid) throws SQLException{
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT  if(count(*)>0, 1, 0) AS fav_yn   ");
+        sql.append(" FROM fav                                 ");
+        sql.append(" WHERE u_id=? AND p_id=?                  ");
+
+        int fav_yn = 0;
+        ResultSet rs = null;
+        try (
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString())
+                ){
+            pstmt.setLong(1, uid);
+            pstmt.setLong(2, pid);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()){
+                fav_yn = rs.getInt(1);
+            }
+        }
+        return fav_yn;
+    }
 }

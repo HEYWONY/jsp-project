@@ -3,6 +3,7 @@ package com.parsam.controller.product;
 import com.parsam.comm.Action;
 import com.parsam.comm.Forward;
 import com.parsam.dto.ProductDTO;
+import com.parsam.service.FavService;
 import com.parsam.service.ProductService;
 import com.parsam.service.UserService;
 
@@ -27,9 +28,13 @@ public class ProductDetailAction implements Action {
         UserService uservice = UserService.getService();
         long uid = uservice.getUid(id);
 
+        FavService fservice = FavService.getService();
+        int fav_yn = fservice.find_fav_yn(uid,pid);
+
         request.setAttribute("pdto",pdto);
         request.setAttribute("uid", uid);
         request.setAttribute("fav_cnt",fav_cnt);
+        request.setAttribute("fav_yn",fav_yn);
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("WEB-INF/index.jsp?page=chh_product/detail.jsp");
