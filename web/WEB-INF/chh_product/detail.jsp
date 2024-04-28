@@ -12,6 +12,7 @@
 <c:set var="uid" value="${requestScope.uid}"/>
 <c:set var="fav_cnt" value="${requestScope.fav_cnt}"/>
 <c:set var="fav_yn" value="${requestScope.fav_yn}"/>
+<c:set var="teacher_ck" value="${requestScope.teacher_ck}"/>
 
 <div id="wrap">
     <div>
@@ -96,25 +97,34 @@
                         <div class="division_btn">
                             <!--로그인 한 사용자에 따라 버튼 다르게 보이도록 구현-->
                             <c:choose>
-                                <c:when test="${dto.u_id==uid || uid==100}">
-                                    <a class="left_btn" href="product_update.do?pid=${dto.p_id}">수정하기</a>
-                                    <a class="right_btn" href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
+                                <c:when test="${teacher_ck==1}">
+                                    <c:choose>
+                                        <c:when test="${dto.u_id==uid || uid==100}">
+                                            <a class="left_btn" href="product_update.do?pid=${dto.p_id}">수정하기</a>
+                                            <a class="right_btn" href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="left_btn" onclick="check(${dto.p_id})">
+                                                <c:choose>
+                                                    <c:when test="${fav_yn==0}">
+                                                        <img id="star_fav" class="btn_icon" src="chh/img/empty_star.png" alt="빈별">
+                                                    </c:when>
+                                                    <c:when test="${fav_yn==1}">
+                                                        <img id="star_fav" class="btn_icon" src="chh/img/fill_star.png" alt="찬별">
+                                                    </c:when>
+                                                </c:choose>
+                                                찜하기
+                                            </a>
+                                            <a class="right_btn" href="product_order.do?pid=${dto.p_id}">바로구매</a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="left_btn" onclick="check(${dto.p_id})">
-                                        <c:choose>
-                                            <c:when test="${fav_yn==0}">
-                                                <img id="star_fav" class="btn_icon" src="chh/img/empty_star.png" alt="빈별">
-                                            </c:when>
-                                            <c:when test="${fav_yn==1}">
-                                                <img id="star_fav" class="btn_icon" src="chh/img/fill_star.png" alt="찬별">
-                                            </c:when>
-                                        </c:choose>
-                                        찜하기
-                                    </a>
-                                    <a class="right_btn" href="product_order.do?pid=${dto.p_id}">바로구매</a>
+                                    <a class="left_btn">인증 필요</a>
+                                    <a class="right_btn">인증 필요</a>
                                 </c:otherwise>
                             </c:choose>
+
                         </div>
                     </li>
                 </ul>
@@ -125,8 +135,10 @@
         <section>
             <h2>상품 설명</h2>
             <p class="desc_txt">${dto.p_desc}</p>
-            <div class="desc_btn">
-                <a class="btn_style" href="myPage.do?uid=${dto.u_id}">
+            <c:choose>
+                <c:when test="${teacher_ck==1}">
+                    <div class="desc_btn">
+                        <a class="btn_style" href="myPage.do?uid=${dto.u_id}">
                     <span>
                         <span class="wave"></span>
                         <img class="btn_icon" src="chh/img/home_icon.png" alt="홈 아이콘"/>
@@ -140,8 +152,8 @@
                         </c:choose>
                     </span>
 
-                </a> <!--dto.u_id로 마이페이지 링크 걸기-->
-                <a class="btn_style" href="${dto.p_openchat}">
+                        </a> <!--dto.u_id로 마이페이지 링크 걸기-->
+                        <a class="btn_style" href="${dto.p_openchat}">
                     <span>
                         <span class="wave"></span>
                         <img class="btn_icon" src="chh/img/chat_icon.png" alt="채팅 아이콘"/>
@@ -154,8 +166,11 @@
                         </c:otherwise>
                     </c:choose>
                     </span>
-                </a>
-            </div>
+                        </a>
+                    </div>
+                </c:when>
+            </c:choose>
+
         </section>
     </div>
 </div>
