@@ -43,6 +43,8 @@
     </c:choose>
 </header>
 
+<ul id="result"></ul>
+
 <nav>
     <ul>
         <li><a href="adis_list.do">교구</a></li>
@@ -53,8 +55,6 @@
         <li><a href="boardlist.do">공지사항</a></li>
     </ul>
 </nav>
-
-<ul id="result"></ul>
 
 <script>
     let typingTimer;
@@ -72,7 +72,6 @@
                     result.innerHTML = '';
                     return;
                 }
-
                 fetch("listjson?header_search=" + search_data, {
                     method: "get",
                     headers: {'Accept': 'text/json'}
@@ -80,6 +79,7 @@
                     if (!response.ok) throw new Error('로드 실패');
                     return response.json();
                 }).then(data => {
+                    console.log(search_data)
                     console.log(data, 'data');
                     result.innerHTML = '';
 
