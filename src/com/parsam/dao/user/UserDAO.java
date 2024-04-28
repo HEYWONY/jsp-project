@@ -58,8 +58,9 @@ public class UserDAO {
         sql.append("            , email         ");
         sql.append("            , photo         ");
         sql.append("            , u_id          ");
+        sql.append("            , teacher_ck    ");
         sql.append("  from        user          ");
-        sql.append("  where       u_id = ?        ");
+        sql.append("  where       u_id = ?      ");
 
         ResultSet rs = null;
         UserDTO dto = new UserDTO();
@@ -75,6 +76,7 @@ public class UserDAO {
                 dto.setEmail(rs.getString("email"));
                 dto.setPhoto(rs.getString("photo"));
                 dto.setU_id(rs.getLong("u_id"));
+                dto.setTeacher_ck(rs.getBoolean("teacher_ck"));
             }
         }finally {
             if(rs!=null) try {

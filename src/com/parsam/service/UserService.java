@@ -388,14 +388,21 @@ public class UserService {
         boolean result = true;
         try {
             conn = db.getConnection();
-            conn.setAutoCommit(false);;
+            conn.setAutoCommit(false);
+            ;
             result = dao.getIdCheck(conn, id);
             conn.commit();
-        }catch (SQLException | NamingException e) {
-            try{conn.rollback();} catch (SQLException e2){}
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+            }
             System.out.println(e);
         }
+        return result;
     }
+
+
 
     /* 판매자 리뷰 평점 평균 */
     public ReviewDTO getReviewAvg(Long u_id) {
@@ -415,4 +422,6 @@ public class UserService {
         return dto;
 
     }
+
 }
+

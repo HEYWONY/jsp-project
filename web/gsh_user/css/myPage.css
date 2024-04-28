@@ -1,9 +1,59 @@
 .wrap{
-    width: 700px;
-    height: 500px;
-    margin: 100px 100px 300px 100px;
+    /*border: #0000FE solid 2px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    height: 90vh;
+    margin-top: 5vw;
 }
 
-ul > li{
-    padding: 10px;
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 27rem;
+    /*height: 30vh;*/
+    padding-top: 20px;
+    margin-bottom: 20px;
 }
+
+.nickname {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+#img{
+    width: 21px;
+    height: 21px;
+    padding-right: 5px;
+}
+
+.auth{
+    font-size: 0.9rem;
+    color: #0000FE;
+    position: relative;
+    top: -10px;
+}
+
+.avg{
+    position: relative;
+    left: -8px;
+    top: -10px;
+    font-size: 1.3rem;
+}
+
+.list li {
+    margin: 0px;
+    border: #221F1F solid 1px;
+    border-radius: 3px;
+    /*padding: 10px 5px 10px 15px;*/
+}
+
+.list li a {
+    padding: 22px 300px 22px 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+

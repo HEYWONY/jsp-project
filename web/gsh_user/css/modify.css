@@ -1,0 +1,102 @@
+.wrap{
+    /*border: #00aaff 1px solid;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    height: 100vh;
+    margin-bottom: 10vw;
+}
+
+form {
+    background-color: #F3F8FD;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    height: 80vh;
+    padding: 34px;
+    padding-top: 20px;
+}
+
+ul > li {
+
+}
+
+.modify > li {
+    margin: 10px 10px 20px 10px;
+}
+span {
+   color:  #0000FE;
+}
+
+li label {
+    padding:5px 300px 10px 0;
+    font-size: 1.1rem;
+}
+
+.title {
+    font-size: 1.4rem;
+}
+
+.input {
+    width: 22.9vw;
+    height: 3.3vh;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.addr1, .email{
+    width: 15vw;
+    height: 3.3vh;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.addr3{
+    width: 11.3vw;
+    height: 3.3vh;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.find {
+    width: 7.5vw;
+    height: 3.5vh;
+    background-color: #418FFE;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.submit, .reset {
+    width: 10.8vw;
+    height: 5vh;
+    font-size: 1rem;
+    margin: 30px 5px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.submit{
+    background-color: #0000FE;
+    color: white;
+    border: none;
+}
+
+.submit:hover{
+    background-color: #00008f;
+    color: white;
+}
+
+.reset{
+    background-color: white;
+    border: #221F1F solid 1px;
+}
+
+.reset:hover{
+    background-color: #c8c9d5;
+    border: none;
+}
