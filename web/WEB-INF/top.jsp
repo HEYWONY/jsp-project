@@ -11,7 +11,7 @@
 
 <header>
     <span class="header_01">
-        <a href="index.do"><img class="header_img" src="indexImg/pasam_logo.png" alt="pasam_logo"></a>
+        <a href="index.do"><img class="header_img" src="indexImg/pasam_logo.gif" alt="pasam_logo"></a>
     </span>
     <div class="header_02">
         <label>
