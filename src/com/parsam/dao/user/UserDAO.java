@@ -371,7 +371,7 @@ public class UserDAO {
         sql.append("  select      id              ");
         sql.append("  from user                   ");
         sql.append("  where teacher_ck = false    ");
-        sql.append("  and u_id <> 100             ");
+        sql.append("        and u_id <> 100       ");
         ResultSet rs = null;
 
         List<UserDTO> arr = new ArrayList<>();
