@@ -389,7 +389,6 @@ public class UserService {
         try {
             conn = db.getConnection();
             conn.setAutoCommit(false);
-            ;
             result = dao.getIdCheck(conn, id);
             conn.commit();
         } catch (SQLException | NamingException e) {
