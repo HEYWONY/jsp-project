@@ -336,8 +336,6 @@ public class UserDAO {
         sql.append("        , p_img             ");
         sql.append("        , p_state           ");
         sql.append("        , p_cate            ");
-        sql.append("        , p_img             ");
-        sql.append("        , p_fav             ");
         sql.append(" from   product p, fav f    ");
         sql.append(" where  p.p_id = f.p_id     ");
         sql.append(" and    f.u_id = ?          ");
@@ -355,8 +353,6 @@ public class UserDAO {
                 dto.setP_img(rs.getString("p_img"));
                 dto.setP_state(rs.getString("p_state"));
                 dto.setP_cate(rs.getString("p_cate"));
-                dto.setP_img(rs.getString("p_img"));
-                dto.setP_fav(rs.getInt("p_fav"));
                 arr.add(dto);
             }
 
