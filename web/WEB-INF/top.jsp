@@ -27,7 +27,6 @@
         </c:when>
         <c:when test="${session_id == 'admin'}">
             <span class="header_03_admin">
-                <a href="logout.do">로그아웃</a>
                 <a href="admin.do">관리자페이지</a>
             </span>
         </c:when>
