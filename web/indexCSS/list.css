@@ -56,9 +56,12 @@ ul li {
 }
 
 .mainList_li_3 {
-    font-size: 23px;
+    font-size: 1.3em;
     font-weight: bolder;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
 }
 
 .mainList_li_4 {

@@ -27,7 +27,7 @@
 <c:set var="like_data" value="${requestScope.like_data}"/>
 <c:set var="session_id" value="${sessionScope.id}"/>
 
-<h1>교구</h1>
+<h1>교재</h1>
 <form method="post" action="listResult.do">
     <select name="p_state" id="p_state">
         <option value="미개봉">미개봉</option>
@@ -42,9 +42,9 @@
     <input type="submit" value="전송">
 </form>
 <div class="list_ul">
-    <c:forEach var="i" begin="1" end="${fn:length(list)}" step="1" varStatus="loop">
+    <c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1" varStatus="loop">
         <ul>
-            <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
+            <li class="mainList_li_1"><img class="list_img" src="productUpload/${list[i].p_img}" alt="${list[i].p_img}"></li>
             <c:choose>
                 <c:when test="${list[i].p_cate == '교재'}">
                     <li class="mainList_li_textbook">${list[i].p_cate}</li>
@@ -60,15 +60,15 @@
             <li class="mainList_li_6" id="fav${list[i].p_id}">
                 <c:choose>
                     <c:when test="${empty session_id}">
-                        <img src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
+                        <img src="indexImg/nolike.png" class="like" alt="빈하트"/>
                     </c:when>
                     <c:otherwise>
                         <c:choose>
-                            <c:when test="${like_data[i]==0}"> <%--like_date가 0 -> 내가 좋아요 안 누름--%>
-                                <img src="indexImg/nolike.png" class="like" alt="빈하트" onclick="check(${list[i].p_id})"/>
+                            <c:when test="${list[i].u_id == uid || uid == 100}">
+
                             </c:when>
                             <c:otherwise>
-                                <img src="indexImg/yeslike.png" class="like" alt="찬하트" onclick="check(${list[i].p_id})"/>
+                                <img src="indexImg/${like_data[i] == 0 ? 'nolike.png' : 'yeslike.png'}" class="like" alt="${like_data[i] == 0 ? '빈하트' : '찬하트'}" onclick="check(${list[i].p_id})"/>
                             </c:otherwise>
                         </c:choose>
                     </c:otherwise>
