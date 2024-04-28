@@ -264,7 +264,7 @@ public class ProductDAO {
         sql.append("        , p_state                ");
         sql.append("        , p_fav                  ");
         sql.append(" FROM product                    ");
-        sql.append(" ORDER BY p_date DESC            ");
+        sql.append(" ORDER BY p_date                 ");
         sql.append(" LIMIT 6                         ");
 
         ResultSet rs = null;
