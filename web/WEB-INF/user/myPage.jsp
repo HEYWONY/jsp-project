@@ -45,7 +45,7 @@
     </c:when>
     <c:otherwise>
         <ul class="userInfo">
-            <li class="nickname">${dto.nickname}님</li>
+            <li class="nickname">${pdto.nickname}님</li>
             <li class="auth">${teacher_ck}</li>
             <li class="avg">
                 <c:choose>
