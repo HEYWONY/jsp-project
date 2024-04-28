@@ -371,6 +371,7 @@ public class UserDAO {
         sql.append("  select      id              ");
         sql.append("  from user                   ");
         sql.append("  where teacher_ck = false    ");
+        sql.append("        and u_id <> 100       ");
         ResultSet rs = null;
 
         List<UserDTO> arr = new ArrayList<>();
@@ -393,6 +394,7 @@ public class UserDAO {
         sql.append("               , name       ");
         sql.append("               , nickname   ");
         sql.append("  from  user                ");
+        sql.append("  where u_id <> 100         ");
         ResultSet rs = null;
         List<UserDTO> arr = new ArrayList<>();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
