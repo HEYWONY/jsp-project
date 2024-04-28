@@ -103,3 +103,7 @@ nav > ul > li > a:hover {
 #result li a:hover {
     text-decoration: underline;
 }
+
+.header_img_txt{
+    width: 150px;
+}

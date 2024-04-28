@@ -11,7 +11,10 @@
 
 <header>
     <span class="header_01">
-        <a href="index.do"><img class="header_img" src="indexImg/pasam_logo.gif" alt="pasam_logo"></a>
+        <a href="index.do">
+            <img class="header_img" src="indexImg/pasam_logo.gif" alt="pasam_logo">
+            <img class="header_img_txt" src="indexImg/logo_text.png" alt="logo_text">
+        </a>
     </span>
     <div class="header_02">
         <label>
@@ -27,6 +30,7 @@
         </c:when>
         <c:when test="${session_id == 'admin'}">
             <span class="header_03_admin">
+                <a href="logout.do">로그아웃</a>
                 <a href="admin.do">관리자페이지</a>
             </span>
         </c:when>
