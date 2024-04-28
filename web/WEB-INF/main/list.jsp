@@ -36,7 +36,7 @@
     <input type="submit" value="전송">
 </form>
 <div class="list_ul">
-      <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1" varStatus="loop">
+    <c:forEach var="i" begin="1" end="${fn:length(list)}" step="1" varStatus="loop">
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
             <c:choose>
