@@ -24,7 +24,7 @@
 <%-- 메인에 있는 애--%>
 <article>
     <%-- 캐러셀 들어갈 공간... 임시 이미지가 들어가있어요 --%>
-    <img class="main_img_1"src="indexImg/main.png" alt="index"/>
+    <img class="main_img_1"src="indexImg/main_gate_img.png" alt="index"/>
 </article>
 <article>
     <%-- 메인 페이지에서 최신 물품 나오는 곳, 최대 5개 제한 시간 --%>
