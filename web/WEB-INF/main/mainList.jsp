@@ -30,7 +30,7 @@
     <%-- 메인 페이지에서 최신 물품 나오는 곳, 최대 5개 제한 시간 --%>
     <h1>최신 물품</h1>
     <div class="mainList1">
-        <c:forEach var="i" begin="0" end="${fn:length(list)}" step="1" varStatus="loop">
+        <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1" varStatus="loop">
             <ul>
                 <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
                 <c:choose>
@@ -79,7 +79,7 @@
     <%-- 메인 페이지에서 인기 상품 나오는 공간, 근 일주일 내에 가장 많은 조회수를 기록한 게시물 보여줌 무한 스크롤링 --%>
     <h1>인기 상품</h1>
     <div class="mainList2">
-        <c:forEach var="i" begin="0" end="${fn:length(list2)}" step="1" varStatus="loop">
+        <c:forEach var="i" begin="0" end="${fn:length(list2)-1}" step="1" varStatus="loop">
             <ul>
                 <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
                 <c:choose>
