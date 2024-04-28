@@ -63,14 +63,14 @@
                     <%--                <input type="text" id="emailck" name="emailck" class="joinInput">--%>
                     <%--                <input type="button" value="인증번호 확인">--%>
                 </li>
-                <%-- <li>
+                 <li>
                      <label class="title">주소</label>
                      <input type="text" name="addr1" class="joinInput2" id="postcode" placeholder="우편번호">
-                     <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-                     <input type="text" name="addr2" class="joinInput" id="address" placeholder="주소"><br>
-                     <input type="text" name="addr3" class="joinInput" id="detailAddress" placeholder="상세주소">
-                     <input type="text" id="extraAddress" class="joinInput" placeholder="참고항목">
-                 </li>--%>
+                     <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="idCheck"><br>
+                     <input type="text" name="addr2" class="joinInput addrr" id="address" placeholder="주소"><br>
+                     <input type="text" name="addr3" class="joinInput3" id="detailAddress" placeholder="상세주소">
+                     <input type="text" id="extraAddress" class="joinInput3" placeholder="참고항목">
+                 </li>
                 <li>
                     <label for="phone" class="title">연락처</label>
                     <input type="text" id="phone" name="phone" class="joinInput" placeholder="010-1919-1919" required>
