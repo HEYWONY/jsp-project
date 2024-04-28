@@ -35,7 +35,7 @@ public class myPageAction implements Action {
         UserDTO pdto = service.getModifyList(uid);
 
         // 교사 인증 현황
-        String teacher_ck = "";
+        String teacher_ck;
         if(!dto.isTeacher_ck()) {
             teacher_ck = "인증이 진행중입니다.";
         }else {

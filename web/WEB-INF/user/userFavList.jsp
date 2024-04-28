@@ -5,20 +5,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="indexCSS/list.css">
+    <link rel="stylesheet" href="gsh_user/css/fav.css">
     <title>찜한 목록</title>
 </head>
 <body>
+<div class="wrap">
+    <div class="fav">
 <h3>찜 목록</h3>
+        </div>
 <c:set var="list" value="${requestScope.list}"/>
-<div class="list_ul">
+<div class="list_ul1">
     <c:if test="${empty list}">
-        <ul>
-        <li>찜한 상품이 없습니다.</li>
-        <li><a href="myPage.do?u_id=${id}">이전으로</a></li>
-        <li><a href="index.do">홈으로</a></li>
+        <ul >
+        <li class="txt">찜한 상품이 없습니다.</li>
+        <li class="a"><a href="myPage.do?u_id=${id}">이전으로</a>
+        <li class="a"><a href="index.do">홈으로</a></li>
         </ul>
     </c:if>
+</div>
+    <div class="list_ul">
     <c:forEach var="item" items="${list}">
         <ul>
             <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}"></li>
@@ -45,6 +50,7 @@
             <li class="mainList_li_6">${item.p_fav}</li>
         </ul>
     </c:forEach>
+</div>
 </div>
 </body>
 </html>

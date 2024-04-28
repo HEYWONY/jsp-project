@@ -72,17 +72,17 @@ elInputPw.onkeyup = function () {
         if (strongPassword(elInputPw.value)) {
             elStrongPw.classList.add('hide'); // 실패 메시지가 가려져야 함
         }
-        /* 에러 메세지 확인
-            else {
-                elStrongPw.classList.remove('hide'); // 실패 메시지가 보여야 함
-            }
+        // 에러 메세지 확인
+        else {
+            elStrongPw.classList.remove('hide'); // 실패 메시지가 보여야 함
         }
+    }
             // 값을 입력하지 않은 경우 (지웠을 때)
         // 모든 메시지를 가린다.
         else {
             elStrongPw.classList.add('hide');
-        }*/
-    }
+        }
+    // }
 };
 
 /* 비밀번호 확인 */

@@ -1,20 +1,125 @@
+#wrap {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 100vh;
+    margin-bottom: 20vw;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 170px;
+}
+
+.trade {
+    border: none;
+    border-bottom: black solid 2px;
+    position: relative;
+    left: 150px;
+    width: 1020px;;
+}
+
+.trade a {
+    font-size: 1.2rem;
+    padding: 20px 60px;
+}
+
+.trade a:hover{
+    background-color: #BADCFF;
+}
+
+.tradeState {
+    padding-left: 17px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 150px;
+    border-bottom: black solid 2px;
+    width: 1005px;;
+}
+
+.tradeState a {
+    font-size: 1rem;
+    padding: 20px 40px;
+}
+
+.tradeState a:hover{
+   border-bottom: black solid 1px ;
+}
+
 ul {
     display: flex;
+    position: relative;
+    left: 150px;
 }
 
 ul > li {
     list-style: none;
+
 }
 
-li{
+p {
+    font-size: 1rem;
+    position: relative;
+    left: 150px;
+}
+
+li {
     display: inline-block;
     text-align: center;
+}
+
+li .fl {
+    padding: 5px;
 }
 
 .trade, .tradeState {
     display: flex;
 }
 
-.trade h4, .tradeState h5 {
-    padding-right: 20px;
+.title {
+    border-bottom: black solid 1px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cntxt {
+    font-size: 1rem;
+    border-bottom: black solid 1px;
+}
+
+/* 공통옵션 */
+.board li {list-style:none;  padding: 9px; }
+.fl {float:left; margin: 10px 0px; }
+.tc {text-align:center; }
+
+/* 게시판 목록 */
+.board {
+    width: 980px;
+    margin: 5px 0px 5px 0px;
+}
+.w70 {width:70px; }
+.w500 {width:300px; }
+.w120 {width:120px; }
+.w100 {width:100px; }
+
+/* 리뷰하기 버튼 */
+.cntxt .review {
+    margin-left: 80px;
+    padding: 9px 19px;
+    background-color: #0000FE;
+    border-radius: 10px;
+}
+
+.review a{
+    color: #ffffff;
+}
+
+p {
+    position: relative;
+    left: 580px;
+    font-size: 1.2rem;
 }
