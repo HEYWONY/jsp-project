@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: FULL8-007
-  Date: 2024-04-22
-  Time: 오후 3:33
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -34,7 +27,7 @@
     <div class="notice_write">
         <h3>공지사항</h3>
         <c:choose>
-            <c:when test="${uid==1}">
+            <c:when test="${uid==100}">
                 <a href="board_write.do" class="write_btn">글쓰기</a>
             </c:when>
         </c:choose>

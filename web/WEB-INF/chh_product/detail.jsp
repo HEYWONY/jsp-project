@@ -96,7 +96,7 @@
                         <div class="division_btn">
                             <!--로그인 한 사용자에 따라 버튼 다르게 보이도록 구현-->
                             <c:choose>
-                                <c:when test="${dto.u_id==uid || uid==1}">
+                                <c:when test="${dto.u_id==uid || uid==100}">
                                     <a class="left_btn" href="product_update.do?pid=${dto.p_id}">수정하기</a>
                                     <a class="right_btn" href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
                                 </c:when>
