@@ -11,7 +11,9 @@ article > h1 {
     height: 200px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    object-fit: cover;
     background-color: #e0e0e0;
+    border-radius: 10px;
 }
 
 .list_ul {
@@ -19,6 +21,7 @@ article > h1 {
     flex-wrap: wrap;
     justify-content: flex-start;
 }
+
 ul li {
     display: flex;
     flex-direction: column;
