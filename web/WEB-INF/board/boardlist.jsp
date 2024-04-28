@@ -34,7 +34,7 @@
     <div class="notice_write">
         <h3>공지사항</h3>
         <c:choose>
-            <c:when test="${uid==1}">
+            <c:when test="${uid==100}">
                 <a href="board_write.do" class="write_btn">글쓰기</a>
             </c:when>
         </c:choose>

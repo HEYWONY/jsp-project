@@ -40,7 +40,7 @@
      <div class="btn">
          <a href="boardlist.do"><button type="button">목록보기</button></a>
             <c:choose>
-                <c:when test="${uid==1}">
+                <c:when test="${uid==100}">
                      <a href="board_update.do?bno=${detail.b_no}"><button type="button">수정</button></a>
                      <a href="board_delete.do?bno=${detail.b_no}"><button type="button">삭제</button></a>
                 </c:when>

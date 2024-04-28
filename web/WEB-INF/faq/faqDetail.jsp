@@ -14,6 +14,8 @@
 </head>
 <body>
 <c:set var="detail" value="${requestScope.dto}"/>
+<c:set var="uid" value="${requestScope.uid}"/>
+
 <div class="wrap">
     <div class="notice">
         <h3>자주 묻는 질문</h3>
@@ -37,8 +39,12 @@
 
     <div class="btn">
         <a href="faqlist.do"><button type="button">목록보기</button></a>
-        <a href="faq_update.do?bno=${detail.f_no}"><button type="button">수정</button></a>
-        <a href="faq_delete.do?bno=${detail.f_no}"><button type="button">삭제</button></a>
+            <c:choose>
+                <c:when test="${uid==100}">
+                    <a href="faq_update.do?bno=${detail.f_no}"><button type="button">수정</button></a>
+                    <a href="faq_delete.do?bno=${detail.f_no}"><button type="button">삭제</button></a>
+                </c:when>
+            </c:choose>
     </div>
 
 </div>
