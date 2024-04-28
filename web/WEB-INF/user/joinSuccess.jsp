@@ -7,7 +7,7 @@
     <title>joinSuccess</title>
     <style>
         #wrap{
-            border: #00aaff 1px solid;
+            /*border: #00aaff 1px solid;*/
             display: flex;
             flex-direction: column;
             align-items: center;
