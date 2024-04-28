@@ -5,11 +5,13 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="chh/css/detail.css">
+    <script src="chh/js/detail.js"></script>
 </head>
 <body>
 <c:set var="dto" value="${requestScope.pdto}"/>
 <c:set var="uid" value="${requestScope.uid}"/>
 <c:set var="fav_cnt" value="${requestScope.fav_cnt}"/>
+<c:set var="fav_yn" value="${requestScope.fav_yn}"/>
 
 <div id="wrap">
     <div>
@@ -99,8 +101,15 @@
                                     <a class="right_btn" href="product_delete.do?pid=${dto.p_id}&pimg=${dto.p_img}">삭제하기</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="left_btn" href="#" onclick="check(${dto.p_id})">
-                                        <img class="btn_icon" src="chh/img/empty_star.png" alt="빈별">
+                                    <a class="left_btn" onclick="check(${dto.p_id})">
+                                        <c:choose>
+                                            <c:when test="${fav_yn==0}">
+                                                <img id="star_fav" class="btn_icon" src="chh/img/empty_star.png" alt="빈별">
+                                            </c:when>
+                                            <c:when test="${fav_yn==1}">
+                                                <img id="star_fav" class="btn_icon" src="chh/img/fill_star.png" alt="찬별">
+                                            </c:when>
+                                        </c:choose>
                                         찜하기
                                     </a>
                                     <a class="right_btn" href="product_order.do?pid=${dto.p_id}">바로구매</a>
@@ -111,30 +120,6 @@
                 </ul>
             </section>
         </div>
-
-        <script>
-            let check = async function(pid) {
-                fetch('like?p_id=' + pid, {
-                    method: 'get',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }).then(response => {
-                    if (!response.ok) throw new Error('로드 실패');
-                    return response.text();
-                }).then(data => {
-                    if(data >= 1) {
-                        alert("찜하기 완료!")
-                    } else {
-                        alert("찜하기 취소!")
-                    }
-
-                }).catch(error => {
-                    console.log(error);
-                    result.innerHTML = '';
-                }).finally(() => console.log('finally'));
-            }
-        </script>
 
 
         <section>
