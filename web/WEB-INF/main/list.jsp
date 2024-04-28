@@ -33,7 +33,7 @@
         <option value="택배거래">택배거래</option>
         <option value="직거래, 택배거래">직거래, 택배거래</option>
     </select>
-    <input type="submit" value="전송">
+    <input type="submit" value="검색">
 </form>
 <div class="list_ul">
     <c:forEach var="i" begin="0" end="${fn:length(list) -1}" step="1" varStatus="loop">
