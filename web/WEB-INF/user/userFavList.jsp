@@ -30,7 +30,7 @@
         </c:if>
     </div>
     <div class="list_ul" >
-        <c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1" varStatus="status">
+        <c:forEach var="i" begin="1" end="${fn:length(list)}" step="1" varStatus="loop">
             <ul id="list${list[i].p_id}">
                 <li class="mainList_li_1"><img class="list_img" src="productUpload/${item.p_img}" alt="${item.p_img}">
                 </li>
