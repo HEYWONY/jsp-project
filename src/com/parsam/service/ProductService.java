@@ -169,8 +169,15 @@ public class ProductService {
         Connection conn = null;
         try {
             conn = db.getConnection();
+            conn.setAutoCommit(false);
             arr = dao.getNewList(conn);
+            conn.commit();
         } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -187,9 +194,15 @@ public class ProductService {
 
         try {
             conn = db.getConnection();
+            conn.setAutoCommit(false);
             arr = dao.productListResult(conn, dto);
-
+            conn.commit();
         } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -229,8 +242,15 @@ public class ProductService {
         Connection conn = null;
         try {
             conn=db.getConnection();
+            conn.setAutoCommit(false);
             favcnt=dao.getFavCnt(conn, pid);
+            conn.commit();
         } catch (SQLException | NamingException e){
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             db.disconn(conn);
@@ -247,8 +267,15 @@ public class ProductService {
 
         try{
             conn = db.getConnection();
+            conn.setAutoCommit(false);
             arr = dao.getFavList(conn, u_id);
+            conn.commit();
         }catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
             System.out.println(e);
         }finally {
             db.disconn(conn);
