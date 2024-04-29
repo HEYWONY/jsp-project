@@ -45,6 +45,9 @@ public class IndexAction implements Action {
             UserService service2 = UserService.getService();
             long uid = service2.getUid(id);
 
+            // 선생 인증
+            int tc = service2.getTcCheck(uid);
+
             LikeService service3 = LikeService.getService();
             for (ProductDTO dto : list ) {
                 long result = service3.getFav(id, dto.getP_id());
@@ -53,6 +56,7 @@ public class IndexAction implements Action {
 
             request.setAttribute("uid", uid);
             request.setAttribute("like_data", like_data);
+            request.setAttribute("tc", tc);
 
 
             Forward forward = new Forward();

@@ -8,6 +8,7 @@
 <body>
 <%// String id = (String) session.getAttribute("id");%>
 <c:set var="session_id" value="${sessionScope.id}"/>
+<c:set var="tc" value="${requestScope.tc}"/>
 
 <header>
     <span class="header_01">
@@ -36,8 +37,16 @@
         </c:when>
         <c:otherwise>
             <span class="header_03_1">
-                <a class="header_03_1_1" href="product_write.do">상품등록</a>
-                <a href="myPage.do">마이페이지</a>
+                <c:choose>
+                    <c:when test="${tc == 1}">
+                        <a class="header_03_1_1" href="product_write.do">상품등록</a>
+                        <a href="myPage.do">마이페이지</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="myPage.do">마이페이지</a>
+                    </c:otherwise>
+                </c:choose>
+                
             </span>
         </c:otherwise>
     </c:choose>
