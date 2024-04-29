@@ -34,10 +34,16 @@ public class UserService {
 
         try {
             conn = db.getConnection();  // DB 연결
+            conn.setAutoCommit(false);
 
             result = dao.insertUserData(conn, dto);
-
+            conn.commit();
         } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             if (conn != null) try {
@@ -58,9 +64,15 @@ public class UserService {
 
         try {
             conn = db.getConnection();  // db 연결
+            conn.setAutoCommit(false);
             dto = dao.getModifyList(conn, u_id);
-
+            conn.commit();
         } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             if (conn != null) try {
@@ -80,8 +92,15 @@ public class UserService {
         int result = 0;
         try {
             conn = db.getConnection();
+            conn.setAutoCommit(false);
             result = dao.updateUserData(conn, dto);
+            conn.commit();
         } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2) {
+                System.out.println(e2);
+            }
             System.out.println(e);
         } finally {
             if (conn != null) try {
@@ -417,6 +436,8 @@ public class UserService {
         }catch (SQLException | NamingException e) {
             try{conn.rollback();} catch (SQLException e2){}
             System.out.println(e);
+        }finally {
+            db.disconn(conn);
         }
         return dto;
 
@@ -435,6 +456,8 @@ public class UserService {
         }catch (SQLException | NamingException e) {
             try{conn.rollback();} catch (SQLException e2){}
             System.out.println(e);
+        } finally {
+            db.disconn(conn);
         }
         return teacher_ck;
     }

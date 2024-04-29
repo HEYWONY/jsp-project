@@ -247,10 +247,10 @@ public class ProductDAO {
                 dto.setP_fav(rs.getInt("p_fav"));
                 list.add(dto);
             }
-            return list;
         }finally {
             disconn(rs);
         }
+        return list;
     }
 
     // 최신글
@@ -518,6 +518,44 @@ public class ProductDAO {
             disconn(rs);
         }
         return arr;
+    }
+
+    public List<ProductDTO> productTextbookListResult(Connection conn, ProductDTO dto) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT   p_img                                  ");
+        sql.append("        , p_name                                 ");
+        sql.append("        , p_id                                   ");
+        sql.append("        , p_cate                                 ");
+        sql.append("        , p_price                                ");
+        sql.append("        , p_state                                ");
+        sql.append("        , p_fav                                  ");
+        sql.append(" FROM product                                    ");
+        sql.append(" WHERE p_cate = ?                                ");
+        sql.append("       AND p_trade = ? AND p_state= ?            ");
+
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setString(1, "교재");
+            pstmt.setString(2, dto.getP_trade());
+            pstmt.setString(3, dto.getP_state());
+            rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                dto.setP_id(rs.getLong("p_id"));
+                dto.setP_img(rs.getString("p_img"));
+                dto.setP_cate(rs.getString("p_cate"));
+                dto.setP_name(rs.getString("p_name"));
+                dto.setP_price(rs.getInt("p_price"));
+                dto.setP_state(rs.getString("p_state"));
+                dto.setP_fav(rs.getInt("p_fav"));
+                list.add(dto);
+            }
+        }finally {
+            disconn(rs);
+        }
+        return list;
     }
 }
 

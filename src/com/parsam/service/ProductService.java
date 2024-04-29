@@ -375,4 +375,28 @@ public class ProductService {
         }
         return arr;
     }
+
+    public List<ProductDTO> productTextbookListResult(ProductDTO dto) {
+        DBConnection db = DBConnection.getInstance();
+        ProductDAO dao = ProductDAO.getDao();
+        List<ProductDTO> arr = new ArrayList<>();
+        Connection conn = null;
+
+        try {
+            conn = db.getConnection();
+            conn.setAutoCommit(false);
+            arr = dao.productTextbookListResult(conn, dto);
+            conn.commit();
+        } catch (SQLException | NamingException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e2){
+                System.out.println(e2);
+            }
+            System.out.println(e);
+        } finally {
+            db.disconn(conn);
+        }
+        return arr;
+    }
 }

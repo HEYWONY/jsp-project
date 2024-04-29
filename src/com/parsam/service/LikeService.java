@@ -24,8 +24,6 @@ public class LikeService {
 
             long favId = dao.getFav(conn, id, pid); // fid 받아오기
 
-            System.out.println(favId);
-
             if (favId == 0) { // long 0이면
                 // insert
                 long uid = dao.getUId(conn, id); // uid 받아오기

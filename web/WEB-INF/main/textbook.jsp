@@ -28,7 +28,7 @@
 <c:set var="session_id" value="${sessionScope.id}"/>
 
 <h1>교재</h1>
-<form method="post" action="listResult.do">
+<form method="post" action="textbooklistResult.do">
     <select name="p_state" id="p_state">
         <option value="미개봉">미개봉</option>
         <option value="거의 새것">거의 새것</option>
