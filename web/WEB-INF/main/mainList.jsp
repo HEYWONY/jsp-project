@@ -79,7 +79,7 @@
     <%-- 메인 페이지에서 인기 상품 나오는 공간, 근 일주일 내에 가장 많은 조회수를 기록한 게시물 보여줌 무한 스크롤링 --%>
     <h1>인기 상품</h1>
     <div class="mainList2">
-        <c:forEach var="i" begin="0" end="${fn:length(list) -1}" step="1" varStatus="loop">
+        <c:forEach var="i" begin="0" end="${fn:length(list2) -1}" step="1" varStatus="loop">
             <ul>
                 <li class="mainList_li_1"><img class="list_img" src="productUpload/${list2[i].p_img}" alt="${list2[i].p_img}"></li>
                 <c:choose>
@@ -103,18 +103,17 @@
                 <li class="mainList_li_4">₩${list2[i].p_price}</li>
                 <li class="mainList_li_5">${list2[i].p_state}</li>
 
-                <li class="mainList_li_6" id="fav${list[i].p_id}">
+                <li class="mainList_li_6" id="fav${list2[i].p_id}">
                     <c:choose>
                         <c:when test="${empty session_id}">
                             <img src="indexImg/nolike.png" class="like" alt="빈하트"/>
                         </c:when>
                         <c:otherwise>
                             <c:choose>
-                                <c:when test="${list[i].u_id == uid || uid == 100}">
-
+                                <c:when test="${list2[i].u_id == uid || uid == 100}">
                                 </c:when>
                                 <c:otherwise>
-                                    <img src="indexImg/${like_data[i] == 0 ? 'nolike.png' : 'yeslike.png'}" class="like" alt="${like_data[i] == 0 ? '빈하트' : '찬하트'}" onclick="check(${list[i].p_id})"/>
+                                    <img src="indexImg/${like_data[i] == 0 ? 'nolike.png' : 'yeslike.png'}" class="like" alt="${like_data[i] == 0 ? '빈하트' : '찬하트'}" onclick="check(${list2[i].p_id})"/>
                                 </c:otherwise>
                             </c:choose>
                         </c:otherwise>

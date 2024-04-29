@@ -23,15 +23,14 @@
         <option value="기타">기타</option>
     </select>
     <select name="p_state" id="p_state">
-        <option value="상관없음" selected>상관없음</option>
         <option value="미개봉">미개봉</option>
         <option value="거의 새것">거의 새것</option>
         <option value="사용감 있음">사용감 있음</option>
     </select>
     <select name="p_trade" id="p_trade">
-        <option value="직거래">직거래</option>
-        <option value="택배거래">택배거래</option>
-        <option value="직거래, 택배거래">직거래, 택배거래</option>
+        <option value="meet">직거래</option>
+        <option value="deliver">택배거래</option>
+        <option value="both">직거래, 택배거래</option>
     </select>
     <input type="submit" value="검색">
 </form>
