@@ -29,10 +29,10 @@
 ![img](https://imgur.com/M9FZKk5.png)
 
 ## 시퀀스 다이어그램
-1. 결제 시스템
+#### 1. 결제 시스템
    ![img](https://imgur.com/zvzjdDd.png)
-2. 제품 등록
+#### 2. 제품 등록
    ![img](https://imgur.com/nfEvELq.png)
-3. 회원 가
+#### 3. 회원 가입
    ![img](https://imgur.com/e4oPWA2.png)
 ## 주요 기능
