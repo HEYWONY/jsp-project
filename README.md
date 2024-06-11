@@ -43,4 +43,16 @@
    ![img](https://imgur.com/nfEvELq.png)
 ### 3. 회원 가입
    ![img](https://imgur.com/e4oPWA2.png)
+   
 ## 주요 기능
+1. 상품 등록 및 검색
+2. 카테고리 및 태그 기능
+3. 찜 버튼
+4. 로그인 / 회원가입
+5. 평가 및 리뷰 시스템
+6. 상품 구매 기능
+7. 관리자 시스템
+8. 마이페이지
+
+## 전체 영상
+[![파샘](http://img.youtube.com/vi/46KsBLxG7sY/0.jpg)](https://youtu.be/46KsBLxG7sY?t=0s) 
