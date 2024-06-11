@@ -13,13 +13,16 @@
 2024.04.16 ~ 2024.04.29
 
 ## 멤버 구성
-## 개발 환경
-## 스토리 보드 
-<details><summary>
-</summary>
+| ![img](https://avatars.githubusercontent.com/u/65533618?v=4) | ![img](https://avatars.githubusercontent.com/u/101185337?v=4) | ![img](https://avatars.githubusercontent.com/u/109783402?v=4)| ![img](https://avatars.githubusercontent.com/u/160826716?v=4) |
+| --- | --- | --- | --- |
+| [@HEYWONY](https://github.com/HEYWONY) | [@Suhayng](https://github.com/Suhayng) | [@tongueEye](https://github.com/tongueEye) | [@mummyyyyy](https://github.com/mummyyyyy) |
+|메인 페이지 | 회원가입 <br> 마이페이지 | 상품 등록 <br> 주문 / 결제 | 로그인 <br> 관리자 페이지 <br> 공지사항
 
-*![img](https://imgur.com/NIkbCmz.png)*
-</details>
+
+## 개발 환경
+
+## 스토리 보드 
+![img](https://imgur.com/NIkbCmz.png)
 
 ## ERD
 
@@ -33,10 +36,10 @@
 ![img](https://imgur.com/M9FZKk5.png)
 
 ## 시퀀스 다이어그램
-#### 1. 결제 시스템
+### 1. 결제 시스템
    ![img](https://imgur.com/zvzjdDd.png)
-#### 2. 제품 등록
+### 2. 제품 등록
    ![img](https://imgur.com/nfEvELq.png)
-#### 3. 회원 가입
+### 3. 회원 가입
    ![img](https://imgur.com/e4oPWA2.png)
 ## 주요 기능
