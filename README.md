@@ -15,7 +15,11 @@
 ## 멤버 구성
 ## 개발 환경
 ## 스토리 보드 
-![img](https://imgur.com/NIkbCmz.png)
+<details><summary>
+</summary>
+
+*![img](https://imgur.com/NIkbCmz.png)*
+</details>
 
 ## ERD
 
