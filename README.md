@@ -14,9 +14,10 @@
 
 ## 멤버 구성
 | ![img](https://avatars.githubusercontent.com/u/65533618?v=4) | ![img](https://avatars.githubusercontent.com/u/101185337?v=4) | ![img](https://avatars.githubusercontent.com/u/109783402?v=4)| ![img](https://avatars.githubusercontent.com/u/160826716?v=4) |
-| --- | --- | --- | --- |
-| [@HEYWONY](https://github.com/HEYWONY) | [@Suhayng](https://github.com/Suhayng) | [@tongueEye](https://github.com/tongueEye) | [@mummyyyyy](https://github.com/mummyyyyy) |
-|메인 페이지 | 회원가입 <br> 마이페이지 | 상품 등록 <br> 주문 / 결제 | 로그인 <br> 관리자 페이지 <br> 공지사항
+| :---: | :---: | :---: | :---: |
+| <center> [@HEYWONY](https://github.com/HEYWONY)  | <center>[@Suhayng](https://github.com/Suhayng)  | <center> [@tongueEye](https://github.com/tongueEye)| <center>[@mummyyyyy](https://github.com/mummyyyyy) |
+| <center> 메인 페이지 <br> 메뉴 페이지 | <center> 회원가입 <br> 마이페이지 | <center> 상품 등록 <br> 주문 / 결제 | <center> 로그인 <br> 관리자 페이지 <br> 공지사항 |
+
 
 
 ## 개발 환경
